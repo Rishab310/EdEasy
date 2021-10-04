@@ -1,0 +1,96 @@
+#home {
+    min-height: 100vh;
+    width: 100vw;
+    background: linear-gradient(76.34deg, #FFFFFF 52.45%, rgba(196, 196, 196, 0) 52.49%), url(../../Assests/image1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    -webkit-animation: background 10s alternate infinite;
+            animation: background 10s alternate infinite;
+  }
+  
+  #home .content {
+    position: relative;
+  }
+  
+  #home .content h1 {
+    font-size: 6rem;
+    color: #00B894;
+  }
+  
+  #home .content h2 {
+    font-size: 5rem;
+    color: #00B894;
+  }
+  
+  #home .content h3 {
+    font-size: 3rem;
+    color: #333;
+    margin: 1rem 0;
+  }
+  
+  #home .content button {
+    outline: none;
+    border: none;
+    border-radius: 5rem;
+    background: #00B894;
+    color: #fff;
+    cursor: pointer;
+    height: 4rem;
+    width: 18rem;
+    font-size: 2rem;
+    text-transform: capitalize;
+  }
+  
+  #home .content button:hover {
+    background: #333;
+  }
+  @-webkit-keyframes background {
+    0%, 100% {
+      background: linear-gradient(76.34deg, #FFFFFF 52.45%, rgba(196, 196, 196, 0) 52.49%), url(../images/back1.png) no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    25% {
+      background: linear-gradient(76.34deg, #FFFFFF 52.45%, rgba(196, 196, 196, 0) 52.49%), url(../images/back2.png) no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    50% {
+      background: linear-gradient(76.34deg, #FFFFFF 52.45%, rgba(196, 196, 196, 0) 52.49%), url(../images/back3.png) no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    75% {
+      background: linear-gradient(76.34deg, #FFFFFF 52.45%, rgba(196, 196, 196, 0) 52.49%), url(../images/back4.png) no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+  }
+
+  @media (max-width: 768px) {
+      html{
+          font-size: 50%;
+      }
+    #home {
+      -webkit-animation: none;
+              animation: none;
+      background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0.8))), url(../images/back-md.jpg) no-repeat;
+      background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(../../Assests//image1.jpg) no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    #home .content {
+      text-shadow: .1rem .1rem .3rem #333;
+    }
+    #home .content .icons {
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+    }
+  }
