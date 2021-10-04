@@ -6,17 +6,17 @@ import React, { useState, useEffect } from 'react';
 // } from '../../reduxSlices/authSlice';
 import { useLocation } from 'react-router-dom';
 import './Sidedrawer.css';
-// import Backdrop from '../Backdrop/Backdrop';
+import Backdrop from '../Backdrop/Backdrop';
 // import Logo from '../../assets/images/Logo.PNG';
 import { Link } from 'react-router-dom';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 
 const Sidedrawer = ({show, closeSidedrawer}) => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const [closing, setClosing] = useState(false);
     const location = useLocation().pathname;
-    const userData = useSelector(selectUserData);
+    // const userData = useSelector(selectUserData);
     console.log(location);
 
     const closeSidedrawerUtil = () => {
@@ -36,13 +36,13 @@ const Sidedrawer = ({show, closeSidedrawer}) => {
             <Backdrop closeSidedrawer={closeSidedrawerUtil} />
             <div className={"Sidedrawer " + (closing ? "Sidedrawer_Close" : "Sidedrawer_Open")}>
                 <div className="d-flex justify-content-between">
-                    <div className="Sidedrawer_Logo">
+                    {/* <div className="Sidedrawer_Logo">
                         <Link onClick={closeSidedrawerUtil} to="/" >
                             {
                                 <img src={Logo} alt="Logo" />
                             }
                         </Link>
-                    </div>
+                    </div> */}
                     <div className="d-flex flex-column p-1 flex-end">
                         <IconButton onClick={closeSidedrawerUtil}>
                             <CloseIcon fontSize="large" />
@@ -70,32 +70,23 @@ const Sidedrawer = ({show, closeSidedrawer}) => {
                             Profile
                         </Link>
                     </li>
-                    {
-                        userData.category === "customer" ? (
-                            <li onClick={closeSidedrawerUtil}>
-                                <Link className={location === "/createOrder" ? "active" : ""} to="/createOrder">
-                                    Create Order
-                                </Link>
-                            </li>
-                        ) : (
-                            <li onClick={closeSidedrawerUtil}>
-                                <Link className={location === "/dashboard" ? "active" : ""} to="/dashboard">
-                                    Dashboard
-                                </Link>
-                            </li>
-                        )
-                    }
-                    
+                        <li onClick={closeSidedrawerUtil}>
+                            <Link className={location === "/createOrder" ? "active" : ""} to="/createOrder">
+                                Create Order
+                            </Link>
+                        </li>
                     <li>
-                        {
-                            !userData.token ? (
+                        {/* {
+                            !userData.token ? ( */}
                                 <Link to='/login'>
                                     <button className="Header_Login Green_Button mt-2 m-0">Login
                                     </button> 
                                 </Link>
-                            ) : 
-                            <button onClick={() => dispatch(LOGOUT())} className="Header_Login mt-2 m-0 Green_Button">Logout</button>
-                        }
+                            {/* ) : 
+                            <button 
+                            // onClick={() => dispatch(LOGOUT())} 
+                                className="Header_Login mt-2 m-0 Green_Button">Logout</button>
+                        } */}
                     </li>
                 </ul>
             </div>

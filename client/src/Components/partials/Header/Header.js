@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 // import { useSelector, useDispatch } from 'react-redux';
-// import { useLocation } from 'react-router-dom';
 // import {
 //     selectUserData,
 //     LOGOUT
 // } from '../../reduxSlices/authSlice';
 import { Link } from 'react-router-dom';
 // import Logo from '../../assets/images/Logo.PNG';
-// import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
+import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import IconButton from '@material-ui/core/IconButton';
 import './Header.css';
 import Sidedrawer from '../Sidedrawer/Sidedrawer';
 
 const Header = () => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const [showSidedrawer, setShowSidedrawer] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const userData = useSelector(selectUserData);
+    // const userData = useSelector(selectUserData);
     const location = useLocation().pathname;
 
     const closeShowSidedrawer = () => {
@@ -40,9 +40,9 @@ const Header = () => {
                 <div className="Header_Container">
                     <div className="Header_Logo">
                         <Link to="/" >
-                            {
+                            {/* {
                                 <img src={Logo} alt="Logo" />
-                            }
+                            } */}
                         </Link>
                     </div>
                     <div className="Header_SideMenuBtn">
@@ -72,33 +72,18 @@ const Header = () => {
                                     Profile
                                 </Link>
                             </li>
-                            {
-                                userData.category === "customer" ? (
-                                    <li>
-                                        <Link className={location === "/createOrder" ? "active" : ""} to="/createOrder">
-                                            Create Order
-                                        </Link>
-                                    </li>
-                                ) : (
-                                    <li>
-                                        <Link className={location === "/dashboard" ? "active" : ""} to="/dashboard">
-                                            Dashboard
-                                        </Link>
-                                    </li>
-                                )
-                            }
                         </ul>
                         <div className="Header_Buttons">
                             {/* <button className="Header_CreateAcc">Create Account</button> */}
-                                {
-                                    !userData.token ? (
+                                {/* {
+                                    !userData.token ? ( */}
                                         <Link to='/login'>
                                             <button className="Header_Login Green_Button">Login
                                             </button>
                                         </Link>
-                                    ) :
+                                    {/* ) :
                                     <button onClick={() => dispatch(LOGOUT())} className="Header_Login Green_Button">Logout</button>
-                                }
+                                } */}
                         </div>
                     </div>
                 </div>
