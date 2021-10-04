@@ -1,0 +1,132 @@
+.Header {
+    width: 100%;
+    background-color: white;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.Header_BoxShadow {
+    box-shadow: 0px 2px 10px rgb(149 147 147);
+}
+
+.Header_Container {
+    width: 80%;
+    height: 90px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* justify-content: flex-end; */
+}
+
+.Header_Logo {
+    position: absolute;
+    width: 160px;
+    height: auto;
+    left: 0;
+}
+
+.Header_Logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.Header_LinksContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 57px;
+    margin-left: 200px;
+    width: 100%;
+}
+
+.Header_Links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    font-size: 16px;
+    height: 100%;
+    padding-left: 0;
+}
+
+.Header_Links li {
+    padding: 0 20px;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.Header_Links li a {
+    text-decoration: none;
+    color: #9698A6 !important;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.Header_Links li a:hover, .Header_Links li a:active, .Header_Links .active {
+    color: rgb(46, 44, 44) !important;
+}
+
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.Header_Login {
+    color: #fff;
+    /* height: 38px; */
+    font-weight: 700;
+    vertical-align: middle;
+    font-size: 16px;
+    border-radius: 20px;
+    padding: 10px 25px;
+    margin: 0 20px 0 55px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #00bb38;
+    transition: all 450ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.Header_Login:hover {
+    background-color: #02862a;
+}
+
+.Header_Login:active, .Header_CreateAcc:focus {
+    background-color: #00a123;
+    color: black;
+}
+
+.Header_SideMenuBtn {
+    display: none;
+}
+
+@media (max-width: 1072px) {
+    .Header_Container {
+        height: 90px;
+        width: 90%;
+    }
+    .Header_LinksContainer {
+        margin-left: 180px;
+    }
+}
+
+@media (max-width: 942px) {
+    .Header_LinksContainer {
+        display: none;
+    }
+
+    .Header_SideMenuBtn {
+        display: block;
+        margin-right: 20px;
+        margin-left: auto;
+    }
+
+    .Header_SideMenuBtn .MuiSvgIcon-root {
+        font-size: 32px !important;
+    }
+}
