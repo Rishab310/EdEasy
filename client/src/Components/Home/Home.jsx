@@ -5,10 +5,10 @@ import Header from '../partials/Header/Header';
 
 const Home = () => {
     return (
-        <div className="">
-            <Header/>
-        </div>
-    )
+      <div className="">
+        <Header/>
+      </div>
+    );
 }
 
 export default Home

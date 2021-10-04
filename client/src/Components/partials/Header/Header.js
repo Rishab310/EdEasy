@@ -13,83 +13,55 @@ import './Header.css';
 import Sidedrawer from '../Sidedrawer/Sidedrawer';
 
 const Header = () => {
-    // const dispatch = useDispatch();
-    const [showSidedrawer, setShowSidedrawer] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-    // const userData = useSelector(selectUserData);
-    const location = useLocation().pathname;
-
-    const closeShowSidedrawer = () => {
-        setShowSidedrawer(false);
-    }
-
-    window.onscroll = () => {
-        if(window.scrollY) {
-            setScrolled(true);
-        } else {
-            setScrolled(false);
-        }
-    }
-    return (
-        <>
-            {
-                showSidedrawer ? <Sidedrawer show={showSidedrawer} closeSidedrawer={closeShowSidedrawer} /> : null
-            }
-
-            <div className={"Header " + (scrolled ? "Header_BoxShadow" : "")}>
-                <div className="Header_Container">
-                    <div className="Header_Logo">
-                        <Link to="/" >
-                            {/* {
-                                <img src={Logo} alt="Logo" />
-                            } */}
-                        </Link>
-                    </div>
-                    <div className="Header_SideMenuBtn">
-                        <IconButton onClick={() => setShowSidedrawer(true)}>
-                            <MenuRoundedIcon />
-                        </IconButton>
-                    </div>
-                    <div className="Header_LinksContainer">
-                        <ul className="Header_Links">
-                            <li>
-                                <Link className={location === "/" ? "active" : ""} to="/">
-                                    Home
-                                </Link>
-                            </li>
-                            <li>
-                                <Link className={location === "/about" ? "active" : ""} to="/about">
-                                    About
-                                </Link>
-                            </li>
-                            <li>
-                                <Link className={location === "/orders" ? "active" : ""} to='/orders'>
-                                    Orders
-                                </Link>
-                            </li>
-                            <li>
-                                <Link className={location === "/profile" ? "active" : ""} to="/profile">
-                                    Profile
-                                </Link>
-                            </li>
-                        </ul>
-                        <div className="Header_Buttons">
-                            {/* <button className="Header_CreateAcc">Create Account</button> */}
-                                {/* {
-                                    !userData.token ? ( */}
-                                        <Link to='/login'>
-                                            <button className="Header_Login Green_Button">Login
-                                            </button>
-                                        </Link>
-                                    {/* ) :
-                                    <button onClick={() => dispatch(LOGOUT())} className="Header_Login Green_Button">Logout</button>
-                                } */}
-                        </div>
-                    </div>
-                </div>
+  // const dispatch = useDispatch();
+  const [showSidedrawer, setShowSidedrawer] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  // const userData = useSelector(selectUserData);
+  const location = useLocation().pathname;
+  const closeShowSidedrawer = () => {
+      setShowSidedrawer(false);
+  }
+  window.onscroll = () => {
+      if(window.scrollY) {
+          setScrolled(true);
+      } else {
+          setScrolled(false);
+      }
+  }
+  return (
+    <>
+      {
+          showSidedrawer ? <Sidedrawer show={showSidedrawer} closeSidedrawer={closeShowSidedrawer} /> : null
+      }
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <>
+            <Link to="/" class="navbar-brand ms-5" href="#">EdEasy</Link>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+            aria-expanded="false" aria-label="Toggle navigation">
+                  <IconButton onClick={() => setShowSidedrawer(true)}>
+                      <MenuRoundedIcon />
+                  </IconButton>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
+                <li class="nav-item mx-3">
+                  <Link to="/" class="nav-link" aria-current="page" href="#">Home</Link>
+                </li>
+                <li class="nav-item mx-3">
+                  <Link to="/" class="nav-link" href="#">About</Link>
+                </li>
+                <li class="nav-item mx-3">
+                  <button className="login-btn">Login</button>
+                </li>
+              </ul>
             </div>
-        </>
-    )
+          </>
+        </div>
+      </nav>
+    </>
+  )
 }
 
 export default Header;
