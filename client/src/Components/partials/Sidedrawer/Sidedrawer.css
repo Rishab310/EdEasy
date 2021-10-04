@@ -11,6 +11,9 @@
 .Sidedrawer_Open {
     animation: sidedrawer_show 0.3s ease-out;
 }
+.side-drawer{
+    background: rgba(196, 196, 196, 0.09) !important;
+}
 
 @keyframes sidedrawer_show {
     0% {
@@ -51,21 +54,38 @@
     width: 100%;
 }
 
-.Sidedrawer_Links {
+.side-drawer-links {
     list-style: none;
     margin-left: 20px;
+    font-family: Tajawal !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    line-height: 24px !important;
+    color: #9698A6 !important;
 }
 
-.Sidedrawer_Links li {
+.side-drawer-links li {
     font-size: 20px;
     margin: 5px 0;
 }
 
-.Sidedrawer_Links a {
+.side-drawer-links a {
     text-decoration: none;
     color: #9698A6 !important
 }
 
-.Sidedrawer_Links li a:hover, .Sidedrawer_Links li a:active, .Sidedrawer_Links li a:focus, .Sidedrawer_Links .active {
+.side-drawer-links li a:hover, .side-drawer-links li a:active, .side-drawer-links li a:focus, .side-drawer-links .active {
     color: rgb(46, 44, 44) !important;
+}
+
+.side-drawer-links {
+    list-style: none;
+    margin-left: 20px;
+    font-family: Tajawal !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    line-height: 24px !important;
+    color: #9698A6 !important;
 }
