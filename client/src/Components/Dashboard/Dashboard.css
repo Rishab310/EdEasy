@@ -1,9 +1,9 @@
 body, #root, .app {
   min-height: 100vh;
 }
-* {
+/* * {
   max-width: 100% !important;
-}
+} */
 .dashboard {
   background-color: #F4F3F8 !important;
   min-height: 100vh;
