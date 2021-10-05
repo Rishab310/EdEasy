@@ -16,7 +16,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: right top;
-    margin-top: 70px;
+    /* margin-top: 70px; */
     padding: 60px 0;
 }
 
@@ -64,7 +64,7 @@ a {
 }
 
 .FloatImg {
-  animation: updown 4s ease-out  forwards; 
+  animation: updown 6s ease-out  forwards; 
   animation-iteration-count: infinite ;
 }
 
