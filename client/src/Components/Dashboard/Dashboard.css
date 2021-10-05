@@ -1,0 +1,77 @@
+body, #root, .app {
+  min-height: 100vh;
+}
+* {
+  max-width: 100% !important;
+}
+.dashboard {
+  background-color: #F4F3F8 !important;
+  min-height: 100vh;
+}
+
+.banner {
+  background: #D6EAF7;
+  border-radius: 12px;
+}
+
+.hello-name {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.hello-description {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.heading-2 {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 24px;
+  line-height: 26px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: rgb(33 33 33);
+  text-align: center;
+}
+
+.content-box {
+  background: #FFFFFF;
+  border-radius: 12px;
+}
+
+.stats {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight:500;
+  font-size: 18px;
+  line-height: 21px;
+  /* identical to box height */
+  color: #000000;
+}
+
+.count {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  color: rgb(33 33 33);
+}

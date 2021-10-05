@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import './Header.css';
 import Sidedrawer from '../Sidedrawer/Sidedrawer';
 
-const Header = () => {
+const Navbar = () => {
   // const dispatch = useDispatch();
   const [showSidedrawer, setShowSidedrawer] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -53,7 +53,7 @@ const Header = () => {
                   <Link to="/" class="nav-link" href="#">About</Link>
                 </li>
                 <li class="nav-item mx-3">
-                  <Link to="/classes" class="nav-link" href="#">Classes</Link>
+                  <Link to="/dashboard" class="nav-link" href="#">Classes</Link>
                 </li>
                 <li class="nav-item mx-3">
                   <button className="login-btn">Login</button>
@@ -67,4 +67,4 @@ const Header = () => {
   )
 }
 
-export default Header;
+export default Navbar;
