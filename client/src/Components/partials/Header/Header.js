@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 // import Logo from '../../assets/images/Logo.PNG';
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import IconButton from '@material-ui/core/IconButton';
-import './header.css';
+import './Header.css';
 import Sidedrawer from '../Sidedrawer/Sidedrawer';
 
 const Header = () => {
