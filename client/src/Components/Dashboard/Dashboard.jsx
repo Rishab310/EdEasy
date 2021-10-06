@@ -15,77 +15,77 @@ class Dashboard extends React.Component {
       <div className="dashboard">
         <Header/>
         <div className="row mx-0">
-          <div className="col-3 d-none d-md-block Dashboard_Sidedrawer">
-            <h5 className="ms-3">Owned</h5>
+          <div className="col-2 d-none d-md-block Dashboard_Sidedrawer px-0 ps-2">
+            <h6 className="ms-2">Owned</h6>
             <a href="/"> 
-              <div className="Sidedrawer_Class active d-flex p-2 ps-3 me-1">
+              <div className="Sidedrawer_Class active d-flex p-2 ps-2">
                 <div>
                   <Avatar src="https://lh3.googleusercontent.com/ogw/ADea4I6x0ZHE2E2fnUt-X2aXAKqdRzAFLMchsbuvaxxQ=s32-c-mo" />
                 </div>
-                <div className="ms-3 d-flex flex-column">
+                <div className="ms-2 d-flex flex-column">
                   <div className="Class_Title">Operating System</div>
                   <div className="Class_Desc">BE III year</div>
                 </div>
               </div>
             </a>
             <a href="/"> 
-              <div className="Sidedrawer_Class d-flex p-2 ps-3 me-1">
+              <div className="Sidedrawer_Class d-flex p-2 ps-2">
                 <div>
                   <Avatar src="https://lh3.googleusercontent.com/ogw/ADea4I6x0ZHE2E2fnUt-X2aXAKqdRzAFLMchsbuvaxxQ=s32-c-mo" />
                 </div>
-                <div className="ms-3 d-flex flex-column">
+                <div className="ms-2 d-flex flex-column">
                   <div className="Class_Title">Operating System</div>
                   <div className="Class_Desc">BE III year</div>
                 </div>
               </div>
             </a>
             <a href="/"> 
-              <div className="Sidedrawer_Class d-flex p-2 ps-3 me-1">
+              <div className="Sidedrawer_Class d-flex p-2 ps-2">
                 <div>
                   <Avatar src="https://lh3.googleusercontent.com/ogw/ADea4I6x0ZHE2E2fnUt-X2aXAKqdRzAFLMchsbuvaxxQ=s32-c-mo" />
                 </div>
-                <div className="ms-3 d-flex flex-column">
+                <div className="ms-2 d-flex flex-column">
                   <div className="Class_Title">Operating System</div>
                   <div className="Class_Desc">BE III year</div>
                 </div>
               </div>
             </a>
-            <h5 className="ms-3 mt-5">Enrolled</h5>
+            <h6 className="ms-2 mt-5">Enrolled</h6>
             <a href="/"> 
-              <div className="Sidedrawer_Class d-flex p-2 ps-3 me-1">
+              <div className="Sidedrawer_Class d-flex p-2 ps-2">
                 <div>
                   <Avatar src="https://lh3.googleusercontent.com/ogw/ADea4I6x0ZHE2E2fnUt-X2aXAKqdRzAFLMchsbuvaxxQ=s32-c-mo" />
                 </div>
-                <div className="ms-3 d-flex flex-column">
-                  <div className="Class_Title">Operating System</div>
-                  <div className="Class_Desc">BE III year</div>
-                </div>
-              </div>
-            </a>
-            <a href="/"> 
-              <div className="Sidedrawer_Class d-flex p-2 ps-3 me-1">
-                <div>
-                  <Avatar src="https://lh3.googleusercontent.com/ogw/ADea4I6x0ZHE2E2fnUt-X2aXAKqdRzAFLMchsbuvaxxQ=s32-c-mo" />
-                </div>
-                <div className="ms-3 d-flex flex-column">
+                <div className="ms-2 d-flex flex-column">
                   <div className="Class_Title">Operating System</div>
                   <div className="Class_Desc">BE III year</div>
                 </div>
               </div>
             </a>
             <a href="/"> 
-              <div className="Sidedrawer_Class d-flex p-2 ps-3 me-1">
+              <div className="Sidedrawer_Class d-flex p-2 ps-2">
                 <div>
                   <Avatar src="https://lh3.googleusercontent.com/ogw/ADea4I6x0ZHE2E2fnUt-X2aXAKqdRzAFLMchsbuvaxxQ=s32-c-mo" />
                 </div>
-                <div className="ms-3 d-flex flex-column">
+                <div className="ms-2 d-flex flex-column">
+                  <div className="Class_Title">Operating System</div>
+                  <div className="Class_Desc">BE III year</div>
+                </div>
+              </div>
+            </a>
+            <a href="/"> 
+              <div className="Sidedrawer_Class d-flex p-2 ps-2">
+                <div>
+                  <Avatar src="https://lh3.googleusercontent.com/ogw/ADea4I6x0ZHE2E2fnUt-X2aXAKqdRzAFLMchsbuvaxxQ=s32-c-mo" />
+                </div>
+                <div className="ms-2 d-flex flex-column">
                   <div className="Class_Title">Operating System</div>
                   <div className="Class_Desc">BE III year</div>
                 </div>
               </div>
             </a>
           </div>
-          <div className="col-12 col-md-9 px-0">
+          <div className="col-12 col-md-10 px-0">
             <div className="row banner m-3 p-4 px-5">
                 <div className="col-6 d-flex justify-content-center flex-column">
                   <div className="hello-name">
@@ -100,7 +100,7 @@ class Dashboard extends React.Component {
                 </div>
             </div>
             <div className="row m-3">
-              <div className="col-8 pe-0">
+              <div className="col-9 pe-0">
                 <div className="statistics">
                   <div className="row content-box me-0 py-2 mt-2" style={{width:"100%"}}>
                     <div className="heading-2 d-flex pb-2 justify-content-center">
@@ -147,7 +147,7 @@ class Dashboard extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="col-4 content-box mt-2 px-2 py-1 d-flex flex-column align-items-center">
+              <div className="col-3 content-box mt-2 px-2 py-1 d-flex flex-column align-items-center">
                 <div className="heading-2 mt-2 mb-3">Upcoming Assignments</div>
                  
                   <div className="Upcoming_Assignment">

@@ -119,8 +119,8 @@ body, #root, .app {
 }
 
 .Upcoming_Assignment {
-  width: 75%;
-  margin-top: 25px;
+  width: 85%;
+  margin-top: 20px;
 }
 
 .Upcoming_Assignment:hover {
@@ -129,4 +129,9 @@ body, #root, .app {
 
 .Upcoming_Assignment:hover .Assgn_Desc {
   text-decoration: underline;
+}
+
+.MuiAvatar-root {
+  width: 36px;
+  height: 36px;
 }
