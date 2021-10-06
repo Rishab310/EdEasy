@@ -2,7 +2,11 @@ import React from 'react';
 import './Home.css';
 import landingVector from "../../assets/landing-vector.svg";
 import Header from '../partials/Header/Header';
+
 import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
 const Home = () => {
     return (
@@ -38,6 +42,7 @@ const Home = () => {
                 </div>
                 <div className="col-12 col-md-6 d-flex justify-content-end py-2">
                     <FacebookIcon />
+                    <T
                     f t i e
                 </div>
             </div>
