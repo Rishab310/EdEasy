@@ -12,6 +12,7 @@ body, #root, .app {
 .banner {
   background: #D6EAF7;
   border-radius: 12px;
+  width: 100%;
 }
 
 .hello-name {
@@ -50,6 +51,19 @@ body, #root, .app {
   text-align: center;
 }
 
+.heading-3 {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 20px;
+  line-height: 20px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: rgb(33 33 33);
+  text-align: center;
+}
+
 .content-box {
   background: #FFFFFF;
   border-radius: 12px;
@@ -59,8 +73,8 @@ body, #root, .app {
   font-family: Tajawal;
   font-style: normal;
   font-weight:500;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 16px;
+  line-height: 15px;
   /* identical to box height */
   color: #000000;
 }
@@ -69,7 +83,7 @@ body, #root, .app {
   font-family: Tajawal;
   font-style: normal;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 29px;
   display: flex;
   align-items: center;
@@ -134,4 +148,13 @@ body, #root, .app {
 .MuiAvatar-root {
   width: 36px;
   height: 36px;
+}
+
+.Banner_Img {
+  width: 246px;
+}
+
+.Banner_Img img {
+  width: 100%;
+  height: 100%;
 }
