@@ -1,8 +1,8 @@
 import {BrowserRouter as Router, Route,Switch, Redirect} from 'react-router-dom';
 import './App.css';
 import React from 'react';
-import Home from './components/Home/Home';
-import ScrollToTop from './components/partials/ScrollToTop/ScrollToTop';
+import Home from './Components/home/Home';
+import ScrollToTop from './Components/partials/ScrollToTop/ScrollToTop';
 
 const App = () => {
   return (
