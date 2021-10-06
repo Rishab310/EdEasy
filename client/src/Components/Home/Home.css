@@ -11,28 +11,27 @@
 }
 
 #hero {
-    width: 100%;
-    background-image: url(../../assets/hero-bg.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right top;
-    margin-top: 70px;
-    padding: 60px 0;
+  width: 100%;
+  background-image: url(../../assets/hero-bg.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right top;
+  /* margin-top: 70px; */
+  padding: 60px 0;
 }
 
 section {
-    padding: 60px 0;
-    overflow: hidden;
+  padding: 60px 0;
+  overflow: hidden;
 }
 
 h1{
   font-family: Tajawal;
-font-style: normal;
-font-weight: bold;
-font-size: 36px;
-line-height: 43px;
-
-color: #1B559C;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 43px;
+  color: #1B559C;
 }
 
 #hero .btn-get-started {
@@ -57,6 +56,10 @@ a {
 .Footer {
   background-color: #F6F6F6;
   padding: 10px 30px;
+  position: fixed;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100%;
 }
 
 .Footer_Copyright {
@@ -64,16 +67,16 @@ a {
 }
 
 .FloatImg {
-  animation: updown 4s ease-out  forwards; 
+  animation: updown 6s ease-out  forwards; 
   animation-iteration-count: infinite ;
 }
 
 @keyframes updown {
   0% {
-      transform: translateY(-5%);
+    transform: translateY(-5%);
   }
   50% {
-      transform: translateY(5%);
+    transform: translateY(5%);
   }
   100% {
     transform: translateY(-5%);
