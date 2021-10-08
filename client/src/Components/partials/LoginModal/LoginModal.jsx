@@ -76,31 +76,32 @@ const LoginModal = (props) => {
     setUserSignUp((prevState) => ({...prevState,[name]: value}));
   }
   const errors = validate(userSignUp.username, userSignUp.email_id, userSignUp.password, userSignUp.cpassword);
+  console.log(activeTab);
   return (
     <>
       <Modal id="loginSignUp" isOpen={props.isModalOpen} toggle = {props.toggleModal} className="login">
         <ModalBody className="auth-inner pt-5">
-          <Nav tabs className="d-flex justify-content-center align-items-center mt-2 mb-2">
-            <NavItem className="w-50 text-center">
-              <NavLink className={props.activeTab == '1' ? 'active' : ''} onClick={() => setActiveTab('1')} style={{ cursor: "pointer" }}>
+          <div className="row">
+            <div className="col-6 d-flex justify-content-center">
+                <button className={activeTab == '1' ? 'active navigation-btn' : 'navigation-btn'} onClick={() => setActiveTab('1')} style={{ cursor: "pointer" }}>
                 <h5 className="font-weight-bold pb-0 pt-2">Login</h5>
-              </NavLink>
-            </NavItem>
-            <NavItem className="w-50 text-center">
-              <NavLink className={props.activeTab == '2' ? 'active' : ''} onClick={() => setActiveTab('2')} style={{ cursor: "pointer" }}>
+                </button>
+            </div>
+            <div className="col-6 d-flex justify-content-center">
+              <button className={activeTab == '2' ? 'active navigation-btn' : 'navigation-btn'} onClick={() => setActiveTab('2')} style={{ cursor: "pointer" }}>
                 <h5 className="font-weight-bold pb-0 pt-2">Sign Up</h5>
-              </NavLink>
-            </NavItem>
-          </Nav>
+              </button>
+            </div>
+          </div>
           <TabContent activeTab={activeTab} className="mt-4">
             <TabPane tabId="1">
               {/* SIGN IN */}
               <div className="row">
-                <div className="col-md-6 d-none d-md-flex justify-content-center">
-                  <img src={SingInImage}/>
+                <div className="col-lg-6 d-none d-lg-flex justify-content-center px-md-5">
+                  <img src={SingInImage} width="80%"/>
                 </div>
-                <div className="col-12 col-md-6">
-                  <Form onSubmit={handleLoginSubmit}>
+                <div className="col-12 col-lg-6 px-md-5">
+                  <Form className="" onSubmit={handleLoginSubmit}>
                     <FormGroup>
                       <Label className="font-weight-bold">Username</Label>
                       <Input type="text" name="username" className="form-control" placeholder="Enter username" value={userLogin.email} onChange={handleLoginChange} required />
@@ -130,8 +131,8 @@ const LoginModal = (props) => {
             <TabPane tabId="2">
               {/* SIGN UP */}
               <div className="row">
-                <div className="col-12 col-md-6">
-                  <Form onSubmit={handleSignUpSubmit}>
+                <div className="col-12 col-lg-6 px-md-5">
+                  <Form className="" onSubmit={handleSignUpSubmit}>
                   <FormGroup>
                     <label className="font-weight-bold">First name</label>
                     <input type="text" id="fname" name="fname" className="form-control" placeholder="First name" value={userSignUp.firstname} onChange={handleSignUpChange} required />
@@ -172,13 +173,20 @@ const LoginModal = (props) => {
                     <FormFeedback className="d-block">{signUpError}</FormFeedback>
                   </FormGroup>
                   <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
-                  <p className="forgot-password text-right">
-                    Already registered <a className="or-signin" style={{ color: "#167BFF !important" }} onClick={() => setActiveTab('1')} >sign in?</a>
-                  </p>
+                  
                 </Form>
                 </div>
-                <div className="col-md-6 d-none d-md-flex justify-content-center">
-                  <img src={SingUpImage}/>
+                <div className="col-lg-6 d-none d-lg-block px-md-5">
+                  <div className="row">
+                    <div className="col-12 d-flex justify-content-center align-items-center  ">
+                      <img src={SingUpImage} width="100%"/>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12 d-flex justify-content-center align-items-center  forgot-password text-center pt-4">
+                        Already registered <a className="or-signin pt-0 ps-1" style={{ color: "#167BFF !important" }} onClick={() => setActiveTab('1')} > sign in?</a>
+                    </div>
+                  </div>
                 </div>
               </div>
               
