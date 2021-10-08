@@ -11,6 +11,7 @@ import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import IconButton from '@material-ui/core/IconButton';
 import './Header.css';
 import Sidedrawer from '../Sidedrawer/Sidedrawer';
+import ModalExample from '../Modal/Modal';
 
 const Header = () => {
   // const dispatch = useDispatch();
@@ -28,15 +29,18 @@ const Header = () => {
           setScrolled(false);
       }
   }
+
+  const [show,setShow] = useState(false);
   return (
     <>
+      <ModalExample show={show} setShow={setShow}/>
       {
           showSidedrawer ? <Sidedrawer show={showSidedrawer} closeSidedrawer={closeShowSidedrawer} /> : null
       }
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <>
-            <Link to="/" class="navbar-brand ms-5" href="#">EdEasy</Link>
+            <Link to="/" class="navbar-brand ms-5 fw-bold" href="#">EdEasy</Link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
             aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +57,10 @@ const Header = () => {
                   <Link to="/" class="nav-link" href="#">About</Link>
                 </li>
                 <li class="nav-item mx-3">
-                  <button className="login-btn">Login</button>
+                  <Link to="/classes" class="nav-link" href="#">Classes</Link>
+                </li>
+                <li class="nav-item mx-3">
+                  <button className="login-btn" onClick={()=>setShow(true)}>Login</button>
                 </li>
               </ul>
             </div>

@@ -1,0 +1,137 @@
+body, #root, .app {
+  min-height: 100vh;
+}
+/* * {
+  max-width: 100% !important;
+} */
+.dashboard {
+  background-color: #F4F3F8 !important;
+  min-height: 100vh;
+}
+
+.banner {
+  background: #D6EAF7;
+  border-radius: 12px;
+}
+
+.hello-name {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.hello-description {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.heading-2 {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 24px;
+  line-height: 26px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: rgb(33 33 33);
+  text-align: center;
+}
+
+.content-box {
+  background: #FFFFFF;
+  border-radius: 12px;
+}
+
+.stats {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight:500;
+  font-size: 18px;
+  line-height: 21px;
+  /* identical to box height */
+  color: #000000;
+}
+
+.count {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  color: rgb(33 33 33);
+}
+
+.Dashboard_Sidedrawer {
+  padding: 25px 0;
+}
+
+.Sidedrawer_Class {
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.Sidedrawer_Class.active {
+  background-color: white;
+  box-shadow: -1px 1px 3px #ccc;
+}
+
+.Sidedrawer_Class:hover {
+  background-color: rgba(32,33,36,0.039);
+  cursor: pointer;
+}
+
+.Class_Title {
+  color: #252525;
+  font-weight: bold;
+}
+
+.Class_Desc {
+  font-size: 13px;
+  color: rgb(105 105 105);
+  line-height: 1.1;
+}
+
+.Assgn_Title {
+  color: #252525;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.Assgn_Desc {
+  color: #252525;
+  font-size: 13px;
+  line-height: 1.1;
+}
+
+.Upcoming_Assignment {
+  width: 85%;
+  margin-top: 20px;
+}
+
+.Upcoming_Assignment:hover {
+  cursor: pointer;
+}
+
+.Upcoming_Assignment:hover .Assgn_Desc {
+  text-decoration: underline;
+}
+
+.MuiAvatar-root {
+  width: 36px;
+  height: 36px;
+}

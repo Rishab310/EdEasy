@@ -3,6 +3,8 @@ import './App.css';
 import React from 'react';
 import Home from './Components/home/Home';
 import ScrollToTop from './Components/partials/ScrollToTop/ScrollToTop';
+import Dashboard from './Components/Dashboard/Dashboard';
+// import ScrollToTop from './components/partials/ScrollToTop/ScrollToTop';
 
 const App = () => {
   return (
@@ -10,8 +12,8 @@ const App = () => {
       <ScrollToTop>
         <Router>
            <Switch>
-            <Route path='/' component={Home} exact>
-            </Route>
+            <Route path='/' component={Home} exact/>
+            <Route path='/classes' component={Dashboard} exact/>
             <Redirect to ="/" />
           </Switch> 
         </Router>

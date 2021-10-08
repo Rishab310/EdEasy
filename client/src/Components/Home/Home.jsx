@@ -2,11 +2,14 @@ import React from 'react';
 import './Home.css';
 import landingVector from "../../assets/landing-vector.svg";
 import Header from '../partials/Header/Header';
+import Modal from '../partials/Modal/Modal';
+
 import FacebookIcon from '@material-ui/icons/Facebook';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import CopyrightIcon from '@material-ui/icons/Copyright';
+
 const Home = () => {
     return (
       <div className="">
