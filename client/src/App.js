@@ -13,7 +13,7 @@ const App = () => {
            <Switch>
             <Route path='/' component={Home} exact/>
             <Route path='/classes' component={Dashboard} exact/>
-            <Redirect to ="/" />
+            <Redirect to='/'/>
           </Switch> 
         </Router>
       </ScrollToTop>
