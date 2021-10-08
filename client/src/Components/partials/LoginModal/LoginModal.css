@@ -71,11 +71,71 @@
   font-family: "Tajawal";
   font-style: normal;
   font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 28px;
+  line-height: 32px;
 }
 .active.navigation-btn {
   color: #000;
 }
 
 
+/* Login material css */
+.Login {
+  background-color: white;
+  /* height: 600px; */
+  width: 400px;
+  max-width: 90%;
+  border: 1px solid #ccc;
+  /* position: absolute; */
+  /* top: calc(50% - 300px); */
+  /* top: 50px; */
+  margin: 0 auto;
+  margin-top: 50px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.Login::before {
+  content: "";
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: -1 !important;
+  top: 0;
+  left: 0;
+  /* background-color: #045de9; */
+  background-color: #eee;
+  /* background-color: #20bf55 !important; */
+  /* background-image: linear-gradient(315deg,#2eec6e  0%,#65f874  74%) !important; */
+}
+
+.Login_Title {
+  margin-top: 13px;
+  margin-bottom: 10px;
+}
+
+.Login_Options {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Login_Options p {
+  margin-bottom: 5px;
+}
+.form-btn {
+  margin-top: 20px;
+  padding: 10px 25px;
+  background: #6EABE4;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  color: white;
+  font-weight: 400;
+  font-size: 15px;
+}

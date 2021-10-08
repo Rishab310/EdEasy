@@ -1,94 +1,206 @@
-import React, { useState } from "react";
-import { Nav, NavItem, Modal, ModalBody, NavLink, TabContent, TabPane, Form, FormGroup, Label, Input, FormFeedback,} from "reactstrap";
+import React, { useState, useEffect } from "react";
+import { Modal, ModalBody, TabContent, TabPane } from "reactstrap";
 import { withRouter, Redirect } from "react-router-dom";
 import "./LoginModal.css";
-import SingInImage from '../../../assets/signin.svg';
-import SingUpImage from '../../../assets/signup.svg';
+import SingInImage from "../../../assets/signin.svg";
+import SingUpImage from "../../../assets/signup.svg";
+import { useDispatch, useSelector } from "react-redux";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import clsx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import PermIdentityIcon from "@material-ui/icons/PermIdentity";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import ContactPhoneOutlinedIcon from "@material-ui/icons/ContactPhoneOutlined";
+import Button from "@material-ui/core/Button";
+import FormHelperText from "@material-ui/core/FormHelperText";
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    marginTop: "10px",
+    "& .MuiInputLabel-formControl ": {
+      top: "-6px",
+      fontSize: "18px",
+      color: "gray",
+      // fontWeight: 'bold'
+    },
+    "& .MuiInputBase-input::placeholder": {
+      fontSize: "14px",
+    },
+    "& .MuiFormLabel-filled": {
+      backgroundColor: "transparent !important",
+    },
+    "& .MuiInputBase-root": {
+      paddingBottom: "5px",
+    },
+    "& .MuiSelect-root": {
+      paddingBottom: "0px",
+      fontSize: "16px",
+    },
+    "& > .MuiButtonBase-root": {
+      width: "90%",
+      marginTop: "20px !important",
+    },
+  },
+  margin: {
+    margin: theme.spacing(2),
+  },
+  withoutLabel: {
+    marginTop: theme.spacing(3),
+  },
+  textField: {
+    width: "100%",
+  },
+}));
+
+function validateEmail(email) {
+  console.log(email);
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+function validatePassword(password) {
+  const regex_pass =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,20}$/;
+  return regex_pass.test(password);
+}
+
 const LoginModal = (props) => {
-  const handleLoginSubmit = (event) => {
-    event.preventDefault();
-    console.log("Logged in!");
-  }
-  const handleSignUpSubmit = (event) => {
-    event.preventDefault();
-    console.log("Signd up!");
-  }
-  const [userLogin, setUserLogin] = useState({
-    "username": '',
-    "password": '',
-    "remember": false
-  })
-  const [userSignUp, setUserSignUp] = useState({
-    "fname": '',
-    "lname": '',
-    "username": '',
-    "email_id": '',
-    "password": '',
-    "cpassword": '',
-  })
-  const [touched, setTouched] = useState({
-    username: '',
-    email_id: '',
-    password: '',
-    cpassword: '',
-  })
-  const loginError ="",signUpError="";
+  const classes = useStyles();
+  const [isSignIn, setIsSignIn] = useState(true);
+  // const dispatch = useDispatch();
+  // const error = useSelector(selectUserData).error;
+  // const loading = useSelector(selectUserData).loading;
+  const [categoryError, setCategoryError] = useState(false);
+  const [contactError, setContactError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
   const [activeTab, setActiveTab] = useState("1");
-  const handleBlur = (field) => (event) => {
-    setTouched((prevState) => ({...prevState,[field]: true }));
-  }
-  const validate = (username, email_id, password, cpassword) => {
-    const errors = {
-      username: '',
-      email_id: '',
-      password: '',
-      cpassword: ''
-    };
-    if (touched.username && username.length < 3)
-      errors.username = 'Username should be greater than 3 characters long';
+  const [values, setValues] = useState({
+    email: "",
+    category: "",
+    password: "",
+    contact: "",
+    showPassword: false,
+  });
 
-    const regex_email = /^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$/;
-    if (touched.email_id && !regex_email.test(email_id))
-      errors.email_id = 'Enter a valid email address';
+  useEffect(() => {
+    // dispatch(SET_ERROR_NULL());
+    setCategoryError(false);
+    setContactError(false);
+    setPasswordError(false);
+    setEmailError(false);
+    setValues({
+      name: "",
+      email: "",
+      category: "",
+      password: "",
+      contact: "",
+      showPassword: false,
+    });
+  }, [isSignIn]);
 
-    const regex_pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,20}$/;
-    if (touched.password && !regex_pass.test(password))
-      errors.password = 'Password must have at least 1 number 1 uppercase and lowercase character, 1 special symbol and between 8 to 20 characters';
+  const handleChange = (prop) => (event) => {
+    if (prop === "contact" && isNaN(event.target.value)) {
+      return;
+    }
+    setValues({ ...values, [prop]: event.target.value });
+  };
 
-    if (touched.cpassword && !(password === cpassword))
-      errors.cpassword = 'Passwords don\'t match';
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
 
-    return errors;
-  }
-  const handleLoginChange = (event) => {
-    
-    const target = event.target;
-    const value = (target.type === 'checkbox') ? target.checked : target.value;
-    const name = target.name;
-    setUserLogin((prevState) => ({...prevState,[name]: value}));
-  }
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
-  const handleSignUpChange = (event) => {
-    // event.preventDefault();
-    const target = event.target;
-    const value = (target.type === 'checkbox') ? target.checked : target.value;
-    const name = target.name;
-    setUserSignUp((prevState) => ({...prevState,[name]: value}));
-  }
-  const errors = validate(userSignUp.username, userSignUp.email_id, userSignUp.password, userSignUp.cpassword);
-  console.log(activeTab);
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log("Inside form submit");
+    let flag = 0;
+
+    if (!validateEmail(values.email)) {
+      setEmailError(true);
+      flag = 1;
+    } else {
+      setEmailError(false);
+    }
+
+    if (!validatePassword(values.password)) {
+      setPasswordError(true);
+      flag = 1;
+    } else {
+      setPasswordError(false);
+    }
+
+    if (!isSignIn && values.contact.length !== 10) {
+      setContactError(true);
+      flag = 1;
+    } else {
+      setContactError(false);
+    }
+
+    if (!isSignIn && values.category === "") {
+      setCategoryError(true);
+      flag = 1;
+    } else {
+      setCategoryError(false);
+    }
+
+    if (flag) return;
+
+    // dispatch(
+    //   ASYNC_LOGIN({
+    //     email: values.email,
+    //     password: values.password,
+    //     category: values.category,
+    //     isSignIn: isSignIn,
+    //     contact: values.contact,
+    //     logging: true,
+    //   })
+    // );
+  };
   return (
     <>
-      <Modal id="loginSignUp" isOpen={props.isModalOpen} toggle = {props.toggleModal} className="login">
+      <Modal
+        id="loginSignUp"
+        isOpen={props.isModalOpen}
+        toggle={props.toggleModal}
+        className="login"
+      >
         <ModalBody className="auth-inner pt-5">
           <div className="row">
             <div className="col-6 d-flex justify-content-center">
-                <button className={activeTab == '1' ? 'active navigation-btn' : 'navigation-btn'} onClick={() => setActiveTab('1')} style={{ cursor: "pointer" }}>
+              <button
+                className={
+                  activeTab == "1" ? "active navigation-btn" : "navigation-btn"
+                }
+                onClick={() => setActiveTab("1")}
+                style={{ cursor: "pointer" }}
+              >
                 <h5 className="font-weight-bold pb-0 pt-2">Login</h5>
-                </button>
+              </button>
             </div>
             <div className="col-6 d-flex justify-content-center">
-              <button className={activeTab == '2' ? 'active navigation-btn' : 'navigation-btn'} onClick={() => setActiveTab('2')} style={{ cursor: "pointer" }}>
+              <button
+                className={
+                  activeTab == "2" ? "active navigation-btn" : "navigation-btn"
+                }
+                onClick={() => setActiveTab("2")}
+                style={{ cursor: "pointer" }}
+              >
                 <h5 className="font-weight-bold pb-0 pt-2">Sign Up</h5>
               </button>
             </div>
@@ -96,100 +208,255 @@ const LoginModal = (props) => {
           <TabContent activeTab={activeTab} className="mt-4">
             <TabPane tabId="1">
               {/* SIGN IN */}
-              <div className="row">
-                <div className="col-lg-6 d-none d-lg-flex justify-content-center px-md-5">
-                  <img src={SingInImage} width="80%"/>
-                </div>
-                <div className="col-12 col-lg-6 px-md-5">
-                  <Form className="" onSubmit={handleLoginSubmit}>
-                    <FormGroup>
-                      <Label className="font-weight-bold">Username</Label>
-                      <Input type="text" name="username" className="form-control" placeholder="Enter username" value={userLogin.email} onChange={handleLoginChange} required />
-                    </FormGroup>
-                    <FormGroup>
-                      <Label className="font-weight-bold">Password</Label>
-                      <Input type="password" id="password" name="password" className="form-control" placeholder="Enter password" value={userLogin.password} onChange={handleLoginChange} required />
-                    </FormGroup>
-                    <FormGroup>
-                      <div className="custom-control custom-checkbox">
-                        <Input type="checkbox" className="custom-control-input" id="remember" name="remember" value={userLogin.remember} onChange={handleLoginChange} />
-                        <Label className="custom-control-label" htmlFor="remember" >Remember me</Label>
-                      </div>
-                    </FormGroup>
-                    <FormGroup>
-                      <FormFeedback className="d-block">{loginError}</FormFeedback>
-                    </FormGroup>
-                    <button type="submit" className="btn btn-primary btn-block">Login</button>
-                    <p className="forgot-password text-right">
-                      <a href="password/forgot">Forgot password?</a>
-                    </p>
-                  </Form>
-                </div>
-              </div>
-              
-            </TabPane>
-            <TabPane tabId="2">
-              {/* SIGN UP */}
-              <div className="row">
-                <div className="col-12 col-lg-6 px-md-5">
-                  <Form className="" onSubmit={handleSignUpSubmit}>
-                  <FormGroup>
-                    <label className="font-weight-bold">First name</label>
-                    <input type="text" id="fname" name="fname" className="form-control" placeholder="First name" value={userSignUp.firstname} onChange={handleSignUpChange} required />
-                  </FormGroup>
-                  <FormGroup>
-                    <label className="font-weight-bold">Last name</label>
-                    <input type="text" id="lname" name="lname" className="form-control" placeholder="Last name" value={userSignUp.lastname} onChange={handleSignUpChange} required />
-                  </FormGroup>
-                  <FormGroup>
-                    <label className="font-weight-bold">Username</label>
-                    <input type="text" id="username" name="username" className="form-control" placeholder="User name" value={userSignUp.username} onChange={handleSignUpChange} required
-                      onBlur={handleBlur('username')} valid={errors.username === ''} invalid={errors.username !== ''}
-                    />
-                    <FormFeedback>{errors.username}</FormFeedback>
-                  </FormGroup>
-                  <FormGroup>
-                    <label className="font-weight-bold">Email address</label>
-                    <input type="email" name="email_id" className="form-control" placeholder="Enter email" value={userSignUp.email} onChange={handleSignUpChange} required
-                      onBlur={handleBlur('email_id')} valid={errors.email_id === ''} invalid={errors.email_id !== ''}
-                    />
-                    <FormFeedback>{errors.email_id}</FormFeedback>
-                  </FormGroup>
-                  <FormGroup>
-                    <label className="font-weight-bold">Password</label>
-                    <input type="password" name="password" className="form-control" placeholder="Enter password" value={userSignUp.password} onChange={handleSignUpChange} required
-                      onBlur={handleBlur('password')} valid={errors.password === ''} invalid={errors.password !== ''}
-                    />
-                    <FormFeedback>{errors.password}</FormFeedback>
-                  </FormGroup>
-                  <FormGroup>
-                    <label className="font-weight-bold">Confirm Password</label>
-                    <input type="password" name="cpassword" className="form-control" placeholder="Confirm password" value={userSignUp.cnfPassword} onChange={handleSignUpChange} required
-                      onBlur={handleBlur('cpassword')} valid={errors.cpassword === ''} invalid={errors.cpassword !== ''}
-                    />
-                    <FormFeedback>{errors.cpassword}</FormFeedback>
-                  </FormGroup>
-                  <FormGroup>
-                    <FormFeedback className="d-block">{signUpError}</FormFeedback>
-                  </FormGroup>
-                  <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
-                  
-                </Form>
-                </div>
+              <div className="row pb-5">
+                {/* <div className="col-lg-6 d-none d-lg-flex justify-content-center px-md-5">
+                  <img src={SingInImage} width="80%" />
+                </div> */}
                 <div className="col-lg-6 d-none d-lg-block px-md-5">
                   <div className="row">
                     <div className="col-12 d-flex justify-content-center align-items-center  ">
-                      <img src={SingUpImage} width="100%"/>
+                      <img src={SingUpImage} width="80%" />
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-12 d-flex justify-content-center align-items-center  forgot-password text-center pt-4">
-                        Already registered <a className="or-signin pt-0 ps-1" style={{ color: "#167BFF !important" }} onClick={() => setActiveTab('1')} > sign in?</a>
+                      Don't have an account{" "}
+                      <a
+                        className="or-signin pt-0 ps-1"
+                        style={{ color: "#167BFF !important" }}
+                        onClick={() => setActiveTab("2")}
+                      >
+                        {" "}
+                        sign up?
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-12 col-lg-6 px-md-5 mt-4">
+                  <form className={classes.root}>
+                    <FormControl
+                      error={emailError}
+                      className={clsx(classes.margin, classes.textField)}
+                    >
+                      <InputLabel htmlFor="email">Email</InputLabel>
+                      <Input
+                        placeholder="Type your email"
+                        fullWidth
+                        id="email"
+                        type="email"
+                        margin="normal"
+                        value={values.email}
+                        onChange={handleChange("email")}
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <PermIdentityIcon />
+                          </InputAdornment>
+                        }
+                      />
+                      {emailError ? (
+                        <FormHelperText>Enter a valid Email ID</FormHelperText>
+                      ) : null}
+                    </FormControl>
+                    <FormControl
+                      error={passwordError}
+                      className={clsx(
+                        classes.margin,
+                        classes.textField,
+                        classes.formControl
+                      )}
+                    >
+                      <InputLabel htmlFor="password">Password</InputLabel>
+                      <Input
+                        fullWidth
+                        placeholder="Type your password"
+                        id="password"
+                        type={values.showPassword ? "text" : "password"}
+                        value={values.password}
+                        onChange={handleChange("password")}
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <LockOutlinedIcon />
+                          </InputAdornment>
+                        }
+                        endAdornment={
+                          <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={handleClickShowPassword}
+                              onMouseDown={handleMouseDownPassword}
+                            >
+                              {values.showPassword ? (
+                                <Visibility />
+                              ) : (
+                                <VisibilityOff />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        }
+                      />
+                      {passwordError ? (
+                        <FormHelperText>
+                          Password must have at least 1 number 1 uppercase and
+                          lowercase character, 1 special symbol and between 8 to
+                          20 characters
+                        </FormHelperText>
+                      ) : null}
+                    </FormControl>
+                    <button
+                      onClick={formSubmitHandler} className="form-btn me-auto ms-3"
+                    >
+                      Sign In
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </TabPane>
+            <TabPane tabId="2">
+              {/* SIGN UP */}
+              <div className="row pb-5">
+                <div className="col-12 col-lg-6 px-md-5">
+                  <form className={classes.root}>
+                    <FormControl
+                      error={emailError}
+                      className={clsx(classes.margin, classes.textField)}
+                    >
+                      <InputLabel htmlFor="email">Full Name</InputLabel>
+                      <Input
+                        placeholder="Type your name"
+                        fullWidth
+                        id="name"
+                        type="name"
+                        margin="normal"
+                        value={values.name}
+                        onChange={handleChange("name")}
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <PermIdentityIcon />
+                          </InputAdornment>
+                        }
+                      />
+                    </FormControl>
+                    <FormControl
+                      error={emailError}
+                      className={clsx(classes.margin, classes.textField)}
+                    >
+                      <InputLabel htmlFor="email">Email</InputLabel>
+                      <Input
+                        placeholder="Type your email"
+                        fullWidth
+                        id="email"
+                        type="email"
+                        margin="normal"
+                        value={values.email}
+                        onChange={handleChange("email")}
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <PermIdentityIcon />
+                          </InputAdornment>
+                        }
+                      />
+                      {emailError ? (
+                        <FormHelperText>Enter a valid Email ID</FormHelperText>
+                      ) : null}
+                    </FormControl>
+                    <FormControl
+                      error={passwordError}
+                      className={clsx(
+                        classes.margin,
+                        classes.textField,
+                        classes.formControl
+                      )}
+                    >
+                      <InputLabel htmlFor="password">Password</InputLabel>
+                      <Input
+                        fullWidth
+                        placeholder="Type your password"
+                        id="password"
+                        type={values.showPassword ? "text" : "password"}
+                        value={values.password}
+                        onChange={handleChange("password")}
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <LockOutlinedIcon />
+                          </InputAdornment>
+                        }
+                        endAdornment={
+                          <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={handleClickShowPassword}
+                              onMouseDown={handleMouseDownPassword}
+                            >
+                              {values.showPassword ? (
+                                <Visibility />
+                              ) : (
+                                <VisibilityOff />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        }
+                      />
+                      {passwordError ? (
+                        <FormHelperText>
+                          Password must have at least 1 number 1 uppercase and
+                          lowercase character, 1 special symbol and between 8 to
+                          20 characters
+                        </FormHelperText>
+                      ) : null}
+                    </FormControl>
+                    <FormControl
+                      error={contactError}
+                      className={clsx(classes.margin, classes.textField)}
+                    >
+                      <InputLabel htmlFor="contact">Contact Number</InputLabel>
+                      <Input
+                        placeholder="Type your Contact Number"
+                        fullWidth
+                        id="contact"
+                        type="text"
+                        margin="normal"
+                        value={values.contact}
+                        onChange={handleChange("contact")}
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <ContactPhoneOutlinedIcon />
+                          </InputAdornment>
+                        }
+                      />
+                      {contactError ? (
+                        <FormHelperText>
+                          Enter a Valid Contact Number (10 digits only)
+                        </FormHelperText>
+                      ) : null}
+                    </FormControl>
+                    <button
+                      onClick={formSubmitHandler} className="form-btn me-auto ms-3"
+                    >
+                      Sign Up
+                    </button>
+                  </form>
+                </div>
+                <div className="col-lg-6 d-none d-lg-block px-md-5">
+                  <div className="row">
+                    <div className="col-12 d-flex justify-content-center align-items-center pt-2">
+                      <img src={SingInImage} width="95%" />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12 d-flex justify-content-center align-items-center  forgot-password text-center pt-4">
+                      Already registered{" "}
+                      <a
+                        className="or-signin pt-0 ps-1"
+                        style={{ color: "#167BFF !important" }}
+                        onClick={() => setActiveTab("1")}
+                      >
+                        {" "}
+                        sign in?
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
-              
             </TabPane>
           </TabContent>
         </ModalBody>
