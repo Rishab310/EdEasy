@@ -19,7 +19,7 @@
   }
 }
 .modal-content {
-  border-radius: 8px !important;
+  border-radius: 20px !important;
 }
 .auth-inner {
   width: 100%;
@@ -49,14 +49,15 @@
 }
 
 .or-signin {
-  color: #167BFF !important;
+  color: #1B559C !important;
+  font-weight: 600;
 }
 .or-signin:hover {
   cursor: pointer !important;
 }
 
 .forgot-password a {
-  color: #167bff;
+  color: #1B559C;
 }
 
 
@@ -75,63 +76,16 @@
   line-height: 32px;
 }
 .active.navigation-btn {
-  color: #000;
+  color: rgb(46, 46, 46);
+  border-bottom: 2px solid rgb(46, 46, 46) !important;
 }
 
 
 /* Login material css */
-.Login {
-  background-color: white;
-  /* height: 600px; */
-  width: 400px;
-  max-width: 90%;
-  border: 1px solid #ccc;
-  /* position: absolute; */
-  /* top: calc(50% - 300px); */
-  /* top: 50px; */
-  margin: 0 auto;
-  margin-top: 50px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-.Login::before {
-  content: "";
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  z-index: -1 !important;
-  top: 0;
-  left: 0;
-  /* background-color: #045de9; */
-  background-color: #eee;
-  /* background-color: #20bf55 !important; */
-  /* background-image: linear-gradient(315deg,#2eec6e  0%,#65f874  74%) !important; */
-}
-
-.Login_Title {
-  margin-top: 13px;
-  margin-bottom: 10px;
-}
-
-.Login_Options {
-  margin-top: 30px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.Login_Options p {
-  margin-bottom: 5px;
-}
 .form-btn {
   margin-top: 20px;
   padding: 10px 25px;
-  background: #6EABE4;
+  background: #1B559C;
   border-radius: 4px;
   outline: none;
   border: none;

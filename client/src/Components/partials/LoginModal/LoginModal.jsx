@@ -313,7 +313,7 @@ const LoginModal = (props) => {
             </TabPane>
             <TabPane tabId="2">
               {/* SIGN UP */}
-              <div className="row pb-5">
+              <div className="row pb-4 mb-1">
                 <div className="col-12 col-lg-6 px-md-5">
                   <form className={classes.root}>
                     <FormControl
