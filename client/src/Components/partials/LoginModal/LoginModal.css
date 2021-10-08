@@ -1,16 +1,5 @@
 /* Login and sign up */
 
-/* .modal  {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  font-family: sans-serif,'Oswald','Segoe UI'!important;
-} */
-
-/* .modal-dialog {
-  width: 100% !important;
-} */
-
 @media screen and (max-width:768px) {
   .modal-body {
     padding: 40px 40px !important;
@@ -24,18 +13,14 @@
     width: 100% !important;
   }
 }
-
-.modal-content {
-  border-radius: 0px !important;
+@media screen and (min-width:768px) {
+  .modal-dialog  {
+    max-width : 60% !important;
+  }
 }
-
-/* .auth-inner {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: left;
-} */
-
+.modal-content {
+  border-radius: 8px !important;
+}
 .auth-inner {
   width: 100%;
   margin: auto;
@@ -67,6 +52,9 @@
   display: contents !important;
 }
 
+.or-signin {
+  color: #167BFF !important;
+}
 .or-signin:hover {
   cursor: pointer !important;
 }
@@ -90,7 +78,7 @@
   background-color: rgba(0, 0, 0, 0.23);
 }
 
-#loginSignUp .nav-tabs a {
+/* #loginSignUp .nav-tabs a {
   background-color: #e9ebee;
   color: #888;
   border-radius: 0px;
@@ -103,7 +91,12 @@
 #loginSignUp .nav-tabs a.active {
   color: #000 !important;
   background-color: white;
-}
+} */
+
+/* #loginSignUp .nav-links {
+  text-align: center;
+  font-weight: bold;
+} */
 
 #loginSignUp .form-control {
   border-radius: 3px;
@@ -132,7 +125,3 @@
 #loginSignUp .modal-content, #loginSignUp button {
   border-radius: 0px;
 }
-
-/* body * {
-  max-width: 100% !important;
-} */
