@@ -7,6 +7,7 @@ import lessons from "../../assets/stat1.svg";
 import pending from "../../assets/stat3.svg";
 import SideDash from './SideDash';
 import Banner from './Banner';
+import ClassList from './ClassList';
 
 
 class Dashboard extends React.Component {
@@ -23,16 +24,7 @@ class Dashboard extends React.Component {
               <Banner/>
             </div>
             <div className="row m-3">
-              <div className="col-12">
-                  <div class="row my-3 ms-0 content-box">
-                    <div className="col-12 heading-2 d-flex py-3 pb-4 justify-content-center">
-                      Classes
-                    </div>
-                    <div className="col-12">
-
-                    </div>
-                  </div>
-              </div>
+              <ClassList/>
             </div>
           </div>
         </div>
