@@ -1,11 +1,11 @@
 import {BrowserRouter as Router, Route,Switch, Redirect} from 'react-router-dom';
 import './App.css';
 import React from 'react';
-import Home from './Components/home/Home';
-import ScrollToTop from './Components/partials/ScrollToTop/ScrollToTop';
-import Dashboard from './Components/Dashboard/Dashboard';
-import AssignmentAdmin from './Components/AssignmentAdmin/AssignmentAdmin';
-// import ScrollToTop from './components/partials/ScrollToTop/ScrollToTop';
+import Home from './components/Home/home';
+import Dashboard from './components/Dashboard/Dashboard';
+import Classroom from './components/Classroom/Classroom';
+import ScrollToTop from './components/partials/ScrollToTop/ScrollToTop';
+import AssignmentAdmin from './components/AssignmentAdmin/AssignmentAdmin';
 
 const App = () => {
   return (
@@ -15,14 +15,14 @@ const App = () => {
            <Switch>
             <Route path='/' component={Home} exact/>
             <Route path='/classes' component={Dashboard} exact/>
-            <Route path='/assignment/submission' component={AssignmentAdmin} exact/>
+            <Route path='/classes/:id' component={Classroom}/>
+            <Route path='/assignment/admin' component={AssignmentAdmin}/>
             <Redirect to ="/" />
           </Switch> 
         </Router>
       </ScrollToTop>
     </div>
   )
-}
+} 
 
 export default App
-

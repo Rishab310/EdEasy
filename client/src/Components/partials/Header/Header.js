@@ -1,23 +1,14 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-// import { useSelector, useDispatch } from 'react-redux';
-// import {
-//     selectUserData,
-//     LOGOUT
-// } from '../../reduxSlices/authSlice';
 import { Link } from 'react-router-dom';
-// import Logo from '../../assets/images/Logo.PNG';
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import IconButton from '@material-ui/core/IconButton';
 import './Header.css';
 import Sidedrawer from '../Sidedrawer/Sidedrawer';
-import ModalExample from '../Modal/Modal';
-
+import LoginModal from '../LoginModal/LoginModal';
 const Header = () => {
-  // const dispatch = useDispatch();
   const [showSidedrawer, setShowSidedrawer] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  // const userData = useSelector(selectUserData);
   const location = useLocation().pathname;
   const closeShowSidedrawer = () => {
       setShowSidedrawer(false);
@@ -25,15 +16,15 @@ const Header = () => {
   window.onscroll = () => {
       if(window.scrollY) {
           setScrolled(true);
-      } else {
+      } else { 
           setScrolled(false);
       }
   }
-
-  const [show,setShow] = useState(false);
+  const [show, setShow] = useState(false);
+  const toggle = () => setShow(prevState=>!prevState);
   return (
     <>
-      <ModalExample show={show} setShow={setShow}/>
+      {/* <ModalExample show={show} setShow={setShow}/> */}
       {
           showSidedrawer ? <Sidedrawer show={showSidedrawer} closeSidedrawer={closeShowSidedrawer} /> : null
       }
@@ -60,13 +51,14 @@ const Header = () => {
                   <Link to="/classes" class="nav-link" href="#">Classes</Link>
                 </li>
                 <li class="nav-item mx-3">
-                  <button className="login-btn" onClick={()=>setShow(true)}>Login</button>
+                  <button className="login-btn" onClick={() => setShow(true)}>Login</button>
                 </li>
               </ul>
             </div>
           </>
         </div>
       </nav>
+      <LoginModal isModalOpen={show} toggleModal={toggle}/>
     </>
   )
 }
