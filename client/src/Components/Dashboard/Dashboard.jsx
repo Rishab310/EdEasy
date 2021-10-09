@@ -15,7 +15,7 @@ class Dashboard extends React.Component {
       <div className="dashboard">
         <Header/>
         <div className="row mx-0">
-          <div className="col-2 d-none d-md-block Dashboard_Sidedrawer px-0 ps-2">
+          <div className="col-3 d-none d-md-block Dashboard_Sidedrawer px-0 ps-2 width-20">
             <h6 className="ms-2">Owned</h6>
             <a href="/"> 
               <div className="Sidedrawer_Class active d-flex p-2 ps-2">
@@ -85,50 +85,46 @@ class Dashboard extends React.Component {
               </div>
             </a>
           </div>
-          <div className="col-12 col-md-10 px-0">
+          <div className="col-12 col-md-9 width-80">
             <div className="row m-3">
-              <div className="col-9 pe-0">
-                <div className="row banner">
-                  <div className="col-6 ps-4 d-flex justify-content-center flex-column">
-                    <div className="hello-name mb-1">
-                      Hello, Rishab!
+              <div className="col-12 col-md-9">
+                <div className="row banner m-0">
+                    <div className="col-6 d-flex justify-content-center flex-column ps-5">
+                      <div className="hello-name">
+                        Hello, Rishab!
+                      </div>
+                      <p className="hello-description">
+                        Learn anytime, anywhere. Boost your skills flexible, online courses
+                      </p>
                     </div>
-                    <p className="hello-description">
-                      Learn anytime, anywhere. Boost your skills flexible, online courses
-                    </p>
+                    <div className="col-6 d-flex justify-content-center">
+                      <img src={banner} alt="" srcset="" width="80%"/>
+                    </div>
+                </div>
+              </div>
+              <div className="d-none d-md-block col-3 pe-0 d-flex align-items-center justify-content-center">
+                <div class="content-box d-flex align-items-center justify-content-center flex-column height-100">
+                  <div className="heading-2 d-flex justify-content-center pb-3">
+                    Assignments
                   </div>
-                  <div className="col-6 d-flex justify-content-center">
-                    <div className="Banner_Img">
-                      <img src={banner} alt="" srcset=""/>
+                  <div className="row">
+                    <div className="col-6 px-4 d-flex flex-column align-items-center justify-content-center">
+                      <img src={lessons} alt="" srcset="" height="40" />
+                      <div className="stats pt-2">Total</div>
+                      <div className="count">123</div>
+                    </div>
+                    <div className="col-6 px-4 d-flex flex-column align-items-center justify-content-center">
+                      <img src={pending} alt="" srcset="" height="40" />
+                      <div className="stats pt-2">Pending</div>
+                      <div className="count">76</div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="col-3 m-0 p-0">
-                <div className="content-box pb-2 pt-2">
-                      <div className="heading-2 d-flex pb-2 mb-3 justify-content-center">
-                        Statistics
-                      </div>
-                      <div className="d-flex">
-                        <div className="col-6 d-flex flex-column align-items-center">
-                          <img src={lessons} alt="" srcset="" height="40" />
-                          <div className="stats pt-3">Total Lessons</div>
-                          <div className="count">123</div>
-                        </div>
-                        <div className="col-6 d-flex flex-column align-items-center">
-                          <img src={pending} alt="" srcset="" height="40" />
-                          <div className="stats pt-3">Pending Assignments</div>
-                          <div className="count">76</div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
             </div>
-            
             <div className="row m-3">
-              <div className="col-9 pe-0 pt-0 mt-0">
-                <div className="classes">
-                  <div className="row content-box me-0 py-2 mt-0" style={{width:"100%"}}>
+              <div className="col-12">
+                  <div class="row my-3 ms-0 content-box">
                     <div className="heading-2 d-flex pb-2 justify-content-center">
                       Classes
                     </div>
@@ -148,23 +144,6 @@ class Dashboard extends React.Component {
                       <div className="count">76</div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className="col-3 content-box mt-0 pb-4 px-2 py-1 d-flex flex-column align-items-center">
-                <div className="heading-2 mt-2 mb-2">Upcoming Assignments</div>
-                 
-                  <div className="Upcoming_Assignment">
-                    <a href="/">
-                      <div className="Assgn_Title">Due 26/10/2021</div>
-                      <div className="Assgn_Desc">OS quiz - Operating System</div>
-                    </a>
-                  </div>
-                  <div className="Upcoming_Assignment">
-                    <a href="/">
-                      <div className="Assgn_Title">Due 26/10/2021</div>
-                      <div className="Assgn_Desc">OS quiz - Operating System</div>
-                    </a>
-                  </div>
               </div>
             </div>
           </div>
@@ -175,3 +154,4 @@ class Dashboard extends React.Component {
 }
  
 export default Dashboard;
+
