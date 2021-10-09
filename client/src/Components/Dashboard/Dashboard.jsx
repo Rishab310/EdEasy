@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../partials/Header/Header';
 import MobileHeader from '../partials/Header/MobileHeader';
+import FooterNav from '../partials/FooterNav/FooterNav';
 import "./Dashboard.css";
 
 import banner from "../../assets/banner-image2.png";
@@ -31,6 +32,9 @@ class Dashboard extends React.Component {
               <ClassList/>
             </div>
           </div>
+        </div>
+        <div className="d-block d-md-none">
+          <FooterNav/>
         </div>
       </div>
     );

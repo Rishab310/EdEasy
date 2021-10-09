@@ -1,7 +1,6 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import IconButton from '@material-ui/core/IconButton';
 function MobileHeader() {
   return ( 
     <>

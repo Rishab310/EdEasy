@@ -1,0 +1,27 @@
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  position: fixed;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100%;
+  z-index: 5;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px 20px 0px 0px;
+}
+
+.footer-nav-link {
+  font-size: 18px !important;
+  line-height: 20px !important;
+}
+.selected {
+  font-style: normal;
+  font-weight: bold !important;
+  
+  color: #1B559C !important;
+}
