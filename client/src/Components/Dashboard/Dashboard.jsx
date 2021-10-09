@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../partials/Header/Header';
+import MobileHeader from '../partials/Header/MobileHeader';
 import "./Dashboard.css";
 
 import banner from "../../assets/banner-image2.png";
@@ -14,8 +15,11 @@ class Dashboard extends React.Component {
   render() { 
     return (
       <div className="dashboard">
-        <div className="d-none d-sm-block">
+        <div className="d-none d-md-block">
           <Header/>
+        </div>
+        <div className="d-block d-md-none">
+          <MobileHeader/>
         </div>
         <div className="row mx-0">
             <SideDash/>
