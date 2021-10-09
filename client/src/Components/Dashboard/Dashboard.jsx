@@ -14,7 +14,9 @@ class Dashboard extends React.Component {
   render() { 
     return (
       <div className="dashboard">
-        <Header/>
+        <div className="d-none d-sm-block">
+          <Header/>
+        </div>
         <div className="row mx-0">
             <SideDash/>
           <div className="col-12 col-md-9 width-80 padding-sx-0 margin-sx-0 pos">

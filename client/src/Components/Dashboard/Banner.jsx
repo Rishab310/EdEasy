@@ -9,7 +9,7 @@ import pending from "../../assets/stat3.svg";
 const Banner = () => {
   return (
     <>
-      <div className="col-12 col-md-9">
+      <div className="col-12 col-lg-9">
         <div className="row banner m-0">
             <div className="col-6 d-flex justify-content-center flex-column ps-5">
               <div className="hello-name">
@@ -24,7 +24,7 @@ const Banner = () => {
             </div>
         </div>
       </div>
-      <div className="d-none d-md-block col-3 pe-0 d-flex align-items-center justify-content-center">
+      <div className="d-none d-lg-block col-3 pe-0 d-flex align-items-center justify-content-center">
         <div class="content-box d-flex align-items-center justify-content-center flex-column height-100">
           <div className="heading-2 d-flex justify-content-center pb-3">
             Assignments
