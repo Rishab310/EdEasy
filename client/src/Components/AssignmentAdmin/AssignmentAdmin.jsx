@@ -12,10 +12,10 @@ const AssignmentAdmin = () => {
     const [posts, setPosts] = useState([
         {name : "Jatin", fileName : "abc.pdf", fileLink : "url", submissionTime : 1633793320000, duedate: 1633793420000},
         {name : "Manish", fileName : "abc.pdf", fileLink : "url", submissionTime : 1633879820000, duedate: 1633793420000},
-        {name : "Rishab sweet", fileName : "abc.pdf", fileLink : "url", submissionTime : 1633879820000, duedate: 1633793420000},
-        {name : "Rishab simple", fileName : "abc.pdf", fileLink : "url", submissionTime : 1633879820000, duedate: 1633793420000 },
-        {name : "Rishab bsdk", fileName : "abc.pdf", fileLink : "url", submissionTime : 1633879820000, duedate: 1633793420000 },
-        {name : "Naughty Rishab", fileName : "a.pdf", fileLink : "url", submissionTime : 1633879820000, duedate: 1633793420000 },
+        {name : "Rishab", fileName : "abc.pdf", fileLink : "url", submissionTime : 1633879820000, duedate: 1633793420000},
+        {name : "Rishab", fileName : "abc.pdf", fileLink : "url", submissionTime : 1633879820000, duedate: 1633793420000 },
+        {name : "Rishab", fileName : "abc.pdf", fileLink : "url", submissionTime : 1633879820000, duedate: 1633793420000 },
+        {name : "Lorem", fileName : "a.pdf", fileLink : "url", submissionTime : 1633879820000, duedate: 1633793420000 },
     ]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);

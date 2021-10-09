@@ -2,7 +2,7 @@
     font-family: Tajawal;
 }
 
-a{
+.blue-link{
     color: blue !important;
 }
 .head{
@@ -144,4 +144,8 @@ display: block;
     .adjust{
         font-size: 0.7rem;
     }
+}
+
+.dropdown-menu {
+    min-width: 3.8rem !important;
 }
