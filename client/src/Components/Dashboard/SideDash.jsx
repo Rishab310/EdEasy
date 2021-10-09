@@ -4,8 +4,8 @@ import "./Dashboard.css";
 import Avatar from '@material-ui/core/Avatar';
 const SideDash = () => {
   return (
-    <>
-      <h6 className="ms-2">Owned</h6>
+    <div className="col-3 d-none d-md-block Dashboard_Sidedrawer px-0 ps-2 width-20">
+      <h6 className="ms-2 fw-bold">Owned</h6>
       <a href="/"> 
         <div className="Sidedrawer_Class active d-flex p-2 ps-2">
           <div>
@@ -39,7 +39,7 @@ const SideDash = () => {
           </div>
         </div>
       </a>
-      <h6 className="ms-2 mt-5">Enrolled</h6>
+      <h6 className="ms-2 mt-5 fw-bold">Enrolled</h6>
       <a href="/"> 
         <div className="Sidedrawer_Class d-flex p-2 ps-2">
           <div>
@@ -73,7 +73,7 @@ const SideDash = () => {
           </div>
         </div>
       </a>
-    </>
+    </div>
   );
 }
 

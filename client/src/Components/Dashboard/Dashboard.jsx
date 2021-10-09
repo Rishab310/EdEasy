@@ -16,10 +16,8 @@ class Dashboard extends React.Component {
       <div className="dashboard">
         <Header/>
         <div className="row mx-0">
-          <div className="col-3 d-none d-md-block Dashboard_Sidedrawer px-0 ps-2 width-20">
             <SideDash/>
-          </div>
-          <div className="col-12 col-md-9 width-80">
+          <div className="col-12 col-md-9 width-80 padding-sx-0 margin-sx-0 pos">
             <div className="row m-3">
               <Banner/>
             </div>

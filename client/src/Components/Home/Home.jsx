@@ -11,10 +11,10 @@ import CopyrightIcon from '@material-ui/icons/Copyright';
 
 const Home = () => {
     return (
-      <div className="">
+      <div className="landing">
         <Header/>
         <section id="hero">
-          <div className="container">
+          <div className="container pt-4">
             <div className="row">
               <div className="col-lg-6 pt-5 pt-lg-0 mb-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
                 <div>

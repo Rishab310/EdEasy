@@ -6,12 +6,14 @@ body, #root, .app {
 } */
 .dashboard {
   background-color: #F4F3F8 !important;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  height: auto !important;
 }
 
 .banner {
   background: #D6EAF7;
-  border-radius: 12px;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px 0 rgb(0, 0, 0, 15%);
   width: 100%;
 }
 
@@ -49,6 +51,7 @@ body, #root, .app {
   align-items: center;
   color: rgb(33 33 33);
   text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
 }
 
 .heading-3 {
@@ -61,11 +64,13 @@ body, #root, .app {
   align-items: center;
   color: rgb(33 33 33);
   text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
 }
 
 .content-box {
   background: #FFFFFF;
-  border-radius: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px 0 rgb(0, 0, 0, 5%);
 }
 
 .stats {
@@ -91,6 +96,9 @@ body, #root, .app {
 
 .Dashboard_Sidedrawer {
   padding: 25px 0;
+  position: fixed !important;
+  top: 60px !important;
+  left: 0;
 }
 
 .Sidedrawer_Class {
@@ -166,7 +174,27 @@ body, #root, .app {
   .width-20 {
     width: 20% !important;
   }
+  .pos {
+    position: absolute;
+    right: 0;
+    top: 60px !important;
+  }
+}
+@media screen and (max-width:768px) {
+  .padding-sx-0 {
+    padding-left: 0px!important ;
+    padding-right: 0px!important ;
+  }
+  .margin-sx-0 {
+    margin-left: 0px!important ;
+    margin-right: 0px!important ;
+  }
 }
 .height-100{
   height: 100%;
 }
+
+.class-card {
+  box-shadow: 0 1px 16px 0 rgb(0, 0, 0, 8%) !important;
+}
+

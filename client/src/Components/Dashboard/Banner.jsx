@@ -15,7 +15,7 @@ const Banner = () => {
               <div className="hello-name">
                 Hello, Rishab!
               </div>
-              <p className="hello-description">
+              <p className="hello-description d-none d-md-block">
                 Learn anytime, anywhere. Boost your skills flexible, online courses
               </p>
             </div>
