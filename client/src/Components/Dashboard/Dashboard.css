@@ -180,6 +180,11 @@ body, #root, .app {
     top: 60px !important;
   }
 }
+.pos {
+  position: absolute;
+  right: 0;
+  top: 80px !important;
+}
 @media screen and (max-width:768px) {
   .padding-sx-0 {
     padding-left: 0px!important ;

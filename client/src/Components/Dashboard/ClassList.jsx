@@ -132,7 +132,7 @@ const ClassList = () => {
         //   backgroundStyle = {backgroundColor:"#"}
         // }
         return (
-          <div key={index} className="col-12 col-md-4 d-flex justify-content-center pb-5 px-md-4">
+          <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center pb-5 px-md-4">
             <div class="card class-card" style={{width: "90%"}} style={backgroundStyle}>
               <img src={card} class="mx-auto p-3" height="180px"/>
               <div class="card-body m-3 mx-md-4 rounded-3" style={{backgroundColor:"#fff"}}>
