@@ -4,6 +4,7 @@ import React from 'react';
 import Home from './Components/home/Home';
 import ScrollToTop from './Components/partials/ScrollToTop/ScrollToTop';
 import Dashboard from './Components/Dashboard/Dashboard';
+import AssignmentAdmin from './Components/AssignmentAdmin/AssignmentAdmin';
 // import ScrollToTop from './components/partials/ScrollToTop/ScrollToTop';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
            <Switch>
             <Route path='/' component={Home} exact/>
             <Route path='/classes' component={Dashboard} exact/>
+            <Route path='/assignment/submission' component={AssignmentAdmin} exact/>
             <Redirect to ="/" />
           </Switch> 
         </Router>

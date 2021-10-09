@@ -1,0 +1,147 @@
+*{
+    font-family: Tajawal;
+}
+
+a{
+    color: blue !important;
+}
+.head{
+    display: flex;
+    align-items: center;
+    background-color: #E6E6E6;    ;
+    border: 1px solid rgb(202, 202, 202);
+    border-radius: 10px;
+    font-size: 1.4rem;
+}
+
+.adjust{
+    font-size: 1.4rem;
+}
+
+.navtab{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 1000px;
+    background: #f1f1f1;
+    margin: 100px auto 0;
+    word-break: break-all;
+    border: 1px solid rgba(0, 0, 0, 0.274);
+}
+  
+.bloc-tabs {
+display: flex;
+}
+.tabs {
+
+    padding: 10px;
+    text-align: center;
+    width: 50%;
+    background: rgba(128, 128, 128, 0.075);
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+    box-sizing: content-box;
+    position: relative;
+    outline: none;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+.tabs:not(:last-child){
+border-right: 1px solid rgba(0, 0, 0, 0.274);
+}
+
+.active-tabs  {
+background: white;
+border-bottom: 1px solid transparent;
+}
+
+.active-tabs::before {
+content: "";
+display: block;
+position: absolute;
+top: -5px;
+left: 50%;
+transform: translateX(-50%);
+width: calc(100% + 2px);
+height: 5px;
+background: rgb(88, 147, 241);
+}
+
+
+
+button {
+border: none;
+
+}
+.content-tabs {
+flex-grow : 1;
+}
+.content {
+background: white;
+padding: 20px;
+width: 100%;
+height: 100%;
+display: none;
+}
+.content h2 {
+padding: 0px 0 5px 0px;
+font-size: 1.5rem;
+margin-bottom: -0.8rem;
+font-weight: 300;
+}
+.content hr {
+/* width: 100px; */
+height: 2px;
+background: #222;
+margin-bottom: 5px;
+opacity: 1;
+}
+.content p {
+width: 100%;
+height: 100%;
+}
+.active-content {
+display: block;
+}
+
+@media (max-width:768px) {
+    .tabs{
+        font-size: 1rem;
+    }
+    .head{
+        font-size: 1.25rem;
+    }
+    .adjust{
+        font-size: 1.1rem;
+    }
+    /* .content h2{
+        font-size: 0.8rem;
+    } */
+}
+
+@media (max-width:496px) {
+    .tabs{
+        font-size: 0.8rem;
+    }
+    .content h2{
+        font-size: 0.8rem;
+    }
+    .adjust{
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width:411px) {
+    .head{
+        font-size: 0.9rem;
+    }
+    .content h2{
+        font-size: 0.65rem;
+    }
+    .tabs{
+        font-size: 0.65rem;
+    }
+    .adjust{
+        font-size: 0.7rem;
+    }
+}
