@@ -3,6 +3,7 @@ import './App.css';
 import React from 'react';
 import Home from './components/Home/Home';
 import Dashboard from './components/Dashboard/Dashboard';
+import Classroom from './components/Classroom/Classroom';
 import ScrollToTop from './components/partials/ScrollToTop/ScrollToTop';
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
            <Switch>
             <Route path='/' component={Home} exact/>
             <Route path='/classes' component={Dashboard} exact/>
+            <Route path='/classes/:id' component={Classroom}/>
             <Redirect to ="/" />
           </Switch> 
         </Router>
@@ -22,4 +24,3 @@ const App = () => {
 }
 
 export default App
-
