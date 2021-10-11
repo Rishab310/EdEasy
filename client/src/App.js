@@ -15,7 +15,8 @@ const App = () => {
            <Switch>
             <Route path='/' component={Home} exact/>
             <Route path='/classes' component={Dashboard} exact/>
-            <Route path='/classes/:id' component={Classroom}/>
+            <Route path='/classes/:id' component={Classroom} exact/>
+            <Route path='/classes/:id/:tab' component={Classroom}/>
             <Route path='/assignment/admin' component={AssignmentAdmin}/>
             <Redirect to ="/" />
           </Switch> 
