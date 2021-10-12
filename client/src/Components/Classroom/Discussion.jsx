@@ -43,8 +43,12 @@ const Discussion = () => {
                         M
                     </Avatar>
                 </div>
-                <div className="Discussion_Input">
+                {/* <div className="Discussion_Input">
+                    <textarea name="text" rows="1" cols="10" wrap="soft"></textarea>
                     <input type="text" placeholder="Start a discussion, share class materials, etc...."/>
+                </div> */}
+                <div class="grow-wrap">
+                    <textarea name="text" id="text" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
                 </div>
                 <div>
                     <CameraAltRoundedIcon /> 
