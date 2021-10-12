@@ -1,68 +1,11 @@
-import React, { Component, use } from 'react';
+import React, { Component, use, useState } from 'react';
 import "./Dashboard.css";
 import Card1 from "../../assets/card1.svg";
 import Card2 from "../../assets/card2.svg";
 import Card3 from "../../assets/card3.svg";
 import Card4 from "../../assets/card4.svg";
 import Card5 from "../../assets/card5.svg";
-// function RenderMenuItem({ dish }) {
-//   return (
-//     <Card>
-//       <Link to={`/menu/${dish.id}`} >
-//         <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
-//         <CardImgOverlay>
-//           <CardTitle>{dish.name}</CardTitle>
-//         </CardImgOverlay>
-//       </Link>
-//     </Card>
-//   );
-// }
-// function Menu(props) {
-//   const menu = props.dishes.dishes.map((dish) => {
-//     return (
-//       <div key={dish.id} className="col-12 col-md-5 m-1">
-//         <RenderMenuItem dish={dish}/>
-//       </div>
-//     );
-//   });
-//   if (props.dishes.isLoading) {
-//     return (
-//       <div className="container">
-//         <div className="row">
-//           <Loading />
-//         </div>
-//       </div>
-//     );
-//   }
-//   else if (props.dishes.errMess) {
-//     return (
-//       <div className="container">
-//         <div className="row">
-//           <h4>{props.dishes.errMess}</h4>
-//         </div>
-//       </div>
-//     );
-//   }
-//   else {
-//     return (
-//       <div className="container">
-//         <div className="row">
-//           <Breadcrumb>
-//             <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
-//             <BreadcrumbItem active>Menu</BreadcrumbItem>
-//           </Breadcrumb>
-//           <div className="col-12">
-//             <h3>Menu</h3>
-//             <hr />
-//           </div>
-//         </div>
-//         <div className="row">
-//           {menu}
-//         </div>
-//       </div>
-//     );
-//   }
-// }
+
 const ClassList = () => {
   const classes = [
     {
@@ -127,13 +70,9 @@ const ClassList = () => {
             card=Card5;
           }
         }
-        // Swith(index%5)
-        // if((index%5)===0){
-        //   backgroundStyle = {backgroundColor:"#"}
-        // }
         return (
-          <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center pb-5 px-md-4">
-            <div class="card class-card" style={{width: "90%"}} style={backgroundStyle}>
+          <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center pb-md-5 px-md-4">
+            <div class="d-none d-md-block card class-card" style={{width: "90%"}} style={backgroundStyle}>
               <img src={card} class="mx-auto p-3" height="180px"/>
               <div class="card-body m-3 mx-md-4 rounded-3" style={{backgroundColor:"#fff"}}>
                 <h5 class="card-title heading-3">{sub.name}</h5>
@@ -141,25 +80,71 @@ const ClassList = () => {
                 <a href={sub.link} target="_blank" class="card-link text-primary">{sub.link}</a>
               </div>
             </div>
+            <div class="d-block d-md-none card mb-4 w-100" style={backgroundStyle}>
+              <div class="row g-0">
+                <div class="col-4 d-flex justify-content-center">
+                  <img src={card} class="img-fluid rounded-start px-2" width="100%"/>
+                </div>
+                <div class="col-8">
+                  <div class="card-body">
+                    <h5 class="card-title heading-3 text-start px-0">{sub.name}</h5>
+                    <p class="card-text">{sub.desc}</p>
+                    <p class="card-text"><small class="text-muted">{sub.admin}</small></p>
+                    {/* <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> */}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         );
       })
     );
   }
+  
+  const [activeTab, setActiveTab] = useState("1");
+
   return ( 
     <>
-      <div className="col-12">
-        <div class="row my-3 ms-0 content-box">
-          <div className="col-12 heading-2 d-flex py-3 pb-4 justify-content-center">
-            Classes 
-          </div>
-          <div className="col-12">
-            <div className="row">
-              <RenderClasses/>
-            </div>
+    <div className="col-12">
+      <div class="row my-3 ms-0 content-box d-none d-md-block">
+        <div className="col-12 heading-2 d-flex py-3 pb-4 justify-content-center">
+          Classes 
+        </div>
+        <div className="col-12">
+          <div className="row">
+            <RenderClasses/>
           </div>
         </div>
+      </div>
     </div>
+    <div class="row my-3 px-0 ms-0 d-block d-md-none">
+        <div className="heading-2 ps-4">Classes</div>
+        <div className="classes-navs ps-4">
+          <button
+            className={
+              activeTab == "1" ? "active classes-nav-btn ps-0" : "classes-nav-btn ps-0"
+            }
+            onClick={() => setActiveTab("1")}
+            style={{ cursor: "pointer" }}
+          >
+            Owned
+          </button>
+          <button
+            className={
+              activeTab == "2" ? "active classes-nav-btn" : "classes-nav-btn"
+            }
+            onClick={() => setActiveTab("2")}
+            style={{ cursor: "pointer" }}
+          >
+            Enrolled
+          </button>
+        </div>
+        <div className="col-12 content-box py-4 mobile-classlist">
+          <div className="row px-3 pt-2">
+            <RenderClasses/>
+          </div>
+        </div>
+      </div>
     </>
    );
 }

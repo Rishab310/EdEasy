@@ -127,58 +127,6 @@ body, #root, .app {
   line-height: 1.1;
 }
 
-/* .Assgn_Title {
-  color: #252525;
-  font-weight: bold;
-  font-size: 17px;
-}
-
-.Assgn_Desc {
-  color: #252525;
-  font-size: 13px;
-  line-height: 1.1;
-}
-
-.Upcoming_Assignment {
-  width: 85%;
-  margin-top: 20px;
-}
-
-.Upcoming_Assignment:hover {
-  cursor: pointer;
-}
-
-.Upcoming_Assignment:hover .Assgn_Desc {
-  text-decoration: underline;
-}
-
-.MuiAvatar-root {
-  width: 36px;
-  height: 36px;
-}
-
-.Banner_Img {
-  width: 246px;
-}
-
-.Banner_Img img {
-  width: 100%;
-  height: 100%;
-} */
-/* @media screen and (min-width:768px) {
-  
-  .width-80 {
-    width: 80% !important;
-  }
-  .width-20 {
-    width: 2% !important;
-  }
-  .pos {
-    position: absolute;
-    right: 0;
-    top: 60px !important;
-  }
-} */
 @media screen and (min-width:992px) {
   .width-80 {
     width: 80% !important;
@@ -224,3 +172,24 @@ body, #root, .app {
   box-shadow: 0 1px 16px 0 rgb(0, 0, 0, 8%) !important;
 }
 
+.classes-nav-btn {
+  background-color: #F4F3F8;
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 25px;
+  color: #7D7D7D;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.classes-nav-btn.active {
+  font-family: Tajawal;
+  font-weight: bolder;
+  line-height: 20px;
+  color: #1B559C;
+}
+.mobile-classlist {
+  border-top-left-radius: 20px ;
+  border-top-right-radius: 20px ;
+}

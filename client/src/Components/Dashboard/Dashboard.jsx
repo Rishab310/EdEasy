@@ -28,7 +28,7 @@ class Dashboard extends React.Component {
             <div className="row m-3">
               <Banner/>
             </div>
-            <div className="row m-3">
+            <div className="row m-3 mx-0 mx-md-3">
               <ClassList/>
             </div>
           </div>
