@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Classroom.css";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import Header from "../partials/Header/Header";
 import axios from "axios";
 import { getDateFromTimestamp, getTimeFromTimestamp } from "../../utilities";
 import Discussion from "./Discussion";
+import Assignments from './Assignments';
+import Attendees from "./Attendees";
 
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import VideocamIcon from "@material-ui/icons/Videocam";
@@ -12,6 +14,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { Icon } from "@material-ui/core";
 
 const Classroom = () => {
+  const history = useHistory();
   const classId = useParams().id;
   const [className, setClassName] = useState();
   const [adminName, setAdminName] = useState();
@@ -21,7 +24,20 @@ const Classroom = () => {
   const [discussions, setDiscussions] = useState([]);
   const [reminders, setReminders] = useState([]);
   const [seeAll, setSeeAll] = useState(false);
-  const [activeTab, setActiveTab] = useState("discussion");
+  const [activeTab, setActiveTab] = useState(useParams().tab);
+
+  console.log(activeTab);
+
+  useEffect(() => {
+    if (!activeTab) setActiveTab("discussion");
+    if (activeTab === "discussion") {
+      history.push('/classes/' + classId);
+    } else if (activeTab === "assignments") {
+      history.push('/classes/' + classId + '/assignments');
+    } else if (activeTab === "attendees") {
+      history.push('/classes/' + classId + '/attendees');
+    }
+  }, [activeTab])
 
   useEffect(() => {
     // axios Request for getting className, adminName, adminEmail, year, subject
@@ -173,14 +189,18 @@ const Classroom = () => {
           </div>
           <div className="row justify-content-between mt-3">
             <div className="Classroom_Body m-0 p-0">
-              <Discussion />
+              {
+                activeTab === "discussion" ? <Discussion classId={classId} /> : 
+                activeTab === "assignments" ? <Assignments classId={classId} /> : 
+                activeTab === "attendees" ? <Attendees adminName={adminName} adminEmail={adminEmail} /> : null 
+              }
+              
             </div>
             <div className="Reminders content-box py-3 px-4 mb-3">
               <h6 className="ms-1">Reminders</h6>
               {
                 reminders.map((reminder, index) => {
                   let style = {};
-                  console.log(index, reminders.length);
                   if (index !== reminders.length - 1) {
                     style.borderBottom = "1px solid #ccc";
                   }

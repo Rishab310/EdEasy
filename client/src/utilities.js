@@ -1,3 +1,5 @@
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 export const getDateFromTimestamp = (timestamp) => {
     const dueDate = new Date(timestamp);
     let date = dueDate.getDate();
@@ -41,8 +43,14 @@ export const getTimeFromTimestamp = (timestamp) => {
     }
 
     hours = hours.toString();
-    if (hours.length === 1) hours = "0" + hours;
+    // if (hours.length === 1) hours = "0" + hours;
     if (minutes.length === 1) minutes = "0" + minutes;
 
     return hours + ":" + minutes + " " + notation;
+}
+
+export const getDateStringFromTimestamp = (timestamp) => {
+    const newDate = new Date(timestamp);
+    const month = months[newDate.getMonth()];
+    return newDate.getDate() + " " + month + " " + newDate.getFullYear();
 }
