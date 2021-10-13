@@ -22,7 +22,7 @@ const ClassList = () => {
     },
     {
       "name":"Artificial Intelligence",
-      "admin":"Jati Bajaj",
+      "admin":"Jatin Bajaj",
       "desc":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, a!",
       "link":"https://meet.google.com/"
     },
@@ -71,12 +71,12 @@ const ClassList = () => {
           }
         }
         return (
-          <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center pb-md-5 px-md-4">
-            <div class="d-none d-md-block card class-card" style={{width: "90%"}} style={backgroundStyle}>
+          <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+            <div class="d-none d-md-block card class-card" style={backgroundStyle}>
               <img src={card} class="mx-auto p-3" height="180px"/>
               <div class="card-body m-3 mx-md-4 rounded-3" style={{backgroundColor:"#fff"}}>
                 <h5 class="card-title heading-3">{sub.name}</h5>
-                <p class="card-text">{sub.desc}</p>
+                <p class="card-text" style={{fontSize:"14px"}}>{sub.desc}</p>
                 <a href={sub.link} target="_blank" class="card-link text-primary">{sub.link}</a>
               </div>
             </div>
@@ -89,7 +89,7 @@ const ClassList = () => {
                   <div class="card-body">
                     <h5 class="card-title heading-3 text-start px-0">{sub.name}</h5>
                     <p class="card-text mobile-card-desc">{sub.desc}</p>
-                    <p class="card-text"><small class="text-muted">{sub.admin}</small></p>
+                    <p class="card-text"><span class="text-muted">{sub.admin}</span></p>
                     <a href={sub.link} target="_blank" class="card-link text-primary">{sub.link}</a>
                     {/* <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> */}
                   </div>
@@ -112,7 +112,7 @@ const ClassList = () => {
           Classes 
         </div>
         <div className="col-12">
-          <div className="row">
+          <div className="row g-4 px-md-3">
             <RenderClasses/>
           </div>
         </div>
