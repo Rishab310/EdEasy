@@ -193,3 +193,13 @@ body, #root, .app {
   border-top-left-radius: 20px ;
   border-top-right-radius: 20px ;
 }
+
+.mobile-card-desc {
+  display: block;
+}
+
+@media screen and (max-width:500px) {
+  .mobile-card-desc {
+    display: none;
+  }
+}

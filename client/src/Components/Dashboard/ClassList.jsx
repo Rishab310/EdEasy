@@ -88,8 +88,9 @@ const ClassList = () => {
                 <div class="col-8">
                   <div class="card-body">
                     <h5 class="card-title heading-3 text-start px-0">{sub.name}</h5>
-                    <p class="card-text">{sub.desc}</p>
+                    <p class="card-text mobile-card-desc">{sub.desc}</p>
                     <p class="card-text"><small class="text-muted">{sub.admin}</small></p>
+                    <a href={sub.link} target="_blank" class="card-link text-primary">{sub.link}</a>
                     {/* <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> */}
                   </div>
                 </div>
