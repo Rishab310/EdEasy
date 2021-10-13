@@ -118,6 +118,35 @@
 
 /* ========== DISCUSSION SECTION ========== */
 
+.Discussion_PreviewImg {
+    width: 97%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.Discussion_PreviewImg img {
+    width: 100%;
+    height: 100%;
+}
+
+.Discussion_FileInput {
+    display: none;
+}
+
+.Discussion_TextArea {
+    width: 100%;
+    /* margin-bottom: 10px; */
+}
+
+.Discussion_TextArea textarea {
+    width: 95%;
+    border: none;
+    padding: 8px 4px !important;
+    line-height: 1.1;
+    outline: none;
+}
+
 .Discussion {
     width: 100%;
     padding: 4px 10px;

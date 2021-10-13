@@ -1,13 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { getTimeFromTimestamp, getDateStringFromTimestamp } from '../../utilities';
 
 import Avatar from '@material-ui/core/Avatar';
-import CameraAltRoundedIcon from '@material-ui/icons/CameraAltRounded';
-import AttachFileRoundedIcon from '@material-ui/icons/AttachFileRounded';
+import PhotoRoundedIcon from '@material-ui/icons/PhotoRounded';
+
+import autosize from 'autosize';
 
 const Discussion = () => {
+    const [discussionInput, setDiscussionInput] = useState("");
     const [posts, setPosts] = useState([]);
+    const [fileInput, setFileInput] = useState();
+    let TextArea = useRef(null);
+    let FileInput = useRef(null);
+
+    useEffect(() => {
+        autosize(TextArea);
+    }, [])
 
     useEffect(() => {
         setPosts([
@@ -35,27 +44,45 @@ const Discussion = () => {
         ])
     }, [])
 
+    const imgPreview = (e) => {
+        console.log(e.target.files[0]);
+        setFileInput(e.target.files[0]);
+    }
+
     return (
         <div>
-            <div className="Discussion d-flex align-items-center py-2 px-3 content-box">
+            <div className="Discussion d-flex py-2 px-3 content-box">
                 <div className="Avatar_Container">
                     <Avatar>
                         M
                     </Avatar>
                 </div>
-                {/* <div className="Discussion_Input">
-                    <textarea name="text" rows="1" cols="10" wrap="soft"></textarea>
-                    <input type="text" placeholder="Start a discussion, share class materials, etc...."/>
-                </div> */}
-                <div class="grow-wrap">
-                    <textarea name="text" id="text" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+                <div className="Discussion_TextArea d-flex flex-column justify-content-center align-items-center">
+                    <textarea 
+                        ref={c => (TextArea = c)}
+                        placeholder="Start a discussion, share class materials, etc...."
+                        rows={1}
+                        value={discussionInput}
+                        onChange={(e) => setDiscussionInput(e.target.value)}
+                        />
+                    {
+                        fileInput ? (
+                            <div className="Discussion_PreviewImg ms-1 mt-2">
+                                <img src={URL.createObjectURL(fileInput)} />
+                            </div>
+                        ) : null
+                    }
                 </div>
-                <div>
-                    <CameraAltRoundedIcon /> 
+                <div className="mt-2">
+                    <PhotoRoundedIcon style={{fontSize: "30px"}} onClick={() => FileInput.current.click()}/>
+                    <input 
+                        accept=".jpeg, .jpg, .png"
+                        className="Discussion_FileInput" 
+                        type="file" ref={FileInput} 
+                        onChange={(e) => imgPreview(e)}
+                    />
                 </div>
-                <div>
-                    <AttachFileRoundedIcon />
-                </div>
+
             </div>
             <div className="Posts">
                 {
