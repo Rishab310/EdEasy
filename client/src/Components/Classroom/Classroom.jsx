@@ -4,7 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import Header from "../partials/Header/Header";
 import axios from "axios";
 import { getDateFromTimestamp, getTimeFromTimestamp } from "../../utilities";
-import Discussion from "./Discussion";
+import Discussion from "./Discussion"; 
 import Assignments from './Assignments';
 import Attendees from "./Attendees";
 
