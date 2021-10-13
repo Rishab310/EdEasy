@@ -53,7 +53,10 @@
     border-color: #1B559C !important;
 }
 
-.btn:hover{
+/* .btn:hover{
     color: rgb(247, 244, 244) !important;
     background-color: #1B559C !important;
+} */
+.display_pdf{
+    display: none;
 }
