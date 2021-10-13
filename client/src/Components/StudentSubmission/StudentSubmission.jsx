@@ -134,7 +134,7 @@ const StudentSubmission = () => {
                                 {pdfFileError && <div className='error-msg'>{pdfFileError}</div>}
                                 <br></br>
                                 <button onClick={btnClick} type="button" class={btn_class}><strong>{text}</strong></button>
-                            </form>
+                            </form> 
                         </div>
                     </div>
                 </div>
