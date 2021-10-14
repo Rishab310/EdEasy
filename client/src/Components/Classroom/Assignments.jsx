@@ -14,7 +14,8 @@ const Assignments = () => {
                 imgLink: "https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&k=20&m=1224851166&s=170667a&w=0&h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=",
                 assignmentName: "Lab Assgn1.pdf",
                 assignmentLink: "https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&k=20&m=1224851166&s=170667a&w=0&h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=",
-                dueDate: 1633941000000
+                dueDate: 1633941000000,
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni"
             },
             {
                 authorName: "Rishab Goyal",
@@ -22,7 +23,8 @@ const Assignments = () => {
                 imgLink: "https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&k=20&m=1224851166&s=170667a&w=0&h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=",
                 assignmentName: "Lab Assgn1.pdf",
                 assignmentLink: "https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&k=20&m=1224851166&s=170667a&w=0&h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=",
-                dueDate: 1633941000000
+                dueDate: 1633941000000,
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni"
             },
             {
                 authorName: "Rishab Goyal",
@@ -30,7 +32,8 @@ const Assignments = () => {
                 imgLink: "https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&k=20&m=1224851166&s=170667a&w=0&h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=",
                 assignmentName: "Lab Assgn1.pdf",
                 assignmentLink: "https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&k=20&m=1224851166&s=170667a&w=0&h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=",
-                dueDate: 1633941000000
+                dueDate: 1633941000000,
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni"
             },
         ])
     }, []);
@@ -40,26 +43,29 @@ const Assignments = () => {
             {
                 assignments.map(assignment => {
                     return (
-                        <a href={assignment.assignmentLink} target="_blank">
-                            <div className="d-flex flex-column">
+                        <div className="d-flex flex-column">
+                            <a href={assignment.assignmentLink} target="_blank">
                                 <div className="d-flex justify-content-between">
                                     <div className="Assignment_Date">
                                         {getDateStringFromTimestamp(assignment.dueDate)}
                                     </div>
                                     <div className="Assignment_Time">
-                                         {getTimeFromTimestamp(assignment.dueDate)}
+                                        {getTimeFromTimestamp(assignment.dueDate)}
                                     </div>
                                 </div>
-                                <div className="Assignment_Box d-flex flex-column justify-content-center p-1">
-                                    <div className="Assignment_Img">
-                                        <img src={assignment.imgLink} alt="" />
-                                        <div className="Assignment_Name">
-                                            {assignment.assignmentName}
-                                        </div>
+                            </a>
+                            <div className="Assignment_Box d-flex flex-column justify-content-center p-1">
+                                <div className="Assignment_Img">
+                                    <img src={assignment.imgLink} alt="" />
+                                    <div className="Assignment_Name">
+                                        {assignment.assignmentName}
                                     </div>
+                                </div>
+                                <div className="Assignment_Desc">
+                                    {assignment.desc}
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     )
                 })
             }

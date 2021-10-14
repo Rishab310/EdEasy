@@ -10,8 +10,8 @@ import Attendees from "./Attendees";
 
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import VideocamIcon from "@material-ui/icons/Videocam";
-import IconButton from "@material-ui/core/IconButton";
-import { Icon } from "@material-ui/core";
+import AddRoundedIcon from '@material-ui/icons/AddRounded';
+import { Button } from 'reactstrap';
 
 const Classroom = () => {
   const history = useHistory();
@@ -196,42 +196,50 @@ const Classroom = () => {
               }
               
             </div>
-            <div className="Reminders content-box py-3 px-2 px-md-4 py-md-3 mb-3">
-              <h6 className="ms-1">Reminders</h6>
-              {
-                reminders.map((reminder, index) => {
-                  let style = {};
-                  if (index !== reminders.length - 1) {
-                    style.borderBottom = "1px solid #ccc";
-                  }
-                  return (
-                    <a href={reminder.link}>
-                      <div
-                        className="d-flex flex-column Reminder px-2 py-2 py-md-3"
-                        style={style}
-                      >
-                        <div className="Reminder_Title">{reminder.title}</div>
-                        <div className="Reminder_Desc">
-                          {getTimeFromTimestamp(reminder.dueDate)} -{" "}
-                          {getDateFromTimestamp(reminder.dueDate)}
-                        </div>
-                      </div>
-                    </a>
-                  );
-                })
-              }
-              <div className="See_All d-flex justify-content-end">
+            <div className="Reminders">
+              <div className="content-box py-3 px-2 px-md-4 py-md-3 mb-3">
+                <h6 className="ms-1">Reminders</h6>
                 {
-                  seeAll ? (
-                    <div onClick={() => setSeeAll(false)}>
-                      See Less
-                    </div>
-                  ) : (
-                    <div onClick={() => setSeeAll(true)}>
-                      See All
-                    </div>
-                  )
+                  reminders.map((reminder, index) => {
+                    let style = {};
+                    if (index !== reminders.length - 1) {
+                      style.borderBottom = "1px solid #ccc";
+                    }
+                    return (
+                      <a href={reminder.link}>
+                        <div
+                          className="d-flex flex-column Reminder px-2 py-2 py-md-3"
+                          style={style}
+                        >
+                          <div className="Reminder_Title">{reminder.title}</div>
+                          <div className="Reminder_Desc">
+                            {getTimeFromTimestamp(reminder.dueDate)} -{" "}
+                            {getDateFromTimestamp(reminder.dueDate)}
+                          </div>
+                        </div>
+                      </a>
+                    );
+                  })
                 }
+                <div className="See_All d-flex justify-content-end">
+                  {
+                    seeAll ? (
+                      <div onClick={() => setSeeAll(false)}>
+                        See Less
+                      </div>
+                    ) : (
+                      <div onClick={() => setSeeAll(true)}>
+                        See All
+                      </div>
+                    )
+                  }
+                </div>
+              </div>
+              <div className="d-flex justify-content-center">
+                <Button outline color="primary" className="btn_hover d-flex align-items-center py-2 px-3 fs-6">
+                  <AddRoundedIcon style={{fontSize: "28px", margin: "-2px 3px 0 0"}} />
+                  Create Assignment
+                </Button>
               </div>
             </div>
           </div>
