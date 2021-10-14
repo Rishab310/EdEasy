@@ -103,7 +103,6 @@
 }
 
 .Classroom_Navtab div.active{
-    font-size: 18px;
     font-weight: bold;
     color: #0B223F;
     background-color: white;
@@ -117,6 +116,11 @@
 }
 
 /* ========== DISCUSSION SECTION ========== */
+
+.SendButton:hover {
+    color: #1B559C !important;
+    font-size: large;
+}
 
 .Discussion_PreviewImg {
     width: 97%;
@@ -310,4 +314,114 @@ body {
 
 label {
   display: block;
+}
+
+.Attendees_Title {
+    font-size: 18px;
+}
+
+
+@media (max-width: 772px) {
+    .Reminder_Title {
+        font-size: 14px;
+    }
+
+    .Reminder_Desc {
+        font-size: 10px;
+    }
+
+    .Classroom_Navtab div {
+        font-size: 15px;
+    }
+
+    .Discussion_TextArea textarea {
+        font-size: 14px;
+    }
+
+    .Avatar_Container .MuiAvatar-root {
+        font-size: 14px !important;
+        width: 33px;
+        height: 33px;
+    }
+
+    .See_All div {
+        margin-right: 12px;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+
+    .InputImgButton, .SendButton {
+        font-size: 26px !important;
+    }
+
+    .Post_AuthorName {
+        font-size: 16px !important;
+    }
+
+    .Post_AdminName {
+        font-size: 13px !important;
+    }
+
+    .Post_UploadDate {
+        font-size: 10px !important;
+    }
+
+    .Post_UploadTime {
+        font-size: 9px !important;
+    }
+
+    .Post_Desc {
+        font-size: 14px !important;
+    }
+
+    .Classroom_Body {
+        width: 65% !important;
+    }
+
+    .Assignment_Date {
+        font-size: 13px !important;
+    }
+
+    .Assignment_Time {
+        font-size: 13px;
+    }
+
+    .Assignment_Name {
+        font-size: 15px;
+    }
+
+    .Assignment_Img {
+        height: 120px;
+    }
+
+    .Attendees_Title {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .Reminders {
+        display: none;
+    }
+
+    .Classroom_Body {
+        width: 100% !important;
+    }
+
+    .ClassName {
+        font-size: 20px;
+    }
+
+    .Classroom_Desc {
+        font-size: 12px;
+    }
+
+    .Class_Code {
+        font-size: 12px;
+        padding: 3px 8px;
+    }
+
+    .Horizontal_Line {
+        margin-right: 6px;
+    }
 }
