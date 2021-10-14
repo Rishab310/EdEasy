@@ -28,6 +28,12 @@
     border-radius: 50%;
     justify-content: center;
 }
+.Assignment_Date_student, .Assignment_Time_student {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Roboto, 'Inter';
+    color: #454545;
+}
 .Post_AuthorName {
     color: black;
     font-size: 18px;
@@ -59,4 +65,40 @@
 } */
 .display_pdf{
     display: none;
+}
+
+.resubmit_button{
+    display: flex;
+    justify-content: end;
+    position: relative;
+    bottom:0px;
+}
+
+@media (max-width:768px) {
+    .Classroom_Body_student{
+        width: 100% !important;
+    }
+    .Post_AuthorName{
+        font-size: 14px;
+    }
+    .Post_AdminName{
+        font-size: 13px;
+    }
+    .Assignment_Date_student, .Assignment_Time_student {
+        font-size: 13px;
+    }
+}
+.button_hover:hover{
+    color: #fafafa !important;
+}
+@media (max-width:468px) {
+    .Post_AuthorName{
+        font-size: 13px;
+    }
+    .Post_AdminName{
+        font-size: 12px;
+    }
+    .Assignment_Date_student, .Assignment_Time_student {
+        font-size: 12px;
+    }
 }
