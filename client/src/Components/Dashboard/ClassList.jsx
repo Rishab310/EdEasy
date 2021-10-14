@@ -72,7 +72,7 @@ const ClassList = () => {
         }
         return (
           <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-            <div class="d-none d-md-block card class-card" style={backgroundStyle}>
+            <div class="d-none d-md-flex card class-card" style={backgroundStyle}>
               <img src={card} class="mx-auto p-3" height="180px"/>
               <div class="card-body m-3 mx-md-4 rounded-3" style={{backgroundColor:"#fff"}}>
                 <h5 class="card-title heading-3">{sub.name}</h5>
