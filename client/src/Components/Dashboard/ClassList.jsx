@@ -72,7 +72,7 @@ const ClassList = () => {
         }
         return (
           <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-            <div class="d-none d-md-block card class-card" style={backgroundStyle}>
+            <div class="d-none d-md-flex card class-card" style={backgroundStyle}>
               <img src={card} class="mx-auto p-3" height="180px"/>
               <div class="card-body m-3 mx-md-4 rounded-3" style={{backgroundColor:"#fff"}}>
                 <h5 class="card-title heading-3">{sub.name}</h5>
@@ -107,7 +107,7 @@ const ClassList = () => {
   return ( 
     <>
     <div className="col-12">
-      <div class="row my-3 ms-0 content-box d-none d-md-block">
+      <div class="row my-3 ms-0 content-box d-none d-md-block pb-4">
         <div className="col-12 heading-2 d-flex py-3 pb-4 justify-content-center">
           Classes 
         </div>
