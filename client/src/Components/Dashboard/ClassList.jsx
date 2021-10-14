@@ -107,7 +107,7 @@ const ClassList = () => {
   return ( 
     <>
     <div className="col-12">
-      <div class="row my-3 ms-0 content-box d-none d-md-block">
+      <div class="row my-3 ms-0 content-box d-none d-md-block pb-4">
         <div className="col-12 heading-2 d-flex py-3 pb-4 justify-content-center">
           Classes 
         </div>
