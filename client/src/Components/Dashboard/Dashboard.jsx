@@ -25,10 +25,10 @@ class Dashboard extends React.Component {
         <div className="row mx-0">
             <SideDash/>
           <div className="col-12 col-md-9 width-80 padding-sx-0 margin-sx-0 pos">
-            <div className="row m-3">
+            <div className="row mx-0 m-t-0 m-md-3">
               <Banner/>
             </div>
-            <div className="row m-3">
+            <div className="row m-3 mx-0 mx-md-3">
               <ClassList/>
             </div>
           </div>
