@@ -47,7 +47,7 @@ const Assignments = () => {
                                         {getDateStringFromTimestamp(assignment.dueDate)}
                                     </div>
                                     <div className="Assignment_Time">
-                                        {getTimeFromTimestamp(assignment.dueDate)}
+                                         {getTimeFromTimestamp(assignment.dueDate)}
                                     </div>
                                 </div>
                                 <div className="Assignment_Box d-flex flex-column justify-content-center p-1">

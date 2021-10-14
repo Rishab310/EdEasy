@@ -31,7 +31,7 @@ const Attendees = ({adminName, adminEmail, classId}) => {
 
     return (
         <div className="content-box py-3 px-4 pb-4 mb-5">
-            <h5 className="mt-3">Admin</h5>
+            <div className="Attendees_Title mt-3">Admin</div>
             <hr className="m-0"></hr>
             <div className="d-flex mt-3">
                 <div className="Avatar_Container Avatar_Small">
@@ -39,11 +39,11 @@ const Attendees = ({adminName, adminEmail, classId}) => {
                         {adminName ? adminName[0] : null}
                     </Avatar>
                 </div>
-                <div className="d-flex flex-column justify-content-center fs-5 ms-3 fw-bold">
+                <div className="d-flex flex-column justify-content-center fs-6 fs-md-5 ms-3 fw-bold">
                     {adminName}
                 </div>
             </div>
-            <h5 className="mt-5">Members</h5>
+            <div className="Attendees_Title mt-4">Members</div>
             <hr className="m-0"></hr>
             {
                 attendees.map(member => {
@@ -54,7 +54,7 @@ const Attendees = ({adminName, adminEmail, classId}) => {
                                     {member.name ? member.name[0] : null}
                                 </Avatar>
                             </div>
-                            <div className="d-flex flex-column justify-content-center fs-5 ms-3 fw-bold">
+                            <div className="d-flex flex-column justify-content-center fs-6 fs-md-5 ms-3 fw-bold">
                                 {member.name}
                             </div>
                         </div>

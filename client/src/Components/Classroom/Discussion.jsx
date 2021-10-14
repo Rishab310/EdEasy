@@ -4,6 +4,7 @@ import { getTimeFromTimestamp, getDateStringFromTimestamp } from '../../utilitie
 
 import Avatar from '@material-ui/core/Avatar';
 import PhotoRoundedIcon from '@material-ui/icons/PhotoRounded';
+import SendRoundedIcon from '@material-ui/icons/SendRounded';
 
 import autosize from 'autosize';
 
@@ -52,7 +53,7 @@ const Discussion = () => {
     return (
         <div>
             <div className="Discussion d-flex py-2 px-3 content-box">
-                <div className="Avatar_Container">
+                <div className="Avatar_Container mt-1 mt-md-0">
                     <Avatar>
                         M
                     </Avatar>
@@ -74,14 +75,23 @@ const Discussion = () => {
                     }
                 </div>
                 <div className="mt-2">
-                    <PhotoRoundedIcon style={{fontSize: "30px"}} onClick={() => FileInput.current.click()}/>
+                    <PhotoRoundedIcon className="InputImgButton" style={{fontSize: "30px"}} onClick={() => FileInput.current.click()}/>
                     <input 
                         accept=".jpeg, .jpg, .png"
                         className="Discussion_FileInput" 
-                        type="file" ref={FileInput} 
+                        type="file" 
+                        ref={FileInput} 
                         onChange={(e) => imgPreview(e)}
                     />
                 </div>
+                {
+                    (discussionInput !== '' || fileInput) ? (
+                        <div className="mt-2">
+                            <SendRoundedIcon className="SendButton" style={{fontSize: "30px"}}/>
+                        </div>
+                    ) : null
+                }
+                
 
             </div>
             <div className="Posts">
