@@ -140,7 +140,7 @@ const Classroom = () => {
     <div className="Classroom">
       <Header />
       <div className="row m-0 justify-content-center">
-        <div className="Classroom_Info col-11 col-md-9 col-lg-8 d-flex justify-content-between content-box mt-4 py-3 px-4">
+        <div className="Classroom_Info col-11 col-md-10 col-lg-9 col-xl-8 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
           <div className="d-flex">
             <div className="Horizontal_Line"></div>
             <div className="d-flex flex-column">
@@ -164,7 +164,7 @@ const Classroom = () => {
             />
           </div>
         </div>
-        <div className="col-11 col-md-9 col-lg-8">
+        <div className="col-11 col-md-10 col-lg-9 col-xl-8">
           <div className="row d-flex">
             <div className="d-flex justify-content-between Classroom_Navtab mt-3">
               <div
@@ -196,7 +196,7 @@ const Classroom = () => {
               }
               
             </div>
-            <div className="Reminders content-box py-3 px-4 mb-3">
+            <div className="Reminders content-box py-3 px-2 px-md-4 py-md-3 mb-3">
               <h6 className="ms-1">Reminders</h6>
               {
                 reminders.map((reminder, index) => {
@@ -207,7 +207,7 @@ const Classroom = () => {
                   return (
                     <a href={reminder.link}>
                       <div
-                        className="d-flex flex-column Reminder px-2 py-3"
+                        className="d-flex flex-column Reminder px-2 py-2 py-md-3"
                         style={style}
                       >
                         <div className="Reminder_Title">{reminder.title}</div>
