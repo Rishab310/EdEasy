@@ -177,12 +177,8 @@ const LoginModal = (props) => {
           logging: true,
         }));
     }
-    console.log(selectorData);
   };
-
-  // if(selectorData.token){
-  //   props.toggleModal();
-  // }
+  console.log(selectorData);
   
   return (
     <>
