@@ -2,10 +2,12 @@ const express = require('express');
 
 const router = express.Router();
 
+const isAuth = require('../middlewares/is-auth')
+
 const classroomController = require('../controllers/classroom');
 
-router.post('/createClassroom', classroomController.createClassroom);
-router.post('/getClassrooms', classroomController.getClassrooms);
-router.post('/joinClassroom', classroomController.joinClassroom);
+router.post('/createClassroom', isAuth, classroomController.createClassroom);
+router.post('/getClassrooms', isAuth, classroomController.getClassrooms);
+router.post('/joinClassroom', isAuth, classroomController.joinClassroom);
 
 module.exports = router; 

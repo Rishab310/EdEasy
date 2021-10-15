@@ -26,7 +26,15 @@ exports.signup = (req, res, next) => {
                     return user.save();
                 })
                 .then(result => {
-                    res.status(201).json({message: "User Created", userId: result._id});
+                    const token = jwt.sign(
+                        {
+                            email: loadedUser.email,
+                            userId: loadedUser._id.toString()
+                        }, 
+                        'secretKey',
+                        { expiresIn: '100h' }
+                    );
+                    res.status(201).json({message: "User Created", userId: result._id, token: token});
                 })
                 .catch(err => {
                     next(err);
