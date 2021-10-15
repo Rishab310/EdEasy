@@ -106,7 +106,7 @@ body, #root, .app {
   max-height: calc(100% - 60px);
 }
 .Dashboard_Sidedrawer::-webkit-scrollbar {
-  width: 10px;
+  width: 0px;
   background: transparent;
 }
 
@@ -213,4 +213,24 @@ body, #root, .app {
   .mobile-card-desc {
     display: none;
   }
+}
+
+.class-avatar .MuiAvatar-root {
+  background-color: #1B559C !important;
+}
+
+.join-create-btn {
+  display: block;
+  /* background: #E8E4E4; */
+  background: #868686;
+  border-radius: 7px;
+  font-style: normal;
+  font-weight:500;
+  font-size: 18px;
+  line-height: 28px;
+  width: 150px;
+  color: #fff;
+}
+.join-create-btn:hover {
+  background: #707070;
 }

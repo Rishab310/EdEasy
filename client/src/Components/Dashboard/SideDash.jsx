@@ -2,6 +2,8 @@ import React, { Component, useState } from 'react';
 import "./Dashboard.css";
 import {Link} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
+import AddIcon from '@material-ui/icons/Add';
+
 const SideDash = () => {
   const owned = [
     {
@@ -97,7 +99,7 @@ const SideDash = () => {
     );
   }
   return (
-    <div className="col-3 d-none d-md-block Dashboard_Sidedrawer px-0 ps-2 width-20">
+    <div className="col-3 d-none d-md-block Dashboard_Sidedrawer px-1 ps-4 width-20">
       <div className="owned">
         <h6 className="ms-2 fw-bold">Owned</h6>
         {
@@ -106,7 +108,9 @@ const SideDash = () => {
               <Link key={index} to={"/classes/"+sub.classCode}> 
                 <div className="Sidedrawer_Class active d-flex p-2 ps-2">
                   <div>
-                    <Avatar>{sub.adminName.slice(0,1).toUpperCase()}</Avatar>
+                    <div className="class-avatar">
+                      <Avatar>{sub.adminName.slice(0,1).toUpperCase()}</Avatar>
+                    </div>
                   </div>
                   <div className="ms-2 d-flex flex-column">
                     <div className="Class_Title">{sub.className}</div>
@@ -140,7 +144,9 @@ const SideDash = () => {
               <Link key={index} to={"/classes/"+sub.classCode}> 
                 <div className="Sidedrawer_Class active d-flex p-2 ps-2">
                   <div>
-                    <Avatar>{sub.adminName.slice(0,1).toUpperCase()}</Avatar>
+                  <div className="class-avatar">
+                      <Avatar>{sub.adminName.slice(0,1).toUpperCase()}</Avatar>
+                    </div>
                   </div>
                   <div className="ms-2 d-flex flex-column">
                     <div className="Class_Title">{sub.className}</div>
@@ -164,39 +170,20 @@ const SideDash = () => {
             )
           }
         </div>
-        {/* <a href="/"> 
-          <div className="Sidedrawer_Class d-flex p-2 ps-2">
-            <div>
-              <Avatar src="https://lh3.googleusercontent.com/ogw/ADea4I6x0ZHE2E2fnUt-X2aXAKqdRzAFLMchsbuvaxxQ=s32-c-mo" />
-            </div>
-            <div className="ms-2 d-flex flex-column">
-              <div className="Class_Title">Operating System</div>
-              <div className="Class_Desc">BE III year</div>
-            </div>
-          </div>
-        </a>
-        <a href="/"> 
-          <div className="Sidedrawer_Class d-flex p-2 ps-2">
-            <div>
-              <Avatar src="https://lh3.googleusercontent.com/ogw/ADea4I6x0ZHE2E2fnUt-X2aXAKqdRzAFLMchsbuvaxxQ=s32-c-mo" />
-            </div>
-            <div className="ms-2 d-flex flex-column">
-              <div className="Class_Title">Operating System</div>
-              <div className="Class_Desc">BE III year</div>
-            </div>
-          </div>
-        </a>
-        <a href="/"> 
-          <div className="Sidedrawer_Class d-flex p-2 ps-2">
-            <div>
-              <Avatar src="https://lh3.googleusercontent.com/ogw/ADea4I6x0ZHE2E2fnUt-X2aXAKqdRzAFLMchsbuvaxxQ=s32-c-mo" />
-            </div>
-            <div className="ms-2 d-flex flex-column">
-              <div className="Class_Title">Operating System</div>
-              <div className="Class_Desc">BE III year</div>
-            </div>
-          </div>
-        </a> */}
+      </div>
+      <div className="row join-links pt-3">
+        <div className="col-12 d-flex justify-content-center pb-3">
+          <button className="join-create-btn">
+            <AddIcon className="pe-1 mb-1"></AddIcon>
+            Join Class
+          </button>
+        </div>
+        <div className="col-12 d-flex justify-content-center pb-3">
+          <button className="join-create-btn">
+          <AddIcon className="pe-1 mb-1"></AddIcon>
+            Create Class
+          </button>
+        </div>
       </div>
     </div>
   );
