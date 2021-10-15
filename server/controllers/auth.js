@@ -76,8 +76,8 @@ exports.signin = (req, res, next) => {
         res.status(200).json({
             token: token, 
             userId: loadedUser._id.toString(), 
-            adminName: loadedUser.adminName, 
-            adminEmail: loadedUser.adminEmail
+            userName: loadedUser.name, 
+            userEmail: loadedUser.email
         });
     })
     .catch(err => {
