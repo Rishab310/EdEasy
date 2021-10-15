@@ -12,7 +12,7 @@ const SideDash = () => {
       "meetLink": "https://meet.google.com/koz-zufe-zxp",
       "fieldName": "Information Technology",
       "classLevel": "PHD",
-      "classCode" : "753269"
+      "classCode" : "78495"
     },
     {
       "adminName": "Jatin Bajaj",
@@ -22,7 +22,7 @@ const SideDash = () => {
       "meetLink": "https://meet.google.com/koz-zufe-zxp",
       "fieldName": "Information Technology",
       "classLevel": "PHD",
-      "classCode" : "753269"
+      "classCode" : "78495"
     },
     {
       "adminName": "Manish Dhameja",
@@ -32,7 +32,7 @@ const SideDash = () => {
       "meetLink": "https://meet.google.com/koz-zufe-zxp",
       "fieldName": "Information Technology",
       "classLevel": "PHD",
-      "classCode" : "753269"
+      "classCode" : "78495"
     },
     {
       "adminName": "Shobhit Dhameja",
@@ -42,7 +42,7 @@ const SideDash = () => {
       "meetLink": "https://meet.google.com/koz-zufe-zxp",
       "fieldName": "Information Technology",
       "classLevel": "PHD",
-      "classCode" : "753269"
+      "classCode" : "78495"
     }
   ]
   const enrolled = [
@@ -54,7 +54,7 @@ const SideDash = () => {
       "meetLink": "https://meet.google.com/koz-zufe-zxp",
       "fieldName": "Information Technology",
       "classLevel": "PHD",
-      "classCode" : "753269"
+      "classCode" : "78495"
     },
     {
       "adminName": "Jatin Bajaj",
@@ -64,7 +64,7 @@ const SideDash = () => {
       "meetLink": "https://meet.google.com/koz-zufe-zxp",
       "fieldName": "Information Technology",
       "classLevel": "PHD",
-      "classCode" : "753269"
+      "classCode" : "78495"
     },
     {
       "adminName": "Manish Dhameja",
@@ -74,7 +74,7 @@ const SideDash = () => {
       "meetLink": "https://meet.google.com/koz-zufe-zxp",
       "fieldName": "Information Technology",
       "classLevel": "PHD",
-      "classCode" : "753269"
+      "classCode" : "78495"
     },
     {
       "adminName": "Shobhit Dhameja",
@@ -84,7 +84,7 @@ const SideDash = () => {
       "meetLink": "https://meet.google.com/koz-zufe-zxp",
       "fieldName": "Information Technology",
       "classLevel": "PHD",
-      "classCode" : "753269"
+      "classCode" : "78495"
     }
   ]
   const [seeAllOwned , setSeeAllOwned] = useState(false);
