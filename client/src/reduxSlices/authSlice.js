@@ -6,8 +6,8 @@ const authSlice = createSlice({
     initialState: {
         token: null,
         userId: null,
-        adminName:null,
-        adminEmail:null,
+        userName:null,
+        userEmail:null,
         error: null,
         loading: true,
         logging: false
@@ -32,15 +32,15 @@ const authSlice = createSlice({
         LOGIN: (state, action) => {
             state.token = action.payload.token;
             state.userId = action.payload.userId;
-            state.adminName = action.payload.adminName;
-            state.adminEmail = action.payload.adminEmail;
+            state.userName = action.payload.userName;
+            state.userEmail = action.payload.userEmail;
         },
 
         LOGOUT: (state) => {
             state.token = null;
             state.userId = null;
-            state.adminEmail = null;
-            state.adminName = null;
+            state.userEmail = null;
+            state.userName = null;
             localStorage.removeItem("EdEasy__token");
             localStorage.removeItem("EdEasy__userId");
         }
@@ -59,8 +59,8 @@ export const AUTOLOGIN = () => dispatch => {
     dispatch(LOGIN({
       token: token,
       userId: userId,
-      adminName: "Jatin Bajaj",
-      adminEmail: "jatin@gmail.com"
+      userName: localStorage.getItem('EdEasy__userName'),
+      userEmail: localStorage.getItem('EdEasy__userEmail')
     }))
     dispatch(SET_LOADING(false));
   } else
@@ -82,13 +82,13 @@ export const ASYNC_LOGIN = userData => dispatch => {
   // console.log(authData);
   axios.post(URL, authData)
   .then(response => {
-    console.log(response.data.token);
+    console.log(response);
     const token = response.data.token;
     const userId = response.data.userId;
-    // const adminName = response.data.adminName;
-    // const adminEmail = response.data.adminEmail;
     localStorage.setItem('EdEasy__token', token);
     localStorage.setItem('EdEasy__userId', userId);
+    localStorage.setItem('EdEasy__userEmail', response.data.userEmail);
+    localStorage.setItem('EdEasy__userName', response.data.userName);
     dispatch(AUTOLOGIN());
     dispatch(SET_LOADING(false));
     dispatch(SET_LOGGING(false));
