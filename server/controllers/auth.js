@@ -7,6 +7,7 @@ exports.signup = (req, res, next) => {
     const password = req.body.password;
     const name = req.body.name;
     const contact = req.body.contact;
+    let loadedUser;
     console.log(req.body);
     User.findOne({email: email}).then(user => {
         console.log("User: ", user);
@@ -23,13 +24,14 @@ exports.signup = (req, res, next) => {
                         password: hashedPassword,
                         contact: contact
                     });
+                    loadedUser = user;
                     return user.save();
                 })
                 .then(result => {
                     const token = jwt.sign(
                         {
-                            email: loadedUser.email,
-                            userId: loadedUser._id.toString()
+                            email: result.email,
+                            userId: result._id.toString()
                         }, 
                         'secretKey',
                         { expiresIn: '100h' }
