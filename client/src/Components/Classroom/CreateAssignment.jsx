@@ -3,6 +3,7 @@ import autosize from 'autosize';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import DescriptionIcon from '@material-ui/icons/Description';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import clsx from "clsx";
@@ -104,7 +105,7 @@ const CreateAssignment = () => {
     }, [])
 
     return (
-        <div style={{backgroundColor:"white"}}>
+        <div style={{backgroundColor:"white", height:"100vh"}}>
             <div className="container pt-5">
                 <div className="row justify-content-sm-center pt-5">
                     <div className="col-sm-6 pb-3">
@@ -133,17 +134,19 @@ const CreateAssignment = () => {
                         <FormControl className={clsx(classes.margin, classes.textField)}>
                             <InputLabel htmlFor="description"></InputLabel>
                             <Input
-                                placeholder="Enter Assignment Description"
+                                style={{outline:"none",border:"none" ,borderBottom:"1px solid black", marginTop:"30px"}}
+                                placeholder="Enter Assignment Description (Max 20 characters)"
                                 // type
                                 id="description"
                                 ref={c => (TextArea = c)}
-                                margin="normal"
+                                rows={1}
+                                // margin="normal"
                                 value={values.description}
 
                                 onChange={handleChange("description")}
                                 startAdornment={
                                     <InputAdornment position="start">
-                                        <DescriptionIcon />
+                                        <AssignmentIcon />
                                     </InputAdornment>
                                 }
                             />
@@ -152,6 +155,7 @@ const CreateAssignment = () => {
                         <FormControl className={clsx(classes.margin, classes.textField)}>
                             <InputLabel htmlFor="dueDate"></InputLabel>
                             <Input
+                                style={{marginTop:"30px"}}
                                 placeholder="Enter DueDate &amp; Time"
                                 type = "datetime-local"
                                 id="dueDate"
@@ -178,6 +182,7 @@ const CreateAssignment = () => {
                         <FormControl className={clsx(classes.margin, classes.textField)}>
                             <InputLabel htmlFor="file"></InputLabel>
                             <Input
+                                style={{marginTop:"30px"}}
                                 placeholder="Upload pdf file"
                                 accept=".pdf"
                                 fullWidth

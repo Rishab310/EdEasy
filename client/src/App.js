@@ -9,6 +9,7 @@ import AssignmentAdmin from './components/AssignmentAdmin/AssignmentAdmin';
 import StudentSubmission from './components/StudentSubmission/StudentSubmission';
 import Reminders from './components/partials/Header/MobileReminder'
 import CreateAssignment from './components/Classroom/CreateAssignment';
+import CreateClassroom from './components/Classroom/CreateClassroom'
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
             <Route path='/assignment/admin' component={AssignmentAdmin}/>
             <Route path='/assignment/student' component={StudentSubmission}/>
             <Route path='/create' component={CreateAssignment}/>
+            <Route path='/createclassroom' component={CreateClassroom}/>
             <Redirect to ="/" />
           </Switch> 
         </Router>
