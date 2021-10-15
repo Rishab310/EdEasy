@@ -81,7 +81,7 @@ function validatePassword(password) {
 const LoginModal = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const selectorData = useSelector(selectUserData)
+  const selectorData = useSelector(selectUserData);
   const error = selectorData.error;
   const loading = selectorData.loading;
   const [contactError, setContactError] = useState(false);
