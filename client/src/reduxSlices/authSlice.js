@@ -79,11 +79,11 @@ export const ASYNC_LOGIN = userData => dispatch => {
     password: userData.password,
   }
   let URL = "http://localhost:5000/auth/signin";
-  console.log(authData);
+  // console.log(authData);
   axios.post(URL, authData)
   .then(response => {
-    console.log(response);
-    const token = response.data.idToken;
+    console.log(response.data.token);
+    const token = response.data.token;
     const userId = response.data.userId;
     // const adminName = response.data.adminName;
     // const adminEmail = response.data.adminEmail;
@@ -94,10 +94,10 @@ export const ASYNC_LOGIN = userData => dispatch => {
     dispatch(SET_LOGGING(false));
   })
   .catch(err => {
-    console.log(err);
+    // console.log(err);
     console.log(err.message);
-    console.log(err.response.data.error.message);
-    dispatch(SET_ERROR(err.response.data.error.message));
+    console.log(err.response.data.message);
+    dispatch(SET_ERROR(err.response.data.message));
     dispatch(SET_LOADING(false));
     dispatch(SET_LOGGING(false));
   })
@@ -114,8 +114,8 @@ export const ASYNC_SIGNUP = authData => dispatch => {
   axios.post(URL, authData)
   .then(response => {
     console.log(response);
-    const token = response.data.idToken;
-    const userId = response.data.localId;
+    const token = response.data.token;
+    const userId = response.data.userId;
     localStorage.setItem('EdEasy__token', token);
     localStorage.setItem('EdEasy__userId', userId);
     dispatch(AUTOLOGIN());
@@ -123,10 +123,10 @@ export const ASYNC_SIGNUP = authData => dispatch => {
     dispatch(SET_LOGGING(false));
   })
   .catch(err => {
-    console.log(err);
-    console.log(err.message);
-    console.log(err.response.data.error.message);
-    dispatch(SET_ERROR(err.response.data.error.message));
+    // console.log(err);
+    // console.log(err.message);
+    console.log(err.response.data.message);
+    dispatch(SET_ERROR(err.response.data.message));
     dispatch(SET_LOADING(false));
     dispatch(SET_LOGGING(false));
   })
