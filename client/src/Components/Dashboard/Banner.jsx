@@ -20,7 +20,7 @@ const Banner = () => {
               </p>
             </div>
             <div className="col-12 col-md-6 d-flex justify-content-center">
-              <img src={banner} alt="" srcset="" width="90%"/>
+              <img src={banner} alt="" srcset="" width="70%"/>
             </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ body, #root, .app {
   font-family: Tajawal;
   font-style: normal;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 29px;
   display: flex;
   align-items: center;
@@ -33,7 +33,7 @@ body, #root, .app {
   font-family: Tajawal;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 22px;
   display: flex;
   align-items: center;
@@ -44,7 +44,7 @@ body, #root, .app {
   font-family: Tajawal;
   font-style: normal;
   font-weight: bolder;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 26px;
   /* identical to box height */
   display: flex;
@@ -58,7 +58,7 @@ body, #root, .app {
   font-family: Tajawal;
   font-style: normal;
   font-weight: bolder;
-  font-size: 20px;
+  font-size: 17px;
   line-height: 20px;
   display: flex;
   align-items: center;
@@ -71,6 +71,10 @@ body, #root, .app {
   background: #FFFFFF;
   border-radius: 8px;
   box-shadow: 0 2px 16px 0 rgb(0, 0, 0, 5%);
+}
+
+.card-link {
+  font-size: 15px;
 }
 
 .stats {
@@ -87,7 +91,7 @@ body, #root, .app {
   font-family: Tajawal;
   font-style: normal;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 29px;
   display: flex;
   align-items: center;
@@ -226,7 +230,7 @@ body, #root, .app {
   border-radius: 7px;
   font-style: normal;
   font-weight:500;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 28px;
   width: 150px;
   color: #fff;
