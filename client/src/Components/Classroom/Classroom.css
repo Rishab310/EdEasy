@@ -330,6 +330,10 @@ label {
     font-size: 18px;
 }
 
+.Button_Hover:hover {
+    color: white !important;
+}
+
 @media (max-width: 772px) {
     .Reminder_Title {
         font-size: 14px;

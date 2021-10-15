@@ -33,7 +33,8 @@ const classroomSchema = new Schema({
         classLevel: {
             type: String,
             required: true
-        }
+        },
+        members: [String]
     },
     {
         timestamps: true,
