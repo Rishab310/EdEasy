@@ -8,8 +8,10 @@ app.use(express.json());
 app.use(cors());
 
 const authRoutes = require('./routes/auth');
+const classroomRoutes = require('./routes/classroom');
 
 app.use('/auth', authRoutes);
+app.use('/classes', classroomRoutes);
 
 app.use((err, req, res, next) => {
     console.log(err);
