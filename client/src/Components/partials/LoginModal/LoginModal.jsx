@@ -110,6 +110,13 @@ const LoginModal = (props) => {
     });
   }, [activeTab]);
 
+  useEffect(() => {
+    console.log(selectorData);
+    if (selectorData.token) {
+      props.setShow(false);
+    }
+  }, [selectorData.token]);
+
   const handleChange = (prop) => (event) => {
     if (prop === "contact" && isNaN(event.target.value)) {
       return;
@@ -172,6 +179,7 @@ const LoginModal = (props) => {
     }
     console.log(selectorData);
   };
+
   // if(selectorData.token){
   //   props.toggleModal();
   // }

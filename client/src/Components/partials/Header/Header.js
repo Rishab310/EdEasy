@@ -57,7 +57,7 @@ const Header = () => {
           </>
         </div>
       </nav>
-      <LoginModal isModalOpen={show} toggleModal={toggle}/>
+      <LoginModal isModalOpen={show} toggleModal={toggle} setShow={setShow} />
     </>
   )
 }
