@@ -60,3 +60,9 @@ a {
     border : none !important;
     font-size: 24px !important;
 }
+
+.selected {
+    font-style: normal;
+    font-weight: bold !important;
+    color: #1B559C !important;
+  }
