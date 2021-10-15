@@ -96,9 +96,17 @@ body, #root, .app {
 
 .Dashboard_Sidedrawer {
   padding: 25px 0;
+  display: block !important;
   position: fixed !important;
-  top: 60px !important;
+  -webkit-backface-visibility: hidden;
+  top: 70px !important;
   left: 0;
+  overflow: auto;
+  max-height: calc(100% - 60px);
+}
+.Dashboard_Sidedrawer::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
 }
 
 .Sidedrawer_Class {
