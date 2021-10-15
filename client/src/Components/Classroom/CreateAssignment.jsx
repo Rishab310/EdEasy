@@ -1,0 +1,209 @@
+import React, { useState, useEffect, useRef } from 'react'
+import autosize from 'autosize';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import DescriptionIcon from '@material-ui/icons/Description';
+import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import clsx from "clsx";
+import Input from "@material-ui/core/Input";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "center", 
+      marginTop: "10px",
+      "& .MuiInputLabel-formControl ": {
+        top: "-6px",
+        fontSize: "18px",
+        color: "gray",
+        // fontWeight: 'bold'
+      },
+      "& .MuiInputBase-input::placeholder": {
+        fontSize: "14px",
+      },
+      "& .MuiFormLabel-filled": {
+        backgroundColor: "transaprent !important",
+      },
+      "& .MuiInputBase-root": {
+        paddingBottom: "5px",
+      },
+      "& .MuiSelect-root": {
+        paddingBottom: "0px",
+        fontSize: "16px",
+      },
+      "& > .MuiButtonBase-root": {
+        width: "90%",
+        marginTop: "20px !important",
+      },
+    },
+    margin: {
+      margin: 0,
+    },
+    withoutLabel: {
+      marginTop: theme.spacing(3),
+    },
+    textField: {
+        // backgroundColor:"white !important",
+      width: "100%",
+    },
+  }));
+
+const CreateAssignment = () => {
+    let TextArea = useRef(null);
+    const classes = useStyles();
+    const [values, setValues] = useState({
+        name: "",
+        description: "",
+        dueDate: "",
+    });
+
+    const [fileInput, setFileInput] = useState(null);
+    const [pdfFileError, setPdfFileError] = useState('');
+
+    const handleChange = (prop) => (event) => {
+        if (prop === "fileInput") {
+            if (!event.target.files[0]) {
+                return
+            }
+            setFileInput({ [prop]: event.target.files[0] });
+            const fileType = ['application/pdf'];
+            let selectedFile = event.target.files[0];
+            if (selectedFile) {
+                if (selectedFile && fileType.includes(selectedFile.type)) {
+                    let reader = new FileReader();
+                    reader.readAsDataURL(selectedFile);
+                    reader.onloadend = (e) => {
+                        setPdfFileError('');
+                    }
+                }
+                else {
+                    setPdfFileError('Please select valid pdf file');
+                }
+            }
+        }
+        setValues({ ...values, [prop]: event.target.value });
+
+
+    };
+    console.log(values.dueDate)
+
+    const handleSubmit = () => {
+        setValues({
+            name: "",
+            description: "",
+            dueDate: ""
+        });
+        setFileInput(null)
+    }
+    useEffect(() => {
+        autosize(TextArea);
+    }, [])
+
+    return (
+        <div style={{backgroundColor:"white"}}>
+            <div className="container pt-5">
+                <div className="row justify-content-sm-center pt-5">
+                    <div className="col-sm-6 pb-3">
+                        <h1 className="text-center pt-3 mb-4">Create Assignment</h1>
+                        <form onSubmit={handleSubmit}>
+                        <FormControl className={clsx(classes.margin, classes.textField)}>
+                            <InputLabel htmlFor="name"></InputLabel>
+                            <Input
+                                placeholder="Type Assignment name"
+                                fullWidth
+                                id="name"
+                                type="text"
+                                margin="normal"
+                                required
+                                value={values.name}
+
+                                onChange={handleChange("name")}
+                                startAdornment={
+                                    <InputAdornment position="start">
+                                        <PermIdentityIcon />
+                                    </InputAdornment>
+                                }
+                            />
+                        </FormControl>
+
+                        <FormControl className={clsx(classes.margin, classes.textField)}>
+                            <InputLabel htmlFor="description"></InputLabel>
+                            <Input
+                                placeholder="Enter Assignment Description"
+                                // type
+                                id="description"
+                                ref={c => (TextArea = c)}
+                                margin="normal"
+                                value={values.description}
+
+                                onChange={handleChange("description")}
+                                startAdornment={
+                                    <InputAdornment position="start">
+                                        <DescriptionIcon />
+                                    </InputAdornment>
+                                }
+                            />
+                        </FormControl>
+
+                        <FormControl className={clsx(classes.margin, classes.textField)}>
+                            <InputLabel htmlFor="dueDate"></InputLabel>
+                            <Input
+                                placeholder="Enter DueDate &amp; Time"
+                                type = "datetime-local"
+                                id="dueDate"
+                                marginTop="10px"
+                                value={values.dueDate}
+
+                                onChange={handleChange("dueDate")}
+                                // startAdornment={
+                                //     <InputAdornment position="start">
+                                //         <PictureAsPdfIcon />
+                                //     </InputAdornment>
+                                // }
+                            />
+                        </FormControl>
+
+                        {/* <div class="mt-3 form-group">
+                            <label class="col-form-label">Due Date &amp; Time</label>
+                            <input type="datetime-local" class="form-control" placeholder="Enter Due Date" value={values.dueDate} onChange={handleChange("dueDate")} required />
+                        </div> */}
+                        {/* <div class="mt-3 form-group">
+                            <label class="col-form-label">Pdf File</label>
+                            <input type="file" class="form-control" accept="application/pdf,application/vnd.ms-excel" onChange={handleChange("fileInput")} />
+                        </div> */}
+                        <FormControl className={clsx(classes.margin, classes.textField)}>
+                            <InputLabel htmlFor="file"></InputLabel>
+                            <Input
+                                placeholder="Upload pdf file"
+                                accept=".pdf"
+                                fullWidth
+                                id="pdf"
+                                type="file"
+                                marginTop="30px"
+
+                                onChange={handleChange("fileInput")}
+                                startAdornment={
+                                    <InputAdornment position="start">
+                                        <PictureAsPdfIcon />
+                                    </InputAdornment>
+                                }
+                            />
+                        </FormControl>
+                        {!pdfFileError ?
+                            <button type="submit" class="btn btn-primary mt-4">Create</button> :
+                            <button type="submit" class="btn btn-primary mt-4 disabled">Create</button>
+                        }
+                        {pdfFileError && <div className='error-msg text-danger'>{pdfFileError}</div>}
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div >
+    )
+}
+
+export default CreateAssignment

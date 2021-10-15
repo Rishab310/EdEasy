@@ -1,6 +1,9 @@
 import React, { useState, useRef } from 'react'
 import './StudentSubmission.css'
 import Avatar from '@material-ui/core/Avatar';
+import Header from '../partials/Header/Header'
+import MobileHeader from '../partials/Header/MobileHeader'
+import FooterNav from '../partials/FooterNav/FooterNav'
 
 const StudentSubmission = () => {
     let btn_class = '';
@@ -34,10 +37,10 @@ const StudentSubmission = () => {
         case 1: {
             btnClick = submitFile;
             btnClick_back = uploadFile;
-            if(pdfFileError){
+            if (pdfFileError) {
                 btn_class = 'btn btn-outline-success fs-6 d-flex mt-3 disabled';
             }
-            else{
+            else {
                 btn_class = 'btn btn-outline-success fs-6 d-flex mt-3';
             }
             btn_class_1 = 'button_hover btn btn-outline-primary fs-6 d-flex mt-3';
@@ -57,7 +60,7 @@ const StudentSubmission = () => {
     const [inputFile, setInputFile] = useState(null);
 
     const onUploadClick = (e) => {
-        if(!e.target.files[0]){
+        if (!e.target.files[0]) {
             return
         }
         setInputFile(e.target.files[0]);
@@ -79,32 +82,18 @@ const StudentSubmission = () => {
     }
     console.log(inputFile);
 
-    // const fileType = ['application/pdf'];
-    // const handlePdfFileChange = (e) => {
-    //     let selectedFile = e.target.files[0];
-    //     if (selectedFile) {
-    //         if (selectedFile && fileType.includes(selectedFile.type)) {
-    //             let reader = new FileReader();
-    //             reader.readAsDataURL(selectedFile);
-    //             reader.onloadend = (e) => {
-    //                 setPdfFile(e.target.result);
-    //                 setPdfFileError('');
-    //             }
-    //         }
-    //         else {
-    //             setPdfFile(null);
-    //             setPdfFileError('Please select valid pdf file');
-    //         }
-    //     }    
-    //         else{
-    //             console.log('select your file');
-    //         }
-
-    // }
-
     return (
-        <div>
-            <div className="container">
+        <div style={{ marginTop: "90px" }}>
+            <div className="d-none d-md-block">
+                <Header />
+            </div>
+            <div className="d-block d-md-none">
+                <MobileHeader />
+            </div>
+            <div className="d-block d-md-none">
+                <FooterNav />
+            </div>
+            <div className="container mt-5">
                 <div className="row">
                     <div className="col d-flex mt-5 fs-3 justify-content-left border-bot">
                         Assignment - 01 DS-OS
@@ -153,15 +142,15 @@ const StudentSubmission = () => {
                     </div>
                     <div className="col-md-4">
                         {uploadState == 2 ?
-                          <div className="col d-flex mt-4 pt-3 justify-content-between border-bot fs-5">
-                              <div>
-                                Your Submission
+                            <div className="col d-flex mt-4 pt-3 justify-content-between border-bot fs-5">
+                                <div>
+                                    Your Submission
+                                </div>
+                                <div className="mt-1 fs-6 fw-bold text-success">
+                                    Submitted
+                                </div>
                             </div>
-                              <div className="mt-6 fs-6 fw-bold text-success">
-                                Submitted
-                            </div>
-                            </div>
-                        :
+                            :
                             <div className="col d-flex mt-4 pt-3 justify-content-left border-bot fs-5 col-fs-6">
                                 Your Submission
                             </div>
@@ -174,30 +163,36 @@ const StudentSubmission = () => {
                                 {uploadState == 0 && (<button onClick={btnClick} type="button" class={btn_class}><strong>{text}</strong></button>)}
 
                                 {uploadState == 1 && (<>
-                                    {!pdfFileError?<>
-                                <div class="Assignment_Img ">
-                                    <img src="https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&amp;k=20&amp;m=1224851166&amp;s=170667a&amp;w=0&amp;h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=" alt="" />
-                                    <div class="Assignment_Name">
-                                        {inputFile ? inputFile.name : null}
-                                </div>
-                                    </div></>
-                                    : null
-                                }
-                                <div className="d-flex justify-content-between">
-                                    <button onClick={btnClick} type="button" class={btn_class}><strong>{text}</strong></button>
-                                    <button onClick={btnClick_back} type="button" class={btn_class_1}><strong>Resubmit</strong></button>
-                                </div>
+                                    {!pdfFileError ? <>
+                                        <div class="Assignment_Img ">
+                                            <img src="https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&amp;k=20&amp;m=1224851166&amp;s=170667a&amp;w=0&amp;h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=" alt="" />
+                                            <div class="Assignment_Name">
+                                                {inputFile ? inputFile.name : null}
+                                            </div>
+                                            <div className="Assignment_Desc">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni"</p>
+                                            </div>
+                                        </div></>
+                                        : null
+                                    }
+                                    <div className="d-flex justify-content-between">
+                                        <button onClick={btnClick} type="button" class={btn_class}><strong>{text}</strong></button>
+                                        <button onClick={btnClick_back} type="button" class={btn_class_1}><strong>Reupload</strong></button>
+                                    </div>
                                 </>)
                                 }
-                                
+
                                 {uploadState == 2 && (<>
-                                <div class="Assignment_Img">
-                                    <img src="https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&amp;k=20&amp;m=1224851166&amp;s=170667a&amp;w=0&amp;h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=" alt="" />
-                                    <div class="Assignment_Name">
-                                        {inputFile.name}
+                                    <div class="Assignment_Img">
+                                        <img src="https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&amp;k=20&amp;m=1224851166&amp;s=170667a&amp;w=0&amp;h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=" alt="" />
+                                        <div class="Assignment_Name">
+                                            {inputFile.name}
+                                        </div>
                                     </div>
-                                </div>
-                                <button onClick={btnClick} type="button" class={btn_class}><strong>{text}</strong></button> </>)
+                                    <div className="Assignment_Desc">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni"</p>
+                                    </div>
+                                    <button onClick={btnClick} type="button" class={btn_class}><strong>{text}</strong></button> </>)
                                 }
                             </form>
                         </div>
