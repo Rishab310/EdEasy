@@ -432,6 +432,7 @@ label {
 
     .Horizontal_Line {
         margin-right: 6px;
+        height: 50px;
     }
     
     .Member_Name {

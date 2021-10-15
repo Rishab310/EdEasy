@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Classroom.css";
 import { useParams, useHistory } from "react-router-dom";
+import MobileHeader from "../partials/Header/MobileHeader";
 import Header from "../partials/Header/Header";
+import FooterNav from "../partials/FooterNav/FooterNav";
 import axios from "axios";
 import { getDateFromTimestamp, getTimeFromTimestamp } from "../../utilities";
 import Discussion from "./Discussion"; 
@@ -11,7 +13,7 @@ import Attendees from "./Attendees";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import VideocamIcon from "@material-ui/icons/Videocam";
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
-import { Button } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const Classroom = () => {
   const history = useHistory();
@@ -138,7 +140,12 @@ const Classroom = () => {
 
   return (
     <div className="Classroom">
-      <Header />
+      <div className="d-none d-md-block">
+        <Header/>
+      </div>
+      <div className="d-block d-md-none">
+        <MobileHeader/>
+      </div>
       <div className="row m-0 justify-content-center">
         <div className="Classroom_Info col-11 col-md-10 col-lg-9 col-xl-8 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
           <div className="d-flex">
@@ -244,6 +251,9 @@ const Classroom = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="d-block d-md-none">
+        <FooterNav />
       </div>
     </div>
   );
