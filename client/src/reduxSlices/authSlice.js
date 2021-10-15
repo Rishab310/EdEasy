@@ -36,13 +36,16 @@ const authSlice = createSlice({
             state.userEmail = action.payload.userEmail;
         },
 
-        LOGOUT: (state) => {
+        LOGOUT: (state, action) => {
+            console.log("Loggging");
             state.token = null;
             state.userId = null;
             state.userEmail = null;
             state.userName = null;
             localStorage.removeItem("EdEasy__token");
             localStorage.removeItem("EdEasy__userId");
+            localStorage.removeItem("EdEasy__userName");
+            localStorage.removeItem("EdEasy__userEmail");
         }
     }
 })
