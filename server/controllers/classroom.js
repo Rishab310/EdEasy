@@ -52,8 +52,14 @@ exports.getClassrooms = (req, res, next) => {
     } else if (type === "enrolled") {
         User.findOne({email: adminEmail})
             .then(user => {
-                console.log(user);
-                res.json(user);
+                Classroom.find({classCode: user.classesEnrolled})
+                    .then(results => {
+                        console.log(results);
+                        res.json(results);
+                    })
+                    .catch(err => {
+                        next(err);
+                    })
             }).catch(err => {
                 next(err);
             })
@@ -62,4 +68,10 @@ exports.getClassrooms = (req, res, next) => {
         err.statusCode = 422;
         next(err);
     }
+}
+
+exports.joinClassroom = (req, res, next) => {
+    const userId = req.body.adminEmail;
+    const classCode = req.body.classCode;
+    // Classroom.
 }

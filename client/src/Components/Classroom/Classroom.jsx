@@ -243,7 +243,7 @@ const Classroom = () => {
                 </div>
               </div>
               <div className="d-flex justify-content-center">
-                <Button outline color="primary" className="btn_hover d-flex align-items-center py-2 px-3 fs-6">
+                <Button outline color="primary" className="Button_Hover d-flex align-items-center py-2 px-3 fs-6">
                   <AddRoundedIcon style={{fontSize: "28px", margin: "-2px 3px 0 0"}} />
                   Create Assignment
                 </Button>
