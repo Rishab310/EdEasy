@@ -1,7 +1,9 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import { useHistory } from "react-router-dom";
 function MobileHeader() {
+  let history = useHistory();
   return ( 
     <>
 		  <nav class="navbar bg-light rounded-0">
