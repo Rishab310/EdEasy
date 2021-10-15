@@ -22,6 +22,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import ContactPhoneOutlinedIcon from "@material-ui/icons/ContactPhoneOutlined";
 import Button from "@material-ui/core/Button";
 import FormHelperText from "@material-ui/core/FormHelperText";
+import axios from "axios";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -82,14 +83,13 @@ const LoginModal = (props) => {
   // const dispatch = useDispatch();
   // const error = useSelector(selectUserData).error;
   // const loading = useSelector(selectUserData).loading;
-  const [categoryError, setCategoryError] = useState(false);
   const [contactError, setContactError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [activeTab, setActiveTab] = useState("1");
   const [values, setValues] = useState({
+    name: "",
     email: "",
-    category: "",
     password: "",
     contact: "",
     showPassword: false,
@@ -97,19 +97,17 @@ const LoginModal = (props) => {
 
   useEffect(() => {
     // dispatch(SET_ERROR_NULL());
-    setCategoryError(false);
     setContactError(false);
     setPasswordError(false);
     setEmailError(false);
     setValues({
       name: "",
       email: "",
-      category: "",
       password: "",
       contact: "",
       showPassword: false,
     });
-  }, [isSignIn]);
+  }, [activeTab]);
 
   const handleChange = (prop) => (event) => {
     if (prop === "contact" && isNaN(event.target.value)) {
@@ -152,14 +150,29 @@ const LoginModal = (props) => {
       setContactError(false);
     }
 
-    if (!isSignIn && values.category === "") {
-      setCategoryError(true);
-      flag = 1;
-    } else {
-      setCategoryError(false);
-    }
-
     if (flag) return;
+
+    if (activeTab === "1") {
+      axios.post("http://localhost:5000/auth/signin", {
+        email: values.email,
+        password: values.password,
+      }).then(res => {
+        console.log(res);
+      }).catch(err => {
+        console.log(err);
+      });
+    } else {
+      axios.post("http://localhost:5000/auth/signup", {
+        name: values.name,
+        email: values.email,
+        password: values.password,
+        contact: values.contact
+      }).then(res => {
+        console.log(res);
+      }).catch(err => {
+        console.log(err);
+      })
+    }
 
     // dispatch(
     //   ASYNC_LOGIN({
