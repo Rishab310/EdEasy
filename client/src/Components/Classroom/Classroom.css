@@ -223,6 +223,14 @@
 
 /* ========== ASSIGNMENTS SECTION ========== */
 
+.Assignment_Desc {
+    color: black;
+    line-height: 1.1;
+    margin-top: 6px;
+    margin-bottom: 4px;
+    padding: 0 3px;
+}
+
 .Assignment_Date, .Assignment_Time {
     font-size: 16px;
     font-weight: bold;
@@ -273,8 +281,6 @@
     padding-left: 12px;
 }
 
-
-
 .grow-wrap {
   /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
   display: grid;
@@ -320,6 +326,9 @@ label {
     font-size: 18px;
 }
 
+.Member_Name {
+    font-size: 18px;
+}
 
 @media (max-width: 772px) {
     .Reminder_Title {
@@ -423,5 +432,17 @@ label {
 
     .Horizontal_Line {
         margin-right: 6px;
+    }
+    
+    .Member_Name {
+        font-size: 16px;
+    }
+
+    .Classroom_Navtab div {
+        padding: 3px 10px;
+    }
+
+    .Classroom_Navtab {
+        width: 98% !important;
     }
 }

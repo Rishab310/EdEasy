@@ -39,7 +39,7 @@ const Attendees = ({adminName, adminEmail, classId}) => {
                         {adminName ? adminName[0] : null}
                     </Avatar>
                 </div>
-                <div className="d-flex flex-column justify-content-center fs-6 fs-md-5 ms-3 fw-bold">
+                <div className="d-flex flex-column justify-content-center Member_Name ms-3 fw-bold">
                     {adminName}
                 </div>
             </div>
@@ -54,7 +54,7 @@ const Attendees = ({adminName, adminEmail, classId}) => {
                                     {member.name ? member.name[0] : null}
                                 </Avatar>
                             </div>
-                            <div className="d-flex flex-column justify-content-center fs-6 fs-md-5 ms-3 fw-bold">
+                            <div className="d-flex flex-column justify-content-center Member_Name ms-3 fw-bold">
                                 {member.name}
                             </div>
                         </div>
