@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import IconButton from '@material-ui/core/IconButton';
 import './Header.css';
@@ -24,33 +24,32 @@ const Header = () => {
   const toggle = () => setShow(prevState=>!prevState);
   return (
     <>
-      {/* <ModalExample show={show} setShow={setShow}/> */}
       {
           showSidedrawer ? <Sidedrawer show={showSidedrawer} closeSidedrawer={closeShowSidedrawer} /> : null
       }
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container-fluid">
           <>
-            <Link to="/" class="navbar-brand ms-5 fw-bold" href="#">EdEasy</Link>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+            <NavLink to="/" className="navbar-brand ms-5 fw-bold" href="#">EdEasy</NavLink>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" 
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
             aria-expanded="false" aria-label="Toggle navigation">
-                  <IconButton onClick={() => setShowSidedrawer(true)}>
-                      <MenuRoundedIcon />
-                  </IconButton>
+              <IconButton onClick={() => setShowSidedrawer(true)}>
+                  <MenuRoundedIcon />
+              </IconButton>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
-                <li class="nav-item mx-3">
-                  <Link to="/" class="nav-link" aria-current="page" href="#">Home</Link>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
+                <li className="nav-item mx-3">
+                  <NavLink to="/" className="nav-link" activeClassName="selected" exact>Home</NavLink>
                 </li>
-                <li class="nav-item mx-3">
-                  <Link to="/" class="nav-link" href="#">About</Link>
+                <li className="nav-item mx-3">
+                  <NavLink to="/about" className="nav-link" activeClassName="selected" exact>About</NavLink>
                 </li>
-                <li class="nav-item mx-3">
-                  <Link to="/classes" class="nav-link" href="#">Classes</Link>
+                <li className="nav-item mx-3">
+                  <NavLink to="/classes" className="nav-link" activeClassName="selected" exact>Classes</NavLink>
                 </li>
-                <li class="nav-item mx-3">
+                <li className="nav-item mx-3">
                   <button className="login-btn" onClick={() => setShow(true)}>Login</button>
                 </li>
               </ul>
