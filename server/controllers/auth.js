@@ -7,6 +7,7 @@ exports.signup = (req, res, next) => {
     const password = req.body.password;
     const name = req.body.name;
     const contact = req.body.contact;
+    let loadedUser;
     console.log(req.body);
     User.findOne({email: email}).then(user => {
         console.log("User: ", user);
@@ -23,10 +24,19 @@ exports.signup = (req, res, next) => {
                         password: hashedPassword,
                         contact: contact
                     });
+                    loadedUser = user;
                     return user.save();
                 })
                 .then(result => {
-                    res.status(201).json({message: "User Created", userId: result._id});
+                    const token = jwt.sign(
+                        {
+                            email: result.email,
+                            userId: result._id.toString()
+                        }, 
+                        'secretKey',
+                        { expiresIn: '100h' }
+                    );
+                    res.status(201).json({message: "User Created", userId: result._id, token: token});
                 })
                 .catch(err => {
                     next(err);
@@ -66,8 +76,8 @@ exports.signin = (req, res, next) => {
         res.status(200).json({
             token: token, 
             userId: loadedUser._id.toString(), 
-            adminName: loadedUser.adminName, 
-            adminEmail: loadedUser.adminEmail
+            userName: loadedUser.name, 
+            userEmail: loadedUser.email
         });
     })
     .catch(err => {
