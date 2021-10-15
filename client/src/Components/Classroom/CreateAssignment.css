@@ -1,0 +1,31 @@
+@media screen and (max-width:768px) {
+    .modal-body {
+      padding: 30px 30px !important;
+    }
+    .modal {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+    .modal-dialog {
+      width: 100% !important;
+    }
+  }
+  @media screen and (min-width:768px) {
+    .modal-dialog  {
+      max-width : 60% !important;
+    }
+  }
+  .modal-content {
+    border-radius: 20px !important;
+  }
+  .auth-inner {
+    width: 100%;
+    margin: auto;
+    background: #ffffff;
+  }
+  
+  .auth-inner .form-control:focus {
+    border-color: #167bff;
+    box-shadow: none;
+  }
