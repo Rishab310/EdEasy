@@ -115,13 +115,13 @@ const ClassList = () => {
         return (
           <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
             <Link to={"/classes/"+sub.classCode} style={{maxWidth:"100%"}}>
-              <div class="d-none d-md-flex card class-card card-width" style={backgroundStyle}>
-                <img src={card} class="mx-auto mt-3" height="130px"/>
-                <div class="card-body m-3 mx-md-4 rounded-3" style={{backgroundColor:"#fff"}}>
-                  <h5 class="card-title heading-3 text-start mb-0">{sub.className}</h5>
-                  <p class="card-text text-dark mb-1"><span class="text-muted" style={{fontSize:"16px"}}>{sub.adminName}</span></p>
-                  <p class="card-text text-dark mb-1" style={{fontSize:"14px"}}>{sub.desc}</p>
-                  <a href={sub.meetLink} target="_blank" class="card-link text-primary">{sub.meetLink}</a>
+              <div className="d-none d-md-flex card class-card card-width" style={backgroundStyle}>
+                <img src={card} className="mx-auto mt-3" height="130px"/>
+                <div className="card-body m-3 mx-md-4 rounded-3" style={{backgroundColor:"#fff"}}>
+                  <h5 className="card-title heading-3 text-start mb-0">{sub.className}</h5>
+                  <p className="card-text text-dark mb-1"><span className="text-muted" style={{fontSize:"16px"}}>{sub.adminName}</span></p>
+                  <p className="card-text text-dark mb-1" style={{fontSize:"14px"}}>{sub.desc}</p>
+                  <a href={sub.meetLink} target="_blank" className="card-link text-primary">{sub.meetLink}</a>
                 </div>
               </div>
             </Link>
@@ -164,17 +164,17 @@ const ClassList = () => {
         return (
           <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center card-width-mobile">
             <Link to={"/classes/"+sub.classCode} className="card-width-mobile">
-              <div class="d-block d-md-none card mb-4" style={backgroundStyle}>
-                <div class="row g-0">
-                  <div class="col-4 d-flex justify-content-center">
-                    <img src={card} class="img-fluid rounded-start px-2" width="100%"/>
+              <div className="d-block d-md-none card mb-4" style={backgroundStyle}>
+                <div className="row g-0">
+                  <div className="col-4 d-flex justify-content-center">
+                    <img src={card} className="img-fluid rounded-start px-2" width="100%"/>
                   </div>
-                  <div class="col-8 d-flex align-items-center">
-                    <div class="card-body link-wrap">
-                      <h5 class="card-title heading-3 text-start px-0 mb-0">{sub.className}</h5>
-                      <p class="card-text text-dark mb-1"><span class="text-muted">{sub.adminName}</span></p>
-                      <p class="card-text text-dark mobile-card-desc mb-1">{sub.desc}</p>
-                      <a href={sub.meetLink} target="_blank" class="card-link text-primary">{sub.meetLink}</a>
+                  <div className="col-8 d-flex align-items-center">
+                    <div className="card-body link-wrap">
+                      <h5 className="card-title heading-3 text-start px-0 mb-0">{sub.className}</h5>
+                      <p className="card-text text-dark mb-1"><span className="text-muted">{sub.adminName}</span></p>
+                      <p className="card-text text-dark mobile-card-desc mb-1">{sub.desc}</p>
+                      <a href={sub.meetLink} target="_blank" className="card-link text-primary">{sub.meetLink}</a>
                     </div>
                   </div>
                 </div>
@@ -189,7 +189,7 @@ const ClassList = () => {
   return ( 
     <>
       <div className="col-12">
-        <div class="row my-3 ms-0 content-box d-none d-md-block pb-4">
+        <div className="row my-3 ms-0 content-box d-none d-md-block pb-4">
           <div className="col-12 heading-2 d-flex py-3 pb-4 justify-content-center">
             Classes 
           </div>
@@ -200,7 +200,7 @@ const ClassList = () => {
           </div>
         </div>
       </div>
-      <div class="row my-3 px-0 ms-0 d-block d-md-none">
+      <div className="row my-3 px-0 ms-0 d-block d-md-none">
         <div className="heading-2 ps-4">Classes</div>
         <div className="classes-navs ps-4">
           <button

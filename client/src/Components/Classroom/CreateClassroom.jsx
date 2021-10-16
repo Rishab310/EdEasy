@@ -200,7 +200,7 @@ const CreateClassroom = (props) => {
                                 />
                             </FormControl>
 
-                            <button type="submit" class="btn btn-primary mt-4">Create</button> 
+                            <button type="submit" className="btn btn-primary mt-4">Create</button> 
                         </form>
                     </div>
                 </div>

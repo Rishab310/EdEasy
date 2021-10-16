@@ -6,7 +6,7 @@ function MobileHeader() {
   let history = useHistory();
   return ( 
     <>
-		  <nav class="navbar bg-light rounded-0">
+		  <nav className="navbar bg-light rounded-0">
         <div className="container px-2 pe-4">
             <div className="col-9 col-sm-10 ps-4">
               <p className="pb-0 mb-0">Hello,</p> 

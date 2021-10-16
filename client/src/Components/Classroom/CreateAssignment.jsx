@@ -92,7 +92,7 @@ const CreateAssignment = (props) => {
 
 
     };
-    console.log(values.dueDate)
+    // console.log(values.dueDate)
 
     const handleSubmit = () => {
         setValues({
@@ -180,13 +180,13 @@ const CreateAssignment = (props) => {
                                     />
                                 </FormControl>
 
-                                {/* <div class="mt-3 form-group">
-                                    <label class="col-form-label">Due Date &amp; Time</label>
-                                    <input type="datetime-local" class="form-control" placeholder="Enter Due Date" value={values.dueDate} onChange={handleChange("dueDate")} required />
+                                {/* <div className="mt-3 form-group">
+                                    <label className="col-form-label">Due Date &amp; Time</label>
+                                    <input type="datetime-local" className="form-control" placeholder="Enter Due Date" value={values.dueDate} onChange={handleChange("dueDate")} required />
                                 </div> */}
-                                {/* <div class="mt-3 form-group">
-                                    <label class="col-form-label">Pdf File</label>
-                                    <input type="file" class="form-control" accept="application/pdf,application/vnd.ms-excel" onChange={handleChange("fileInput")} />
+                                {/* <div className="mt-3 form-group">
+                                    <label className="col-form-label">Pdf File</label>
+                                    <input type="file" className="form-control" accept="application/pdf,application/vnd.ms-excel" onChange={handleChange("fileInput")} />
                                 </div> */}
                                 <FormControl className={clsx(classes.margin, classes.textField)}>
                                     <InputLabel htmlFor="file"></InputLabel>
@@ -208,8 +208,8 @@ const CreateAssignment = (props) => {
                                         />
                                 </FormControl>
                                 {!pdfFileError ?
-                                    <button type="submit" class="btn btn-primary mt-4">Create</button> :
-                                    <button type="submit" class="btn btn-primary mt-4 disabled">Create</button>
+                                    <button type="submit" className="btn btn-primary mt-4">Create</button> :
+                                    <button type="submit" className="btn btn-primary mt-4 disabled">Create</button>
                                 }
                                 {pdfFileError && <div className='error-msg text-danger'>{pdfFileError}</div>}
                             </form>

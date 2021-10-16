@@ -27,23 +27,24 @@ const Classroom = () => {
   const [discussions, setDiscussions] = useState([]);
   const [reminders, setReminders] = useState([]);
   const [seeAll, setSeeAll] = useState(false);
-  const [activeTab, setActiveTab] = useState(useParams().tab);
+  // const [activeTab, setActiveTab] = useState(useParams().tab);
+  const [activeTab, setActiveTab] = useState("discussion");
 
-  console.log(activeTab);
+  // console.log(activeTab);
 
   const [show, setShow] = useState(false);
   const toggle = () => setShow(prevState=>!prevState);
 
-  useEffect(() => {
-    if (!activeTab) setActiveTab("discussion");
-    if (activeTab === "discussion") {
-      history.push('/classes/' + classId);
-    } else if (activeTab === "assignments") {
-      history.push('/classes/' + classId + '/assignments');
-    } else if (activeTab === "attendees") {
-      history.push('/classes/' + classId + '/attendees');
-    }
-  }, [activeTab])
+  // useEffect(() => {
+  //   if (!activeTab) setActiveTab("discussion");
+  //   if (activeTab === "discussion") {
+  //     history.push('/classes/' + classId);
+  //   } else if (activeTab === "assignments") {
+  //     history.push('/classes/' + classId + '/assignments');
+  //   } else if (activeTab === "attendees") {
+  //     history.push('/classes/' + classId + '/attendees');
+  //   }
+  // }, [activeTab])
 
   useEffect(() => {
     // axios Request for getting className, adminName, adminEmail, year, subject
