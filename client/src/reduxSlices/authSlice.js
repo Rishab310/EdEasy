@@ -36,32 +36,44 @@ const authSlice = createSlice({
             state.userEmail = action.payload.userEmail;
         },
 
-        LOGOUT: (state) => {
+        LOGOUT: (state, action) => {
+            console.log("Loggging");
             state.token = null;
             state.userId = null;
             state.userEmail = null;
             state.userName = null;
             localStorage.removeItem("EdEasy__token");
             localStorage.removeItem("EdEasy__userId");
+            localStorage.removeItem("EdEasy__userName");
+            localStorage.removeItem("EdEasy__userEmail");
         }
     }
 })
 
 export const { LOGIN, LOGOUT, SET_ERROR, SET_ERROR_NULL, SET_LOADING, SET_LOGGING } = authSlice.actions;
 
-export const AUTOLOGIN = () => dispatch => {
+export const AUTOLOGIN = () => async dispatch => {
   // console.log("Hello");
   dispatch(SET_LOADING(true));
   const token = localStorage.getItem('EdEasy__token');
   // Will verify bearer jwt token with backend
   if(token) {
     const userId = localStorage.getItem('EdEasy__userId');
-    dispatch(LOGIN({
-      token: token,
-      userId: userId,
-      userName: localStorage.getItem('EdEasy__userName'),
-      userEmail: localStorage.getItem('EdEasy__userEmail')
-    }))
+    const userName = localStorage.getItem('EdEasy__userName');
+    const userEmail = localStorage.getItem('EdEasy__userId');
+    await axios.post("http://localhost:5000/auth/verifyToken",{ token: token })
+    .then((res)=>{
+      dispatch(LOGIN({
+        token: token,
+        userId: userId,
+        userName: userName,
+        userEmail: userEmail
+      }))
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch(LOGOUT());
+    })
     dispatch(SET_LOADING(false));
   } else
     dispatch(SET_LOADING(false));

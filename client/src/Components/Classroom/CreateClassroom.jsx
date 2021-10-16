@@ -13,6 +13,7 @@ import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from '@material-ui/core';
+import { Modal, ModalBody} from "reactstrap";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const CreateClassroom = () => {
+const CreateClassroom = (props) => {
     let TextArea = useRef(null);
     const classes = useStyles();
     const [values, setValues] = useState({
@@ -84,11 +85,18 @@ const CreateClassroom = () => {
     }, [])
 
     return (
-        <div style={{ backgroundColor: "white", height: "100vh" }}>
-            <div className="container pt-5">
-                <div className="row justify-content-sm-center pt-5"> 
-                    <div className="col-sm-6 pb-3 px-5">
-                        <h1 className="text-center pt-3 mb-4">Create Classroom</h1>
+        <>
+        <Modal
+            isOpen={props.isModalOpen}
+            toggle={props.toggleModal}
+            >
+            <ModalBody>
+
+        <div style={{ backgroundColor: "white" }}>
+            <div className="container">
+                <div className="row justify-content-sm-center"> 
+                    <div className="col-12 pb-3">
+                        <h1 style={{color:"rgb(90,90,90)"}} className="text-center mb-4 fs-2">Create Classroom</h1>
                         <form onSubmit={handleSubmit}  >
                             <FormControl className={clsx(classes.margin, classes.textField)}>
                                 <InputLabel htmlFor="description"></InputLabel>
@@ -198,6 +206,9 @@ const CreateClassroom = () => {
                 </div>
             </div>
         </div >
+            </ModalBody>
+            </Modal>
+        </>
     )
 }
 
