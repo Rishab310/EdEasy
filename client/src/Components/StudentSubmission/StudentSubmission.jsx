@@ -93,7 +93,7 @@ const StudentSubmission = () => {
             <div className="d-block d-md-none">
                 <FooterNav />
             </div>
-            <div className="container mt-5">
+            <div className="container mt-3">
                 <div className="row">
                     <div className="col d-flex mt-5 fs-3 justify-content-left border-bot">
                         Assignment - 01 DS-OS
@@ -135,6 +135,9 @@ const StudentSubmission = () => {
                                                 Lab_Assignment-1
                                             </div>
                                         </div>
+                                        <div className="Assignment_Desc mb-0">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni"</p>
+                                        </div>
                                     </div>
                                 </div>
                             </a>
@@ -163,22 +166,19 @@ const StudentSubmission = () => {
                                 {uploadState == 0 && (<button onClick={btnClick} type="button" className={btn_class}><strong>{text}</strong></button>)}
 
                                 {uploadState == 1 && (<>
-                                    {!pdfFileError ? <>
+                                    {!pdfFileError ? <div className="content-box px-0 pt-3 pb-3">
                                         <div className="Assignment_Img ">
                                             <img src="https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&amp;k=20&amp;m=1224851166&amp;s=170667a&amp;w=0&amp;h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=" alt="" />
                                             <div className="Assignment_Name">
                                                 {inputFile ? inputFile.name : null}
                                             </div>
                                         </div>
-                                            <div className="Assignment_Desc">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni"</p>
-                                            </div>
-                                        </>
+                                        </div>
                                         : null
                                     }
                                     <div className="d-flex justify-content-between">
                                         <button onClick={btnClick} type="button" className={btn_class}><strong>{text}</strong></button>
-                                        <button onClick={btnClick_back} type="button" className={btn_class_1}><strong>Reupload</strong></button>
+                                        <button onClick={btnClick_back} type="button" className={btn_class_1}><strong>ReUpload</strong></button>
                                     </div>
                                 </>)
                                 }
@@ -189,9 +189,6 @@ const StudentSubmission = () => {
                                         <div className="Assignment_Name">
                                             {inputFile.name}
                                         </div>
-                                    </div>
-                                    <div className="Assignment_Desc">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni"</p>
                                     </div>
                                     <button onClick={btnClick} type="button" className={btn_class}><strong>{text}</strong></button> </>)
                                 }
