@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./Sidedrawer.css";
 import Backdrop from "../Backdrop/Backdrop";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import LoginModal from '../LoginModal/LoginModal';
@@ -38,10 +38,11 @@ const Sidedrawer = ({ show, closeSidedrawer }) => {
       return (
         <li className="nav-item text-start">
           <UncontrolledDropdown nav className="p-0">
-            <DropdownToggle nav className="py-0 px-0">
-              <div className="class-avatar pe-2">
-                <Avatar style={{height:"35px",width:"35px"}}>{userName.slice(0,1).toUpperCase()}</Avatar>
-              </div>
+            <DropdownToggle nav caret className="py-0 px-0">
+              {/* <div className="class-avatar pe-2">
+                <Avatar style={{height:"25px",width:"25px"}}>{userName.slice(0,1).toUpperCase()}</Avatar>
+              </div> */}
+              {userName}
             </DropdownToggle>
             <DropdownMenu className="my-0 py-0">
               <DropdownItem className="my-0 ml-0 pl-3">
@@ -100,11 +101,13 @@ const Sidedrawer = ({ show, closeSidedrawer }) => {
                 About
               </Link>
             </li>
-            {/* <li style={{marginLeft:"-8px"}}>
-              <button className="login-btn mt-2 m-0" onClick={toggle}>
-                Login
-              </button>
-            </li> */}
+            {
+              (token) ? (
+                <li>
+                  <Link to="/classes" activeClassName="selected" exact>Classes</Link>
+                </li>
+              ) : ""
+            }
             <ConditionalBtn/>
           </ul>
         </div>

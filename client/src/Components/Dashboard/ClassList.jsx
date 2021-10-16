@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {useHistory} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import "./Dashboard.css";
 import Card1 from "../../assets/card1.svg";
@@ -53,7 +54,7 @@ const ClassList = () => {
   const [owned, setOwned] = useState([]);
   const [enrolled, setEnrolled] = useState([]);
   const [activeTab, setActiveTab] = useState("1");
-
+  const history = useHistory();
   useEffect(() => {
     if (storeData.token){
       console.log(storeData);
@@ -110,6 +111,7 @@ const ClassList = () => {
             card=Card5;
           }
         }
+        // console.log(history);
         return (
           <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
             <Link to={"/classes/"+sub.classCode} style={{maxWidth:"100%"}}>
@@ -119,7 +121,7 @@ const ClassList = () => {
                   <h5 class="card-title heading-3 text-start mb-0">{sub.className}</h5>
                   <p class="card-text text-dark mb-1"><span class="text-muted" style={{fontSize:"16px"}}>{sub.adminName}</span></p>
                   <p class="card-text text-dark mb-1" style={{fontSize:"14px"}}>{sub.desc}</p>
-                  <a href={sub.link} target="_blank" class="card-link text-primary">{sub.meetLink}</a>
+                  <a href={sub.meetLink} target="_blank" class="card-link text-primary">{sub.meetLink}</a>
                 </div>
               </div>
             </Link>
@@ -168,11 +170,11 @@ const ClassList = () => {
                     <img src={card} class="img-fluid rounded-start px-2" width="100%"/>
                   </div>
                   <div class="col-8 d-flex align-items-center">
-                    <div class="card-body">
+                    <div class="card-body link-wrap">
                       <h5 class="card-title heading-3 text-start px-0 mb-0">{sub.className}</h5>
                       <p class="card-text text-dark mb-1"><span class="text-muted">{sub.adminName}</span></p>
                       <p class="card-text text-dark mobile-card-desc mb-1">{sub.desc}</p>
-                      <a href={sub.link} target="_blank" class="card-link text-primary">{sub.meetLink}</a>
+                      <a href={sub.meetLink} target="_blank" class="card-link text-primary">{sub.meetLink}</a>
                     </div>
                   </div>
                 </div>

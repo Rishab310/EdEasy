@@ -11,7 +11,6 @@ import { useDispatch } from 'react-redux';
 import { AUTOLOGIN } from './reduxSlices/authSlice';
 import Reminders from './components/partials/Header/MobileReminder'
 import CreateClassroom from './components/Classroom/CreateClassroom'
-
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
