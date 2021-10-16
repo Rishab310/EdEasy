@@ -21,7 +21,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
  
 const Classroom = () => {
   const storeData = useSelector(selectUserData);
-  // const history = useHistory();
+  const history = useHistory();
   const classCode = useParams().id;
   const [className, setClassName] = useState();
   const [adminName, setAdminName] = useState();
@@ -38,6 +38,7 @@ const Classroom = () => {
   const [show, setShow] = useState(false);
   const toggle = () => setShow(prevState=>!prevState);
   const [loading, setLoading] = useState(false);
+  const [reminderloading, setReminderLoading] = useState(false);
   // useEffect(() => {
   //   if (!activeTab) setActiveTab("discussion");
   //   if (activeTab === "discussion") {
@@ -70,66 +71,32 @@ const Classroom = () => {
       
   }, []);
  
-  useEffect(() => {
-    if (seeAll) {
-      setReminders([
-        {
-          title: "OS Test",
-          dueDate: 1634904000000,
-          link: "http://localhost:3000/assgn/12434",
-        },
-        {
-          title: "DBMS Quiz",
-          dueDate: 1633878709000,
-          link: "http://localhost:3000/assgn/12435",
-        },
-        {
-          title: "CN Assignment1",
-          dueDate: 1633792309000,
-          link: "http://localhost:3000/assgn/12464",
-        },
-        {
-          title: "CN Assignment1",
-          dueDate: 1633792309000,
-          link: "http://localhost:3000/assgn/12464",
-        },
-        {
-          title: "CN Assignment1",
-          dueDate: 1633792309000,
-          link: "http://localhost:3000/assgn/12464",
-        },
-        {
-          title: "CN Assignment1",
-          dueDate: 1633792309000,
-          link: "http://localhost:3000/assgn/12464",
-        },
-        {
-          title: "CN Assignment1",
-          dueDate: 1633792309000,
-          link: "http://localhost:3000/assgn/12464",
-        }
-      ]);
-    } else {
-      setReminders([
-        {
-          title: "OS Test",
-          dueDate: 1634904000000,
-          link: "http://localhost:3000/assgn/12434",
-        },
-        {
-          title: "DBMS Quiz",
-          dueDate: 1633878709000,
-          link: "http://localhost:3000/assgn/12435",
-        },
-        {
-          title: "CN Assignment1",
-          dueDate: 1633792309000,
-          link: "http://localhost:3000/assgn/12464",
-        }
-      ]);
+  useEffect(async () => {
+    if (storeData.token){
+      setReminderLoading(true);
+      axios.post("http://localhost:5000/classes/getReminders", {
+          userEmail : storeData.userEmail
+        },{ headers: { Authorization: 'Bearer ' + storeData.token } }
+        )
+        .then((res)=>{
+          // console.log(res);
+          setReminders(res.data);
+          setReminderLoading(false);
+        })
+        .catch(err => {console.log(err.response);setLoading(false);})
     }
-  }, [seeAll])
- 
+  }, [storeData.token])
+  const deleteClass = () => {
+    axios.delete("http://localhost:5000/classes/deleteClassroom", {
+      data : { classCode: classCode }
+      },{ headers: { Authorization: 'Bearer ' + storeData.token } }
+      )
+      .then((res)=>{
+        console.log("deleted");
+        history.push("/classes");
+      })
+      .catch(err => {console.log(err.response);})
+  }
   return (
     <>
     { (!loading) ? ( 
@@ -159,14 +126,20 @@ const Classroom = () => {
                 </div>
               </div>
               <div className="d-flex flex-column justify-content-between">
-                <Dropdown className="me-2" isOpen={dropdownOpen} toggle={toggle_dropdown}>
-                  <DropdownToggle nav>
-                    <MoreHorizIcon />
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem>Delete Class</DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
+                {
+                  (adminName === storeData.userName) ? (
+                    <Dropdown className="me-2" isOpen={dropdownOpen} toggle={toggle_dropdown}>
+                      <DropdownToggle nav>
+                        <MoreHorizIcon />
+                      </DropdownToggle>
+                      <DropdownMenu className="bg-transparent" style={{border:"none"}}>
+                          <button className="join-create-btn" onClick={deleteClass}>
+                            Delete Classroom
+                          </button>
+                      </DropdownMenu>
+                    </Dropdown>
+                  ): ""
+                }
                 <a href={meetLink} target="_blank">  
                   <VideocamIcon
                   style={{ fontSize: 38, marginLeft: "10px", color: "gray" }}
@@ -216,12 +189,12 @@ const Classroom = () => {
                           style.borderBottom = "1px solid #ccc";
                         }
                         return (
-                          <a href={reminder.link}>
+                          <a href={reminder.fileLink}>
                             <div
                               className="d-flex flex-column Reminder px-2 py-2 py-md-3"
                               style={style}
                             >
-                              <div className="Reminder_Title">{reminder.title}</div>
+                              <div className="Reminder_name">{reminder.name}</div>
                               <div className="Reminder_Desc">
                                 {getTimeFromTimestamp(reminder.dueDate)} -{" "}
                                 {getDateFromTimestamp(reminder.dueDate)}

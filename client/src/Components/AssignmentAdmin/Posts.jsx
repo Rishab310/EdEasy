@@ -82,7 +82,6 @@ const Posts = ({posts, loading, paginate}) => {
                                             </div>
                                             <div className="adjust col-4 pe-3 d-flex align-tems-center justify-content-end">
                                                 <DropdownButton
-                                                    className="btns"
                                                     alignRight
                                                     title= {`${value}/10`}
                                                     id="dropdown-menu-align-right"

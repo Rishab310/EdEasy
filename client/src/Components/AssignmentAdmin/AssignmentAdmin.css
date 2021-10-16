@@ -1,11 +1,13 @@
 /* *{
     font-family: 'Tajawal';
 } */
-
+.btns{
+    font-size: 1rem !important;
+}
 .blue-link{
     color: blue !important;
 }
-.head{
+.head{ 
     display: flex;
     align-items: center;
     background-color: #E6E6E6;    ;

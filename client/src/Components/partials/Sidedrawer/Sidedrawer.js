@@ -92,7 +92,7 @@ const Sidedrawer = ({ show, closeSidedrawer }) => {
                 Home
               </Link>
             </li>
-            <li >
+            {/* <li >
               <Link
                 className={location === "/about" ? "active" : ""}
                 onClick={closeSidedrawerUtil}
@@ -100,7 +100,7 @@ const Sidedrawer = ({ show, closeSidedrawer }) => {
               >
                 About
               </Link>
-            </li>
+            </li> */}
             {
               (token) ? (
                 <li>
