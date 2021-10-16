@@ -15,12 +15,10 @@ const discussionSchema = new Schema({
             required: true
         },
         desc: {
-            type: String,
-            required: true
+            type: String
         },
         imgLink: {
-            type: String,
-            required: true
+            type: String
         }
     },
     {
