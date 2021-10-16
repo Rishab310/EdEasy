@@ -25,58 +25,18 @@ const Assignments = (props) => {
         .then((res)=>{
             console.log(res.data);
             setAssignments(res.data);
+            setLoading(false);
         })
         .catch(err => {console.log(err.response);setLoading(false);})
-        // setAssignments([
-        //     {
-        //         id: "2125",
-        //         authorName: "Rishab Goyal",
-        //         authorEmail: "123@gmail.com",
-        //         imgLink: "https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&k=20&m=1224851166&s=170667a&w=0&h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=",
-        //         assignmentName: "Lab Assgn1.pdf",
-        //         assignmentLink: "https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&k=20&m=1224851166&s=170667a&w=0&h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=",
-        //         dueDate: 1633941000000,
-        //         desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni"
-        //     },
-        //     {
-        //         id: "2126",
-        //         authorName: "Rishab Goyal",
-        //         authorEmail: "123@gmail.com",
-        //         imgLink: "https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&k=20&m=1224851166&s=170667a&w=0&h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=",
-        //         assignmentName: "Lab Assgn1.pdf",
-        //         assignmentLink: "https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&k=20&m=1224851166&s=170667a&w=0&h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=",
-        //         dueDate: 1633941000000,
-        //         desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni"
-        //     },
-        //     {
-        //         id: "2127",
-        //         authorName: "Rishab Goyal",
-        //         authorEmail: "123@gmail.com",
-        //         imgLink: "https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&k=20&m=1224851166&s=170667a&w=0&h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=",
-        //         assignmentName: "Lab Assgn1.pdf",
-        //         assignmentLink: "https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&k=20&m=1224851166&s=170667a&w=0&h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=",
-        //         dueDate: 1633941000000,
-        //         desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni"
-        //     },
-        // ])
     }, []);
-    // const goToAssign = (assignId) => {
-    //     if( storeData.userData === props.adminEmail ) {
-    //         <Redirect to={"/classes/"+props.classCode+"/assignment/"+assignId+"/admin"} />
-    //     }
-    //     else {
-    //         <Redirect to={"/classes/"+props.classCode+"/assignment/"+assignId} />
-    //     }
-    // }
-    console.log(props.adminEmail, storeData.userEmail);
     return (
         <div className="Assignments content-box py-3 px-4 pt-4 mb-5">
-            {/* {
+            {
                 (loading) ? (
                     <div className="col-12 d-flex justify-content-center align-items-center mt-5">
                         <CircularProgress size={50} className="display-block"/>
                     </div>
-                ) : ( */}
+                ) : (
                     <>
                     {
                         assignments.map(assignment => {
@@ -96,9 +56,9 @@ const Assignments = (props) => {
                                         </div>
                                         <div className="Assignment_Box d-flex flex-column justify-content-center p-1">
                                             <div className="Assignment_Img">
-                                                <img src={assignment.imgLink} alt="" />
+                                                <img src="https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&k=20&m=1224851166&s=170667a&w=0&h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=" alt="" />
                                                 <div className="Assignment_Name">
-                                                    {assignment.assignmentName}
+                                                    {assignment.name}
                                                 </div>
                                             </div>
                                             <div className="Assignment_Desc">
@@ -111,8 +71,8 @@ const Assignments = (props) => {
                         })
                     }
                     </>
-                {/* )
-            } */}
+                 )
+            } 
             {
                 ( storeData.userEmail=== props.adminEmail ) ? (
                     <div className="floating-btn d-block d-md-none">
