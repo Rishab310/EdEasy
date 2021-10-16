@@ -455,3 +455,10 @@ label {
 .btn-outline-primary:hover {
     background-color: #1B559C !important;
 }
+
+.floating-btn{
+    position: fixed !important;
+    bottom: 100px !important;
+    right:30px !important;
+    z-index: 5 !important;
+}
