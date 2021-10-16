@@ -110,13 +110,14 @@ exports.joinClassroom = (req, res, next) => {
 
 exports.deleteClassroom = (req, res, next) => {
     const classCode = req.body.classCode;
+    // console.log(classCode);
     Classroom.findOneAndDelete({classCode: classCode})
         .then(classroom => {
             if (!classroom) {
-                const err = new Error("Invalid ClassCode.");
+                const err = new Error("Invalid ClassCode : " + classCode);
                 err.statusCode = 422;
                 next(err);
-            }
+            } 
 
             classroom.members.forEach(async memberEmail => {
                 await User.findOne({email: memberEmail})
