@@ -178,7 +178,6 @@ const LoginModal = (props) => {
         })); 
     }
   };
-  // console.log(selectorData);
   
   return (
     <>
