@@ -1,6 +1,7 @@
 const Classroom = require('../models/classroom');
 const classCode = require('../models/classCode');
 const User = require('../models/user');
+const Discussion = require('../models/discussion');
 
 exports.createClassroom = async (req, res, next) => {
     let currClassCode;
@@ -75,6 +76,11 @@ exports.joinClassroom = (req, res, next) => {
     const classCode = req.body.classCode;
     Classroom.findOne({classCode: classCode})
         .then(classroom => {
+            if (!classroom) {
+                const err = new Error("Classroom with given class code does not exists.");
+                err.statusCode = 403;
+                next(err);
+            }
             if (classroom.members.includes(userEmail)) {
                 const err = new Error("User already Enrolled.");
                 err.statusCode = 403;
@@ -92,6 +98,32 @@ exports.joinClassroom = (req, res, next) => {
         })
         .then(result => {
             res.json({message: "Class joined successfully!"});
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+exports.createDiscussion = (req, res, next) => {
+    const creatorName = req.body.creatorName;
+    const creatorEmail = req.body.creatorEmail;
+    const dueDate = new Date(req.body.dueDate);
+    const classCode = req.body.classCode;
+    const imgLink = req.body.imgLink;
+    const desc = req.body.desc;
+
+    const discussion = new Discussion({
+        creatorEmail: creatorEmail,
+        creatorName: creatorName,
+        dueDate: dueDate,
+        classCode: classCode,
+        imgLink: imgLink,
+        desc: desc
+    })
+    
+    discussion.save()
+        .then(result => {
+            res.json({message: "Discussion created successfully"});
         })
         .catch(err => {
             next(err);
