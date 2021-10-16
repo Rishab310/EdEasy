@@ -21,7 +21,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
  
 const Classroom = () => {
   const storeData = useSelector(selectUserData);
-  // const history = useHistory();
+  const history = useHistory();
   const classCode = useParams().id;
   const [className, setClassName] = useState();
   const [adminName, setAdminName] = useState();
@@ -129,7 +129,17 @@ const Classroom = () => {
       ]);
     }
   }, [seeAll])
- 
+  const deleteClass = () => {
+    axios.delete("http://localhost:5000/classes/deleteClassroom", {
+      data : { classCode: classCode }
+      },{ headers: { Authorization: 'Bearer ' + storeData.token } }
+      )
+      .then((res)=>{
+        console.log("deleted");
+        history.push("/classes");
+      })
+      .catch(err => {console.log(err.response);})
+  }
   return (
     <>
     { (!loading) ? ( 
@@ -159,14 +169,20 @@ const Classroom = () => {
                 </div>
               </div>
               <div className="d-flex flex-column justify-content-between">
-                <Dropdown className="me-2" isOpen={dropdownOpen} toggle={toggle_dropdown}>
-                  <DropdownToggle nav>
-                    <MoreHorizIcon />
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem>Delete Class</DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
+                {
+                  (adminName === storeData.userName) ? (
+                    <Dropdown className="me-2" isOpen={dropdownOpen} toggle={toggle_dropdown}>
+                      <DropdownToggle nav>
+                        <MoreHorizIcon />
+                      </DropdownToggle>
+                      <DropdownMenu className="bg-transparent" style={{border:"none"}}>
+                          <button className="join-create-btn" onClick={deleteClass}>
+                            Delete Classroom
+                          </button>
+                      </DropdownMenu>
+                    </Dropdown>
+                  ): ""
+                }
                 <a href={meetLink} target="_blank">  
                   <VideocamIcon
                   style={{ fontSize: 38, marginLeft: "10px", color: "gray" }}
