@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import './AssignmentAdmin.css'
 import Header from '../partials/Header/Header';
+import MobileHeader from '../partials/Header/MobileHeader'
+import FooterNav from '../partials/FooterNav/FooterNav'
 
 import Pagination from './Pagination';
 import Posts from './Posts';
@@ -38,10 +40,18 @@ const AssignmentAdmin = () => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
-        <div className="">
-            <Header />
+        <div style={{ marginTop: "90px" }}>
+            <div className="d-none d-md-block">
+                <Header />
+            </div>
+            <div className="d-block d-md-none">
+                <MobileHeader />
+            </div>
             <Posts posts={currentPosts} loading={loading} paginate={paginate}/>
             <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
+            <div className="d-block d-md-none">
+                <FooterNav />
+            </div>
         </div>
     )
 }

@@ -169,10 +169,11 @@ const StudentSubmission = () => {
                                             <div className="Assignment_Name">
                                                 {inputFile ? inputFile.name : null}
                                             </div>
+                                        </div>
                                             <div className="Assignment_Desc">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni"</p>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni"</p>
                                             </div>
-                                        </div></>
+                                        </>
                                         : null
                                     }
                                     <div className="d-flex justify-content-between">

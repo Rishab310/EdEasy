@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { getDateStringFromTimestamp, getTimeFromTimestamp } from '../../utilities';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
-import Avatar from '@material-ui/core/Avatar';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 const Assignments = () => {
     const [assignments, setAssignments] = useState([]);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const toggle = () => setDropdownOpen(prevState => !prevState);
 
     useEffect(() => {
         setAssignments([
@@ -69,6 +73,18 @@ const Assignments = () => {
                     )
                 })
             }
+            <div className="floating-btn">
+                <Dropdown direction="up" isOpen={dropdownOpen} toggle={toggle}>
+                    <DropdownToggle nav>
+                        <Fab style={{color:'white', backgroundColor:"#1B559C" }}>
+                            <AddIcon style={{}} />
+                        </Fab>
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem>Create Assignment</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+            </div>
         </div>
     )
 }

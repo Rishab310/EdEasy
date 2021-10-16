@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {useHistory} from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import "./Dashboard.css";
 import Card1 from "../../assets/card1.svg";
 import Card2 from "../../assets/card2.svg";
@@ -8,41 +7,13 @@ import Card3 from "../../assets/card3.svg";
 import Card4 from "../../assets/card4.svg";
 import Card5 from "../../assets/card5.svg";
 import {Link} from 'react-router-dom';
-import axios from 'axios';
-import { selectUserData} from '../../reduxSlices/authSlice';
-const ClassList = () => {
+const ClassList = (props) => {
   const [show, setShow] = useState(false);
   const toggle = () => setShow(prevState=>!prevState);
-  const storeData = useSelector(selectUserData);
-  const [owned, setOwned] = useState([]);
-  const [enrolled, setEnrolled] = useState([]);
   const [activeTab, setActiveTab] = useState("1");
   const history = useHistory();
-  useEffect(() => {
-    if (storeData.token){
-      console.log(storeData);
-      axios.post("http://localhost:5000/classes/getClassrooms", {
-        userEmail: storeData.userEmail,
-        type:"owned"
-      },{ headers: { Authorization: 'Bearer ' + storeData.token } }
-      )
-      .then((res)=>{
-        console.log(res);
-        setOwned(res.data);
-      })
-      .catch(err => console.log(err))
-      axios.post("http://localhost:5000/classes/getClassrooms", {
-        userEmail: storeData.userEmail,
-        type:"enrolled"
-      },{ headers: { Authorization: 'Bearer ' + storeData.token } }
-      )
-      .then((res)=>{
-        console.log(res);
-        setEnrolled(res.data);
-      })
-      .catch(err => console.log(err))
-    }
-  }, [storeData.token]);
+  const owned = props.owned;
+  const enrolled = props.enrolled;
   const RenderClasses = () => {
     return (  
       (owned.concat(enrolled)).map((sub,index) => {
