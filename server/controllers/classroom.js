@@ -81,7 +81,7 @@ exports.joinClassroom = (req, res, next) => {
                 err.statusCode = 403;
                 next(err);
             }
-            if (classroom.members.includes(userEmail)) {
+            if (classroom.members.indexOf(userEmail) >= 0) {
                 const err = new Error("User already Enrolled.");
                 err.statusCode = 403;
                 next(err);
@@ -98,6 +98,31 @@ exports.joinClassroom = (req, res, next) => {
         })
         .then(result => {
             res.json({message: "Class joined successfully!"});
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+exports.deleteClassroom = (req, res, next) => {
+    const classCode = req.body.classCode;
+    Classroom.deleteOne({classCode: classCode})
+        .then(classroom => {
+            if (!classroom) {
+                const err = new Error("Invalid ClassCode.");
+                err.statusCode = 422;
+                next(err);
+            }
+
+            classroom.members.forEach(memberEmail => {
+                User.findOne({email: memberEmail})
+                    .then(user => {
+                        if (user) {
+                            // user.classesEnrolled.
+                        }
+                    })
+            })
+            res.json({message: "Classroom deleted successfully"});
         })
         .catch(err => {
             next(err);
@@ -139,6 +164,17 @@ exports.createDiscussion = (req, res, next) => {
     discussion.save()
         .then(result => {
             res.json({message: "Discussion created successfully"});
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+exports.getDiscussions = (req, res, next) => {
+    const classCode = req.body.classCode;
+    Discussion.find({classCode: classCode})
+        .then(discussions => {
+            res.json(discussions);
         })
         .catch(err => {
             next(err);
