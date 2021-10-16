@@ -12,7 +12,7 @@ import clsx from "clsx";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField } from '@material-ui/core';
+// import { TextField } from '@material-ui/core';
 import { Modal, ModalBody} from "reactstrap";
 
 const useStyles = makeStyles((theme) => ({
@@ -87,6 +87,7 @@ const CreateClassroom = (props) => {
     return (
         <>
         <Modal
+        className="assignment_modal"
             isOpen={props.isModalOpen}
             toggle={props.toggleModal}
             >
@@ -95,7 +96,7 @@ const CreateClassroom = (props) => {
         <div style={{ backgroundColor: "white" }}>
             <div className="container">
                 <div className="row justify-content-sm-center"> 
-                    <div className="col-12 pb-3">
+                    <div className="col-12 pb-0">
                         <h1 style={{color:"rgb(90,90,90)"}} className="text-center mb-4 fs-2">Create Classroom</h1>
                         <form onSubmit={handleSubmit}  >
                             <FormControl className={clsx(classes.margin, classes.textField)}>
@@ -200,7 +201,7 @@ const CreateClassroom = (props) => {
                                 />
                             </FormControl>
 
-                            <button type="submit" className="btn btn-primary mt-4">Create</button> 
+                            <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-4 form-btn">Create</button> 
                         </form>
                     </div>
                 </div>

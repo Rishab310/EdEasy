@@ -12,20 +12,14 @@
     }
   }
   @media screen and (min-width:768px) {
-    .modal-dialog  {
+    /* .modal-dialog  {
       max-width : 60% !important;
-    }
-  }
-  .modal-content {
-    border-radius: 20px !important;
-  }
-  .auth-inner {
-    width: 100%;
-    margin: auto;
-    background: #ffffff;
+    } */
   }
   
-  .auth-inner .form-control:focus {
-    border-color: #167bff;
-    box-shadow: none;
+  .assignment_modal .modal-content{
+    font-family: 'Tajawal';
+    max-width: 450px !important;
+    border-radius: 0px !important;
+    margin: auto !important;
   }

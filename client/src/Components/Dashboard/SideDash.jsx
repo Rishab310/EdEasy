@@ -4,12 +4,15 @@ import "./Dashboard.css";
 import {Link} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import AddIcon from '@material-ui/icons/Add';
-import CreateClassroom from '../Classroom/CreateClassroom';
+import CreateClassroom from '../Classroom/CreateClassroom'; 
+import JoinClassroom from '../Classroom/JoinClassroom';
 import axios from 'axios';
 import { selectUserData} from '../../reduxSlices/authSlice';
 const SideDash = () => {
   const [show, setShow] = useState(false);
+  const [showJoin, setShowJoin] = useState(false);
   const toggle = () => setShow(prevState=>!prevState);
+  const toggleJoin = () => setShowJoin(prevState=>!prevState);
   const storeData = useSelector(selectUserData);
   const [owned, setOwned] = useState([]);
   const [enrolled, setEnrolled] = useState([]);
@@ -122,7 +125,7 @@ const SideDash = () => {
       </div>
       <div className="row join-links pt-3">
         <div className="col-12 d-flex justify-content-center pb-3">
-          <button className="join-create-btn">
+          <button className="join-create-btn" onClick={() => setShowJoin(true)}>
             <AddIcon className="pe-1 mb-1"></AddIcon>
             Join Class
           </button>
@@ -135,6 +138,7 @@ const SideDash = () => {
         </div>
       </div>
       <CreateClassroom isModalOpen={show} toggleModal={toggle} setShow={setShow}/>
+      <JoinClassroom isModalOpen={showJoin} toggleModal={toggleJoin} setShow={setShowJoin}/>
     </div>
   );
 }

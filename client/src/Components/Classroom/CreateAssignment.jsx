@@ -66,6 +66,7 @@ const CreateAssignment = (props) => {
 
     const [fileInput, setFileInput] = useState(null);
     const [pdfFileError, setPdfFileError] = useState('');
+    const[error, setError] = useState(false)
 
     const handleChange = (prop) => (event) => {
         if (prop === "fileInput") {
@@ -84,6 +85,7 @@ const CreateAssignment = (props) => {
                     }
                 }
                 else {
+                    setError(true);
                     setPdfFileError('Please select valid pdf file');
                 }
             }
@@ -108,16 +110,18 @@ const CreateAssignment = (props) => {
 
     return (
         <>
-            <Modal
+
+            <Modal 
+            className="assignment_modal"
             isOpen={props.isModalOpen}
             toggle={props.toggleModal}
             >
 
-            <ModalBody >
+            <ModalBody>
                 <div style={{backgroundColor:"white"}}>
                     <div className="container">
                         <div className="row justify-content-sm-center">
-                            <div className="col-12 pb-3">
+                            <div className="col-12 pb-0">
                                 <h1 style={{color:"rgb(90,90,90)"}} className="text-center pt-3 mb-4 fs-2">Create Assignment</h1>
                                 <form onSubmit={handleSubmit}>
                                 <FormControl className={clsx(classes.margin, classes.textField)}>
@@ -143,7 +147,7 @@ const CreateAssignment = (props) => {
                                 <FormControl className={clsx(classes.margin, classes.textField)}>
                                     <InputLabel htmlFor="description"></InputLabel>
                                     <Input
-                                        style={{outline:"none",border:"none" ,borderBottom:"1px solid black", marginTop:"30px"}}
+                                        style={{outline:"none",border:"none" ,marginTop:"30px"}}
                                         placeholder="Enter Assignment Description (Max 20 characters)"
                                         // type
                                         id="description"
@@ -172,22 +176,9 @@ const CreateAssignment = (props) => {
                                         value={values.dueDate}
                                         
                                         onChange={handleChange("dueDate")}
-                                        // startAdornment={
-                                        //     <InputAdornment position="start">
-                                        //         <PictureAsPdfIcon />
-                                        //     </InputAdornment>
-                                        // }
                                     />
                                 </FormControl>
-
-                                {/* <div className="mt-3 form-group">
-                                    <label className="col-form-label">Due Date &amp; Time</label>
-                                    <input type="datetime-local" className="form-control" placeholder="Enter Due Date" value={values.dueDate} onChange={handleChange("dueDate")} required />
-                                </div> */}
-                                {/* <div className="mt-3 form-group">
-                                    <label className="col-form-label">Pdf File</label>
-                                    <input type="file" className="form-control" accept="application/pdf,application/vnd.ms-excel" onChange={handleChange("fileInput")} />
-                                </div> */}
+                                
                                 <FormControl className={clsx(classes.margin, classes.textField)}>
                                     <InputLabel htmlFor="file"></InputLabel>
                                     <Input
@@ -207,11 +198,11 @@ const CreateAssignment = (props) => {
                                         }
                                         />
                                 </FormControl>
-                                {!pdfFileError ?
-                                    <button type="submit" className="btn btn-primary mt-4">Create</button> :
-                                    <button type="submit" className="btn btn-primary mt-4 disabled">Create</button>
-                                }
                                 {pdfFileError && <div className='error-msg text-danger'>{pdfFileError}</div>}
+                                {!setError ?
+                                    <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-4 form-btn">Create</button> :
+                                    <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-5 form-btn disabled">Create</button>
+                                }
                             </form>
                         </div>
                     </div>
