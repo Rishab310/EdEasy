@@ -55,13 +55,6 @@ const Discussion = ({classCode}) => {
     }
 
     const createDiscussion = () => {
-        if (!discussionInput && !fileInput) {
-            return;
-        }
-
-        console.log(fileInput);
-        console.log(discussionInput);
-
         if (fileInput) {
             const fileName = new Date().getTime() + "-" + fileInput.name;
             const uploadTask = storage.ref(`discussion/${fileName}`).put(fileInput);
@@ -69,8 +62,8 @@ const Discussion = ({classCode}) => {
                 storage.ref('discussion').child(fileName).getDownloadURL()
                   .then(firebaseURL => {
                     axios.post('http://localhost:5000/classes/createDiscussion', {
-                        creatorEmail: userData.email,
-                        creatorName: userData.name,
+                        creatorEmail: userData.userEmail,
+                        creatorName: userData.userName,
                         classCode: classCode,
                         desc: discussionInput,
                         imgLink: firebaseURL
@@ -88,6 +81,18 @@ const Discussion = ({classCode}) => {
                       console.log(err);
                   })
               })
+        } else {
+            axios.post('http://localhost:5000/classes/createDiscussion', {
+                creatorEmail: userData.userEmail,
+                creatorName: userData.userName,
+                classCode: classCode,
+                desc: discussionInput
+            }, 
+            {
+                headers: {
+                    Authorization: "Bearer " + userData.token
+                }
+            })
         }
     }
 
