@@ -68,7 +68,7 @@ const JoinClassroom = (props) => {
         }
         else{
             axios.post("http://localhost:5000/classes/joinClassroom", {
-                adminName: storeData.userName,
+                userEmail: storeData.userEmail,
                 classCode: classCode
             },{ headers: { Authorization: 'Bearer ' + storeData.token } }
             )
@@ -84,6 +84,7 @@ const JoinClassroom = (props) => {
             })
             .catch(err => {
                 setError(true);
+                console.log(err.response);
                 setErrorMessage(err.response.data.message);
             });
         }
