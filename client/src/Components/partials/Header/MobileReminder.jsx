@@ -130,11 +130,11 @@ const MobileReminder = () => {
         }
     }, [seeAll])
 
-    return (
+    return ( 
         <div>
             <div className="Reminders_mobile d-flex flex-column justify-content-center align-items-center mx-auto my-3">
                 <div className="content-box py-3 px-3 px-md-4 py-md-3 mb-3" style={{width:"100%"}}>
-                    <ArrowBackIosIcon onClick={history.goBack} style={{fontSize:30, position:"absolute"}}/>
+                    <ArrowBackIosIcon onClick={history.goBack} style={{fontSize:30, position:"absolute", marginLeft:"5px"}}/>
                     <h6 className="d-flex justify-content-center ms-1 mb-4 fs-5">Reminders</h6>
                     {
                         reminders.map((reminder, index) => {
@@ -148,8 +148,8 @@ const MobileReminder = () => {
                                         className="d-flex justify-content-between Reminder px-2 py-3 py-md-3"
                                         style={style}
                                     >
-                                        <div className="Reminder_Title">{reminder.title}</div>
-                                        <div className="Reminder_Desc">
+                                        <div className="Reminder_Title_mobile">{reminder.title}</div>
+                                        <div className="Reminder_Desc_mobile">
                                             {getTimeFromTimestamp(reminder.dueDate)} -{" "}
                                             {getDateFromTimestamp(reminder.dueDate)}
                                         </div>
