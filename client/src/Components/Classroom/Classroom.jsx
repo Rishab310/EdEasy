@@ -201,7 +201,7 @@ const Classroom = () => {
                 <div className="Classroom_Body m-0 p-0">
                   {
                     activeTab === "discussion" ? <Discussion classCode={classCode} /> : 
-                    activeTab === "assignments" ? <Assignments classCode={classCode} /> : 
+                    activeTab === "assignments" ? <Assignments classCode={classCode} adminEmail={adminEmail}/> : 
                     activeTab === "attendees" ? <Attendees classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null 
                   }
                   
@@ -245,12 +245,16 @@ const Classroom = () => {
                       }
                     </div>
                   </div>
-                  <div className="d-flex justify-content-center">
-                    <Button outline color="primary" className="Button_Hover d-flex align-items-center py-2 px-3 fs-6" onClick={() => setShow(true)}>
-                      <AddRoundedIcon style={{fontSize: "28px", margin: "-2px 3px 0 0"}} />
-                      Create Assignment
-                    </Button>
-                  </div>
+                  {
+                    (adminName===storeData.userName) ? (
+                      <div className="d-flex justify-content-center">
+                        <Button outline color="primary" className="Button_Hover d-flex align-items-center py-2 px-3 fs-6" onClick={() => setShow(true)}>
+                          <AddRoundedIcon style={{fontSize: "28px", margin: "-2px 3px 0 0"}} />
+                          Create Assignment
+                        </Button>
+                      </div>
+                    ) :(<></>)
+                  }
                 </div>
               </div>
             </div>

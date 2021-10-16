@@ -33,7 +33,7 @@ const Discussion = ({classCode}) => {
         },{ headers: { Authorization: 'Bearer ' + storeData.token } }
         ).then ((res) => {
             console.log(res);
-            setPosts(res.data);
+            setPosts(res.data.reverse());
         }).catch(err => console.log(err.response))
         setLoading(false);
     }
@@ -73,12 +73,14 @@ const Discussion = ({classCode}) => {
                     setDiscussionInput("");
                     setFileInput(null);
                     getDiscussion();
+                    autosize(TextArea);
                     setCreateLoading(false);
                   })
                   .catch(err => {
                       console.log(err);
                       setDiscussionInput("");
                       setFileInput(null);
+                      autosize(TextArea);
                       setCreateLoading(false);
                   })
               })
@@ -99,11 +101,13 @@ const Discussion = ({classCode}) => {
                 setDiscussionInput("");
                 setFileInput(null);
                 getDiscussion();
+                autosize(TextArea);
                 setCreateLoading(false);
             }).catch(err => {
                 console.log(err);
                 setDiscussionInput("");
                 setFileInput(null);
+                autosize(TextArea);
                 setCreateLoading(false);
             })
         }
@@ -114,7 +118,7 @@ const Discussion = ({classCode}) => {
             <div className="Discussion d-flex py-2 px-3 content-box">
                 <>
                     <div className="Avatar_Container mt-1 mt-md-0">
-                        <Avatar>M</Avatar>
+                        <Avatar>{storeData.userName && storeData.userName.slice(0,1)}</Avatar>
                     </div>
                     <div className="Discussion_TextArea d-flex flex-column justify-content-center align-items-center">
                         <textarea 
@@ -168,7 +172,7 @@ const Discussion = ({classCode}) => {
                 ) : (
                     <div className="Posts">
                         {
-                            posts.reverse().map(post => {
+                            posts.map(post => {
                                 return (
                                     <div className="content-box px-3 py-2 my-3">
                                         <div className="d-flex">

@@ -129,8 +129,8 @@ const JoinClassroom = (props) => {
                             </FormControl>
                             
                             {error ? 
-                                <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-4 form-btn disabled">Join</button> :
-                                <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-4 form-btn">Join</button>
+                                <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-2 form-btn disabled">Join</button> :
+                                <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-2 form-btn">Join</button>
                             }
                             
                         </form>
