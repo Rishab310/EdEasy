@@ -10,6 +10,8 @@ router.post('/createClassroom', isAuth, classroomController.createClassroom);
 router.post('/getClassrooms', isAuth, classroomController.getClassrooms);
 router.post('/joinClassroom', classroomController.joinClassroom);
 router.post('/getClassroom', classroomController.getClassroom);
+router.delete('/deleteClassroom', classroomController.deleteClassroom);
 router.post('/createDiscussion', classroomController.createDiscussion);
+router.post('/getDiscussions', classroomController.getDiscussions);
 
 module.exports = router; 
