@@ -7,12 +7,14 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { selectUserData} from '../../reduxSlices/authSlice';
 import CircularProgress from "@material-ui/core/CircularProgress";
+import CreateAssignment from "./CreateAssignment";
 const Assignments = (props) => {
     const storeData = useSelector(selectUserData);
     const [assignments, setAssignments] = useState([]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const toggle = () => setDropdownOpen(prevState => !prevState);
-
+    const [showCreate, setShowCreate] = useState(false);
+    const toggleCreate = () => setShowCreate(prevState=>!prevState);
     useEffect(() => {
         setAssignments([
             {
@@ -99,13 +101,16 @@ const Assignments = (props) => {
                                     <AddIcon style={{}} />
                                 </Fab>
                             </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem>Create Assignment</DropdownItem>
+                            <DropdownMenu className="bg-transparent" style={{border:"none"}}>
+                            <button className="join-create-btn" onClick={() => setShowCreate(true)}>
+                                Create Assignment
+                            </button>
                             </DropdownMenu>
                         </Dropdown>
                     </div>
                 ) : ("")
             }
+            <CreateAssignment isModalOpen={showCreate} toggleModal={toggleCreate} setShow={setShowCreate}/>
         </div>
     )
 }

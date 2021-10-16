@@ -4,21 +4,29 @@ import MobileHeader from '../partials/Header/MobileHeader';
 import FooterNav from '../partials/FooterNav/FooterNav';
 import "./Dashboard.css";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import banner from "../../assets/banner-image2.png";
-import lessons from "../../assets/stat1.svg";
-import pending from "../../assets/stat3.svg";
 import SideDash from './SideDash';
 import Banner from './Banner';
 import ClassList from './ClassList';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { selectUserData} from '../../reduxSlices/authSlice';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
+import CreateClassroom from '../Classroom/CreateClassroom'; 
+import JoinClassroom from '../Classroom/JoinClassroom';
 
 const Dashboard = () => {
   const [owned, setOwned] = useState([]);
   const [enrolled, setEnrolled] = useState([]);
   const [loading,setLoading] = useState(false);
   const storeData = useSelector(selectUserData);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
+  const [show, setShow] = useState(false);
+  const [showJoin, setShowJoin] = useState(false);
+  const toggle = () => setShow(prevState=>!prevState);
+  const toggleJoin = () => setShowJoin(prevState=>!prevState);
   useEffect(async () => {
     if (storeData.token){
       setLoading(true);
@@ -75,6 +83,31 @@ const Dashboard = () => {
             <div className="d-block d-md-none">
               <FooterNav/>
             </div>
+            <div className="floating-btn d-block d-md-none">
+              <Dropdown direction="up" isOpen={dropdownOpen} toggle={toggleDropdown}>
+                <DropdownToggle nav>
+                  <Fab style={{color:'white', backgroundColor:"#1B559C" }}>
+                    <AddIcon style={{}} />  
+                  </Fab>
+                </DropdownToggle>
+                <DropdownMenu className="bg-transparent" style={{border:"none"}}>
+                  <DropdownItem>
+                    <button className="join-create-btn" onClick={() => setShow(true)}>
+                      <AddIcon className="pe-1 mb-1"></AddIcon>
+                      Create Class
+                    </button>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <button className="join-create-btn" onClick={() => setShowJoin(true)}>
+                      <AddIcon className="pe-1 mb-1"></AddIcon>
+                      Join Class
+                    </button>
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </div>
+            <CreateClassroom isModalOpen={show} toggleModal={toggle} setShow={setShow}/>
+            <JoinClassroom isModalOpen={showJoin} toggleModal={toggleJoin} setShow={setShowJoin}/>
           </div>
         ) 
       }
