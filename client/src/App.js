@@ -10,7 +10,6 @@ import StudentSubmission from './components/StudentSubmission/StudentSubmission'
 import { useDispatch } from 'react-redux';
 import { AUTOLOGIN } from './reduxSlices/authSlice';
 import Reminders from './components/partials/Header/MobileReminder'
-import CreateAssignment from './components/Classroom/CreateAssignment';
 import CreateClassroom from './components/Classroom/CreateClassroom'
 
 const App = () => {
@@ -30,8 +29,7 @@ const App = () => {
             <Route path='/classes/:id/:tab' component={Classroom}/>
             <Route path='/assignment/admin' component={AssignmentAdmin}/>
             <Route path='/assignment/student' component={StudentSubmission}/>
-            <Route path='/create' component={CreateAssignment}/>
-            <Route path='/createclassroom' component={CreateClassroom}/>
+            {/* <Route path='/createclassroom' component={CreateClassroom}/> */}
             <Redirect to ="/" />
           </Switch> 
         </Router>

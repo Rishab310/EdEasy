@@ -3,8 +3,11 @@ import "./Dashboard.css";
 import {Link} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import AddIcon from '@material-ui/icons/Add';
+import CreateClassroom from '../Classroom/CreateClassroom';
 
 const SideDash = () => {
+  const [show, setShow] = useState(false);
+  const toggle = () => setShow(prevState=>!prevState);
   const owned = [
     {
       "adminName": "Rishab Goyal",
@@ -179,12 +182,13 @@ const SideDash = () => {
           </button>
         </div>
         <div className="col-12 d-flex justify-content-center pb-3">
-          <button className="join-create-btn">
+          <button className="join-create-btn" onClick={() => setShow(true)}>
           <AddIcon className="pe-1 mb-1"></AddIcon>
             Create Class
           </button>
         </div>
       </div>
+      <CreateClassroom isModalOpen={show} toggleModal={toggle} setShow={setShow}/>
     </div>
   );
 }

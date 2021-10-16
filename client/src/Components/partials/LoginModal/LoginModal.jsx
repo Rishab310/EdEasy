@@ -175,7 +175,7 @@ const LoginModal = (props) => {
           name: values.name,
           contact:values.contact,
           logging: true,
-        }));
+        })); 
     }
   };
   console.log(selectorData);

@@ -14,6 +14,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import VideocamIcon from "@material-ui/icons/Videocam";
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import CreateAssignment from "./CreateAssignment";
 
 const Classroom = () => {
   const history = useHistory();
@@ -29,6 +30,9 @@ const Classroom = () => {
   const [activeTab, setActiveTab] = useState(useParams().tab);
 
   console.log(activeTab);
+
+  const [show, setShow] = useState(false);
+  const toggle = () => setShow(prevState=>!prevState);
 
   useEffect(() => {
     if (!activeTab) setActiveTab("discussion");
@@ -243,7 +247,7 @@ const Classroom = () => {
                 </div>
               </div>
               <div className="d-flex justify-content-center">
-                <Button outline color="primary" className="Button_Hover d-flex align-items-center py-2 px-3 fs-6">
+                <Button outline color="primary" className="Button_Hover d-flex align-items-center py-2 px-3 fs-6" onClick={() => setShow(true)}>
                   <AddRoundedIcon style={{fontSize: "28px", margin: "-2px 3px 0 0"}} />
                   Create Assignment
                 </Button>
@@ -255,6 +259,7 @@ const Classroom = () => {
       <div className="d-block d-md-none">
         <FooterNav />
       </div>
+      <CreateAssignment isModalOpen={show} toggleModal={toggle} setShow={setShow}/>
     </div>
   );
 };
