@@ -94,7 +94,7 @@ const CreateAssignment = (props) => {
 
 
     };
-    console.log(values.dueDate)
+    // console.log(values.dueDate)
 
     const handleSubmit = () => {
         setValues({
@@ -199,9 +199,9 @@ const CreateAssignment = (props) => {
                                         />
                                 </FormControl>
                                 {pdfFileError && <div className='error-msg text-danger'>{pdfFileError}</div>}
-                                {!setError ?
-                                    <button type="submit" style={{display:"flex",justifyContent:"center"}} class="m-auto mt-4 form-btn">Create</button> :
-                                    <button type="submit" style={{display:"flex",justifyContent:"center"}} class="m-auto mt-5 form-btn disabled">Create</button>
+                                {!error ?
+                                    <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-4 form-btn">Create</button> :
+                                    <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-5 form-btn " disabled>Create</button>
                                 }
                             </form>
                         </div>

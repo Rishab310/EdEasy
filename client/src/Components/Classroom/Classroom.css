@@ -451,3 +451,7 @@ label {
         width: 98% !important;
     }
 }
+
+.btn-outline-primary:hover {
+    background-color: #1B559C !important;
+}

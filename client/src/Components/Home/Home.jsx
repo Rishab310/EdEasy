@@ -23,7 +23,7 @@ const Home = () => {
                   <h1><strong>EdEasy</strong></h1>
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.,<br/> 
                     Fuga provident eaque facere, sunt sint quis nostrum dolorum.</p>
-                  <a href="#about" class="btn-get-started scrollto">Get Started</a>
+                  <a href="#about" className="btn-get-started scrollto">Get Started</a>
                 </div>
               </div>
               <div className="col-lg-6 order-1 order-lg-2 hero-img aos-init aos-ani0 FloatImg" data-aos="fade-left">

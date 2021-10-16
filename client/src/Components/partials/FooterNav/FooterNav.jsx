@@ -36,13 +36,3 @@ function FooterNav() {
 }
 
 export default FooterNav;
-{/* <li class="nav-item mx-3">
-  <Link to="/" class="nav-link" aria-current="page" href="#">Home</Link>
-</li>
-<li class="nav-item mx-3">
-  <Link to="/" class="nav-link" href="#">About</Link>
-</li>
-<li class="nav-item mx-3">
-  <Link to="/classes" class="nav-link" href="#">Classes</Link>
-</li> */}
-// activeStyle={{fontWeight: "bold !important",color: "red !important"}}

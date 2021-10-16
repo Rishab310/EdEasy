@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import autosize from 'autosize';
+import { useSelector } from 'react-redux';
 // import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import DescriptionIcon from '@material-ui/icons/Description';
 import SubjectIcon from '@material-ui/icons/Subject';
@@ -14,6 +15,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import { makeStyles } from "@material-ui/core/styles";
 // import { TextField } from '@material-ui/core';
 import { Modal, ModalBody} from "reactstrap";
+import axios from 'axios';
+import { selectUserData} from '../../reduxSlices/authSlice';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -66,19 +69,32 @@ const CreateClassroom = (props) => {
         classLevel: "",
         meetLink: ""
     });
-
+    const [error, setError] = useState(null);
+    const storeData = useSelector(selectUserData);
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
-    const handleSubmit = () => {
-        setValues({
-            description: "",
-            className: "",
-            fieldName: "",
-            classLevel: "",
-            meetLink: ""
-        });
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(values);
+        axios.post("http://localhost:5000/classes/createClassroom", {
+            adminName: storeData.userName,
+            adminEmail: storeData.userEmail,
+            desc: values.description,
+            className: values.className,
+            meetLink: values.meetLink,
+            fieldName: values.fieldName,
+            classLevel: values.classLevel
+        },{ headers: { Authorization: 'Bearer ' + storeData.token } }
+        )
+        .then((res)=>{
+            console.log(res);
+            console.log("Created");
+            props.setShow(false);
+            window.location.reload(false);
+        })
+        .catch(err => setError(err.response.data.message));
     }
     useEffect(() => {
         autosize(TextArea);
@@ -99,6 +115,25 @@ const CreateClassroom = (props) => {
                     <div className="col-12 pb-0">
                         <h1 style={{color:"rgb(90,90,90)"}} className="text-center mb-4 fs-2">Create Classroom</h1>
                         <form onSubmit={handleSubmit}  >
+                            <FormControl className={clsx(classes.margin, classes.textField)}>
+                                <InputLabel htmlFor="classname"></InputLabel>
+                                <Input
+                                    style={{marginBottom:"10px"}}
+                                    placeholder="Enter Class Name"
+                                    fullWidth
+                                    id="classname"
+                                    type="text"
+                                    margin="normal"
+                                    required
+                                    value={values.className}
+                                    onChange={handleChange("className")}
+                                    startAdornment={
+                                        <InputAdornment position="start">
+                                            <ClassIcon />
+                                        </InputAdornment>
+                                    }
+                                />
+                            </FormControl>
                             <FormControl className={clsx(classes.margin, classes.textField)}>
                                 <InputLabel htmlFor="description"></InputLabel>
                                 <Input
@@ -121,27 +156,6 @@ const CreateClassroom = (props) => {
                                     }
                                     />
                             </FormControl>
-
-                            <FormControl className={clsx(classes.margin, classes.textField)}>
-                                <InputLabel htmlFor="classname"></InputLabel>
-                                <Input
-                                    style={{marginBottom:"10px"}}
-                                    placeholder="Enter Class Name"
-                                    fullWidth
-                                    id="classname"
-                                    type="text"
-                                    margin="normal"
-                                    required
-                                    value={values.className}
-                                    onChange={handleChange("className")}
-                                    startAdornment={
-                                        <InputAdornment position="start">
-                                            <ClassIcon />
-                                        </InputAdornment>
-                                    }
-                                />
-                            </FormControl>
-
                             <FormControl className={clsx(classes.margin, classes.textField)}>
                                 <InputLabel htmlFor="field"></InputLabel>
                                 <Input
@@ -200,8 +214,11 @@ const CreateClassroom = (props) => {
                                     }
                                 />
                             </FormControl>
+                            <FormControl className={clsx(classes.margin, classes.textField)}>
+                                {error && <div className='error-msg text-danger'>{error}</div>}
+                            </FormControl>
 
-                            <button type="submit" style={{display:"flex",justifyContent:"center"}} class="m-auto mt-4 form-btn">Create</button> 
+                            <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-2 form-btn">Create</button> 
                         </form>
                     </div>
                 </div>

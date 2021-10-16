@@ -9,6 +9,7 @@ const classroomController = require('../controllers/classroom');
 router.post('/createClassroom', isAuth, classroomController.createClassroom);
 router.post('/getClassrooms', isAuth, classroomController.getClassrooms);
 router.post('/joinClassroom', classroomController.joinClassroom);
+router.post('/getClassroom', classroomController.getClassroom);
 router.post('/createDiscussion', classroomController.createDiscussion);
 
 module.exports = router; 

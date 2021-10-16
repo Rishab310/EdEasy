@@ -104,10 +104,26 @@ exports.joinClassroom = (req, res, next) => {
         })
 }
 
+exports.getClassroom = (req, res, next) => {
+    const classCode = req.body.classCode;
+    Classroom.findOne({classCode: classCode})
+        .then(classroom => {
+            if (!classroom) {
+                const err = new Error("Invalid classcode.");
+                err.statusCode = 422;
+                next(err);
+            }
+
+            res.json(classroom);
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
 exports.createDiscussion = (req, res, next) => {
     const creatorName = req.body.creatorName;
     const creatorEmail = req.body.creatorEmail;
-    const dueDate = new Date(req.body.dueDate);
     const classCode = req.body.classCode;
     const imgLink = req.body.imgLink;
     const desc = req.body.desc;
@@ -115,7 +131,6 @@ exports.createDiscussion = (req, res, next) => {
     const discussion = new Discussion({
         creatorEmail: creatorEmail,
         creatorName: creatorName,
-        dueDate: dueDate,
         classCode: classCode,
         imgLink: imgLink,
         desc: desc

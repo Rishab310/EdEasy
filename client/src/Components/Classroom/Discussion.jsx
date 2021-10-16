@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUserData } from '../../reduxSlices/authSlice';
 import { getTimeFromTimestamp, getDateStringFromTimestamp } from '../../utilities';
 
 import Avatar from '@material-ui/core/Avatar';
@@ -7,11 +8,14 @@ import PhotoRoundedIcon from '@material-ui/icons/PhotoRounded';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
 
 import autosize from 'autosize';
+import axios from 'axios';
+import db, { storage } from '../../firebase';
 
-const Discussion = () => {
+const Discussion = ({classCode}) => {
     const [discussionInput, setDiscussionInput] = useState("");
     const [posts, setPosts] = useState([]);
     const [fileInput, setFileInput] = useState();
+    const userData = useSelector(selectUserData);
     let TextArea = useRef(null);
     let FileInput = useRef(null);
 
@@ -48,6 +52,48 @@ const Discussion = () => {
     const imgPreview = (e) => {
         console.log(e.target.files[0]);
         setFileInput(e.target.files[0]);
+    }
+
+    const createDiscussion = () => {
+        if (fileInput) {
+            const fileName = new Date().getTime() + "-" + fileInput.name;
+            const uploadTask = storage.ref(`discussion/${fileName}`).put(fileInput);
+            uploadTask.on('state_changed', console.log, console.error, () => {
+                storage.ref('discussion').child(fileName).getDownloadURL()
+                  .then(firebaseURL => {
+                    axios.post('http://localhost:5000/classes/createDiscussion', {
+                        creatorEmail: userData.userEmail,
+                        creatorName: userData.userName,
+                        classCode: classCode,
+                        desc: discussionInput,
+                        imgLink: firebaseURL
+                    }, 
+                    {
+                        headers: {
+                            Authorization: "Bearer " + userData.token
+                        }
+                    })
+                  })
+                  .then(res => {
+                    console.log(res);
+                  })
+                  .catch(err => {
+                      console.log(err);
+                  })
+              })
+        } else {
+            axios.post('http://localhost:5000/classes/createDiscussion', {
+                creatorEmail: userData.userEmail,
+                creatorName: userData.userName,
+                classCode: classCode,
+                desc: discussionInput
+            }, 
+            {
+                headers: {
+                    Authorization: "Bearer " + userData.token
+                }
+            })
+        }
     }
 
     return (
@@ -87,7 +133,7 @@ const Discussion = () => {
                 {
                     (discussionInput !== '' || fileInput) ? (
                         <div className="mt-2">
-                            <SendRoundedIcon className="SendButton" style={{fontSize: "30px"}}/>
+                            <SendRoundedIcon onClick={createDiscussion} className="SendButton" style={{fontSize: "30px"}}/>
                         </div>
                     ) : null
                 }

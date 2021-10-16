@@ -10,21 +10,15 @@ const discussionSchema = new Schema({
             type: String,
             required: true
         },
-        dueDate: {
-            type: Date,
-            required: true
-        },
         classCode: {
             type: Number,
             required: true
         },
         desc: {
-            type: String,
-            required: true
+            type: String
         },
         imgLink: {
-            type: String,
-            required: true
+            type: String
         }
     },
     {

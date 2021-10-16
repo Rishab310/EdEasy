@@ -25,7 +25,7 @@ const Banner = () => {
         </div>
       </div>
       <div className="d-none d-lg-block col-3 pe-0 d-flex align-items-center justify-content-center">
-        <div class="content-box d-flex align-items-center justify-content-center flex-column height-100">
+        <div className="content-box d-flex align-items-center justify-content-center flex-column height-100">
           <div className="heading-2 d-flex justify-content-center pb-3">
             Assignments
           </div>
