@@ -100,6 +100,25 @@ const CreateClassroom = (props) => {
                         <h1 style={{color:"rgb(90,90,90)"}} className="text-center mb-4 fs-2">Create Classroom</h1>
                         <form onSubmit={handleSubmit}  >
                             <FormControl className={clsx(classes.margin, classes.textField)}>
+                                <InputLabel htmlFor="classname"></InputLabel>
+                                <Input
+                                    style={{marginBottom:"10px"}}
+                                    placeholder="Enter Class Name"
+                                    fullWidth
+                                    id="classname"
+                                    type="text"
+                                    margin="normal"
+                                    required
+                                    value={values.className}
+                                    onChange={handleChange("className")}
+                                    startAdornment={
+                                        <InputAdornment position="start">
+                                            <ClassIcon />
+                                        </InputAdornment>
+                                    }
+                                />
+                            </FormControl>
+                            <FormControl className={clsx(classes.margin, classes.textField)}>
                                 <InputLabel htmlFor="description"></InputLabel>
                                 <Input
                                     style={{marginBottom:"10px"}}
@@ -121,27 +140,6 @@ const CreateClassroom = (props) => {
                                     }
                                     />
                             </FormControl>
-
-                            <FormControl className={clsx(classes.margin, classes.textField)}>
-                                <InputLabel htmlFor="classname"></InputLabel>
-                                <Input
-                                    style={{marginBottom:"10px"}}
-                                    placeholder="Enter Class Name"
-                                    fullWidth
-                                    id="classname"
-                                    type="text"
-                                    margin="normal"
-                                    required
-                                    value={values.className}
-                                    onChange={handleChange("className")}
-                                    startAdornment={
-                                        <InputAdornment position="start">
-                                            <ClassIcon />
-                                        </InputAdornment>
-                                    }
-                                />
-                            </FormControl>
-
                             <FormControl className={clsx(classes.margin, classes.textField)}>
                                 <InputLabel htmlFor="field"></InputLabel>
                                 <Input

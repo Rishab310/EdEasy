@@ -50,31 +50,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const JoinClassroom = (props) => {
-    let regex = "/^[+]?\d+$/";
+    // let regex = "/^[+]?\d+$/";
     const classes = useStyles();
     const [classCode, setClassCode] = useState("");
     const [error,setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("")
-
-    // const handleChange = (prop) => (event) => {
-    //     setValues({ ...values, [prop]: event.target.value });
-    // };
-
-    const handleSubmit = () => {
-        if (!classCode.match(regex)){
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // if (!classCode.match(regex)){
             if(classCode.length!=6) {
                 setError(true)
                 setErrorMessage("Class Code must contain 6 digits")
             }
-            else{
-                setError(true)
-                setErrorMessage("Enter a valid Class Code")
-            }
-        }
+        //     else{
+        //         setError(true)
+        //         setErrorMessage("Enter a valid Class Code")
+        //     }
+        // }
         else{
             setClassCode("")
             setError(false);
             setErrorMessage("");
+            props.setShow(false);
         }
     }
     return (
@@ -90,7 +87,7 @@ const JoinClassroom = (props) => {
             <div className="container">
                 <div className="row justify-content-sm-center"> 
                     <div className="col-12 pb-0">
-                        <h1 style={{color:"rgb(90,90,90)"}} className="text-center mb-4 fs-2">Create Classroom</h1>
+                        <h1 style={{color:"rgb(90,90,90)"}} className="text-center mb-4 fs-2">Join Classroom</h1>
                         <form onSubmit={handleSubmit}  >
                             <FormControl className={clsx(classes.margin, classes.textField)}>
                                 <InputLabel htmlFor="description"></InputLabel>
@@ -99,7 +96,7 @@ const JoinClassroom = (props) => {
                                     placeholder="Enter Class Code"
                                     fullWidth
                                     id="classCode"
-                                    type="text"
+                                    type="number"
                                     margin="normal"
                                     required
                                     value={classCode}
@@ -112,12 +109,15 @@ const JoinClassroom = (props) => {
                                     }
                                     />
                             </FormControl>
-
+                            <FormControl className={clsx(classes.margin, classes.textField)}>
+                                {error && <div className='error-msg text-danger'>{errorMessage}</div>}
+                            </FormControl>
+                            
                             {error ? 
                                 <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-4 form-btn disabled">Join</button> :
                                 <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-4 form-btn">Join</button>
                             }
-                            {error && <div className='error-msg text-danger'>{errorMessage}</div>}
+                            
                         </form>
                     </div>
                 </div>
