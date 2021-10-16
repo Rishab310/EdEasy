@@ -118,7 +118,7 @@ const Discussion = ({classCode}) => {
             <div className="Discussion d-flex py-2 px-3 content-box">
                 <>
                     <div className="Avatar_Container mt-1 mt-md-0">
-                        <Avatar>M</Avatar>
+                        <Avatar>{storeData.userName && storeData.userName.slice(0,1)}</Avatar>
                     </div>
                     <div className="Discussion_TextArea d-flex flex-column justify-content-center align-items-center">
                         <textarea 

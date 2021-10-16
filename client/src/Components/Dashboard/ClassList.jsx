@@ -157,7 +157,7 @@ const ClassList = (props) => {
           </button>
         </div>
         <div className="col-12 content-box py-4 mobile-classlist">
-          <div className="row px-3 pt-2">
+          <div className="row px-2 py-0 pt-2">
             <RenderClassesMobile/>
           </div>
         </div>

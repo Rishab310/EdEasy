@@ -65,7 +65,7 @@ const Assignments = (props) => {
                             <a href={( storeData.userEmail=== props.adminEmail ) ?
                                 "/classes/"+props.classCode+"/assignment/"+assignment.id+"/admin" :
                                 "/classes/"+props.classCode+"/assignment/"+assignment.id
-                            } target="_blank">
+                            } >
                                 <div className="d-flex justify-content-between">
                                     <div className="Assignment_Date">
                                         {getDateStringFromTimestamp(assignment.dueDate)}
@@ -90,18 +90,22 @@ const Assignments = (props) => {
                     )
                 })
             }
-            <div className="floating-btn">
-                <Dropdown direction="up" isOpen={dropdownOpen} toggle={toggle}>
-                    <DropdownToggle nav>
-                        <Fab style={{color:'white', backgroundColor:"#1B559C" }}>
-                            <AddIcon style={{}} />
-                        </Fab>
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        <DropdownItem>Create Assignment</DropdownItem>
-                    </DropdownMenu>
-                </Dropdown>
-            </div>
+            {
+                ( storeData.userEmail=== props.adminEmail ) ? (
+                    <div className="floating-btn d-block d-md-none">
+                        <Dropdown direction="up" isOpen={dropdownOpen} toggle={toggle}>
+                            <DropdownToggle nav>
+                                <Fab style={{color:'white', backgroundColor:"#1B559C" }}>
+                                    <AddIcon style={{}} />
+                                </Fab>
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem>Create Assignment</DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
+                    </div>
+                ) : ("")
+            }
         </div>
     )
 }

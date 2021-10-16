@@ -458,7 +458,7 @@ label {
 
 .floating-btn{
     position: fixed !important;
-    bottom: 100px !important;
-    right:30px !important;
+    bottom: 80px !important;
+    right: 15px !important;
     z-index: 5 !important;
 }
