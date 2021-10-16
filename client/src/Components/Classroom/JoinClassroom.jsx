@@ -7,6 +7,9 @@ import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { makeStyles } from "@material-ui/core/styles";
 import { Modal, ModalBody} from "reactstrap";
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { selectUserData} from '../../reduxSlices/authSlice';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,24 +57,35 @@ const JoinClassroom = (props) => {
     const classes = useStyles();
     const [classCode, setClassCode] = useState("");
     const [error,setError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("")
+    const [errorMessage, setErrorMessage] = useState("");
+    const storeData = useSelector(selectUserData);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if (!classCode.match(regex)){
-            if(classCode.length!=6) {
-                setError(true)
-                setErrorMessage("Class Code must contain 6 digits")
-            }
-        //     else{
-        //         setError(true)
-        //         setErrorMessage("Enter a valid Class Code")
-        //     }
-        // }
+        if(classCode.length!=6) {
+            setError(true)
+            setErrorMessage("Class Code must contain 6 digits")
+        }
         else{
-            setClassCode("")
-            setError(false);
-            setErrorMessage("");
-            props.setShow(false);
+            axios.post("http://localhost:5000/classes/joinClassroom", {
+                adminName: storeData.userName,
+                classCode: classCode
+            },{ headers: { Authorization: 'Bearer ' + storeData.token } }
+            )
+            .then((res)=>{
+                console.log(res);
+                console.log("Created");
+                props.setShow(false);
+                setClassCode("")
+                setError(false);
+                setErrorMessage("");
+                window.location.reload(false);
+                props.setShow(false);
+            })
+            .catch(err => {
+                setError(true);
+                setErrorMessage(err.response.data.message);
+            });
         }
     }
     return (
