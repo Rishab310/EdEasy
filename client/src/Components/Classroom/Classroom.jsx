@@ -235,7 +235,7 @@ const Classroom = () => {
           <div className="d-block d-md-none">
             <FooterNav />
           </div>
-          <CreateAssignment isModalOpen={show} toggleModal={toggle} setShow={setShow}/>
+          <CreateAssignment classCode={classCode} isModalOpen={show} toggleModal={toggle} setShow={setShow}/>
         </div>
       ): ( 
         <div className="col-12 d-flex justify-content-center align-items-center" style={{height:"100vh"}}>

@@ -13,6 +13,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Modal, ModalBody} from "reactstrap";
 import './CreateAssignment.css'
 
+import db, { storage } from '../../firebase';
+import axios from 'axios';
+
+import { useSelector } from 'react-redux';
+import { selectUserData } from '../../reduxSlices/authSlice';
+
 const useStyles = makeStyles((theme) => ({
     root: {
       display: "flex",
@@ -55,6 +61,9 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+
+
+
 const CreateAssignment = (props) => {
     let TextArea = useRef(null);
     const classes = useStyles();
@@ -66,7 +75,44 @@ const CreateAssignment = (props) => {
 
     const [fileInput, setFileInput] = useState(null);
     const [pdfFileError, setPdfFileError] = useState('');
-    const[error, setError] = useState(false)
+    const[error, setError] = useState(false);
+
+    const userData = useSelector(selectUserData);
+
+  const submitFile = (e) => {
+      e.preventDefault();
+      
+    console.log(fileInput.fileInput.name);
+    // return;
+    const fileName = new Date().getTime() + "-" + fileInput.fileInput.name;
+    const uploadTask = storage.ref(`assignments/${fileName}`).put(fileInput.fileInput);
+    uploadTask.on('state_changed', console.log, console.error, () => {
+        storage.ref('assignments').child(fileName).getDownloadURL()
+                .then(firebaseURL => {
+                axios.post('http://localhost:5000/classes/createAssignment', {
+                    classCode: props.classCode,
+                    name: values.name,
+                    desc: values.desc,
+                    dueDate: new Date(values.dueDate).getTime(),
+                    fileLink: firebaseURL,
+                    creatorEmail: userData.userEmail
+                }, 
+                {
+                    headers: {
+                        Authorization: "Bearer " + userData.token
+                    }
+                })
+            })
+            .then(res => {
+                console.log(res);
+                props.setShow(false);
+            })
+            .catch(err => {
+                console.log(err);
+                props.setShow(false);
+            })
+        })
+    }
 
     const handleChange = (prop) => (event) => {
         if (prop === "fileInput") {
@@ -200,7 +246,7 @@ const CreateAssignment = (props) => {
                                 </FormControl>
                                 {pdfFileError && <div className='error-msg text-danger'>{pdfFileError}</div>}
                                 {!error ?
-                                    <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-4 form-btn">Create</button> :
+                                    <button type="submit" style={{display:"flex",justifyContent:"center"}} onClick={submitFile} className="m-auto mt-4 form-btn">Create</button> :
                                     <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-5 form-btn " disabled>Create</button>
                                 }
                             </form>

@@ -32,7 +32,7 @@ const StudentSubmission = () => {
         console.log(inputFile);
         console.log(inputFile.name);
         const fileName = new Date().getTime() + "-" + inputFile.name;
-        const uploadTask = storage.ref(`submissions/${fileName}`).put(fileInput);
+        const uploadTask = storage.ref(`submissions/${fileName}`).put(inputFile);
         uploadTask.on('state_changed', console.log, console.error, () => {
             storage.ref('submissions').child(fileName).getDownloadURL()
                     .then(firebaseURL => {
