@@ -84,9 +84,9 @@ const Header = () => {
                 <li className="nav-item mx-3">
                   <NavLink to="/" className="nav-link" activeClassName="selected" exact>Home</NavLink>
                 </li>
-                <li className="nav-item mx-3">
+                {/* <li className="nav-item mx-3">
                   <NavLink to="/about" className="nav-link" activeClassName="selected" exact>About</NavLink>
-                </li>
+                </li> */}
                 {
                   (token) ? (
                     <li className="nav-item mx-3">

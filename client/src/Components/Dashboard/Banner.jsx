@@ -4,27 +4,29 @@ import "./Dashboard.css";
 import banner from "../../assets/banner-image2.png";
 import lessons from "../../assets/stat1.svg";
 import pending from "../../assets/stat3.svg";
-
+import { useSelector } from 'react-redux';
+import { selectUserData} from '../../reduxSlices/authSlice';
 
 const Banner = () => {
+  const storeData = useSelector(selectUserData);
   return (
     <>
-      <div className="col-12 col-lg-9 px-0 px-md-3">
+      <div className="col-12 px-0 px-md-3">
         <div className="row banner m-0">
             <div className="col-6 d-flex justify-content-center flex-column ps-5">
               <div className="hello-name d-none d-md-block">
-                Hello, Rishab!
+                Hello, {" "+storeData.userName+" "}!
               </div>
               <p className="hello-description d-none d-md-block">
                 Learn anytime, anywhere. Boost your skills flexible, online courses
               </p>
             </div>
             <div className="col-12 col-md-6 d-flex justify-content-center">
-              <img src={banner} alt="" srcset="" width="70%"/>
+              <img src={banner} alt="" srcset="" width="60%"/>
             </div>
         </div>
       </div>
-      <div className="d-none d-lg-block col-3 pe-0 d-flex align-items-center justify-content-center">
+      {/* <div className="d-none d-lg-block col-3 pe-0 d-flex align-items-center justify-content-center">
         <div className="content-box d-flex align-items-center justify-content-center flex-column height-100">
           <div className="heading-2 d-flex justify-content-center pb-3">
             Assignments
@@ -42,7 +44,7 @@ const Banner = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
