@@ -11,43 +11,6 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { selectUserData} from '../../reduxSlices/authSlice';
 const ClassList = () => {
-  // const classes = [
-  //   {
-  //     "name":"Operating System",
-  //     "admin":"Rishab Goyal",
-  //     "desc":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, a!",
-  //     "link":"https://meet.google.com/",
-  //     "classCode" : "78495"
-  //   },
-  //   {
-  //     "name":"Computer Networks",
-  //     "admin":"Manish Dhameja",
-  //     "desc":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, a!",
-  //     "link":"https://meet.google.com/",
-  //     "classCode" : "78495"
-  //   },
-  //   {
-  //     "name":"Artificial Intelligence",
-  //     "admin":"Jatin Bajaj",
-  //     "desc":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, a!",
-  //     "link":"https://meet.google.com/",
-  //     "classCode" : "78495"
-  //   },
-  //   {
-  //     "name":"Database",
-  //     "admin":"Manish Dhameja",
-  //     "desc":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, a!",
-  //     "link":"https://meet.google.com/",
-  //     "classCode" : "78495"
-  //   },
-  //   {
-  //     "name":"Theory of Computation",
-  //     "admin":"Manish Dhameja",
-  //     "desc":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, a!",
-  //     "link":"https://meet.google.com/",
-  //     "classCode" : "78495"
-  //   },
-  // ]
   const [show, setShow] = useState(false);
   const toggle = () => setShow(prevState=>!prevState);
   const storeData = useSelector(selectUserData);
