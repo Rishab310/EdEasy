@@ -25,9 +25,9 @@ const App = () => {
             <Route path='/classes' component={Dashboard} exact/>
             <Route path='/classes/reminders' component={Reminders}/>
             <Route path='/classes/:id' component={Classroom} exact/>
-            <Route path='/classes/:id/:tab' component={Classroom}/>
-            <Route path='/assignment/admin' component={AssignmentAdmin}/>
-            <Route path='/assignment/student' component={StudentSubmission}/>
+            <Route path='/classes/:id/:tab' component={Classroom} exact/>
+            <Route path='/classes/:id/assignment/:assignId/admin' component={AssignmentAdmin} exact/>
+            <Route path='/classes/:id/assignment/:assignId' component={StudentSubmission} exact/>
             <Redirect to ="/" />
           </Switch> 
         </Router>

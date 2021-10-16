@@ -33,7 +33,7 @@ const Discussion = ({classCode}) => {
         },{ headers: { Authorization: 'Bearer ' + storeData.token } }
         ).then ((res) => {
             console.log(res);
-            setPosts(res.data);
+            setPosts(res.data.reverse());
         }).catch(err => console.log(err.response))
         setLoading(false);
     }
@@ -73,12 +73,14 @@ const Discussion = ({classCode}) => {
                     setDiscussionInput("");
                     setFileInput(null);
                     getDiscussion();
+                    autosize(TextArea);
                     setCreateLoading(false);
                   })
                   .catch(err => {
                       console.log(err);
                       setDiscussionInput("");
                       setFileInput(null);
+                      autosize(TextArea);
                       setCreateLoading(false);
                   })
               })
@@ -99,11 +101,13 @@ const Discussion = ({classCode}) => {
                 setDiscussionInput("");
                 setFileInput(null);
                 getDiscussion();
+                autosize(TextArea);
                 setCreateLoading(false);
             }).catch(err => {
                 console.log(err);
                 setDiscussionInput("");
                 setFileInput(null);
+                autosize(TextArea);
                 setCreateLoading(false);
             })
         }
@@ -168,7 +172,7 @@ const Discussion = ({classCode}) => {
                 ) : (
                     <div className="Posts">
                         {
-                            posts.reverse().map(post => {
+                            posts.map(post => {
                                 return (
                                     <div className="content-box px-3 py-2 my-3">
                                         <div className="d-flex">
