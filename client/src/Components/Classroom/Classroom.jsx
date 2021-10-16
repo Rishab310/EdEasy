@@ -17,6 +17,8 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { selectUserData} from '../../reduxSlices/authSlice';
 
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+ 
 const Classroom = () => {
   const storeData = useSelector(selectUserData);
   // const history = useHistory();
@@ -32,12 +34,12 @@ const Classroom = () => {
   const [seeAll, setSeeAll] = useState(false);
   // const [activeTab, setActiveTab] = useState(useParams().tab);
   const [activeTab, setActiveTab] = useState("discussion");
-
+ 
   // console.log(activeTab);
-
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [show, setShow] = useState(false);
   const toggle = () => setShow(prevState=>!prevState);
-
+ 
   // useEffect(() => {
   //   if (!activeTab) setActiveTab("discussion");
   //   if (activeTab === "discussion") {
@@ -48,7 +50,7 @@ const Classroom = () => {
   //     history.push('/classes/' + classId + '/attendees');
   //   }
   // }, [activeTab])
-
+  const toggle_dropdown = () => setDropdownOpen(prevState => !prevState);
   useEffect(() => {
     // axios Request for getting className, adminName, adminEmail, year, subject
     axios.post("http://localhost:5000/classes/getClassroom", {
@@ -66,7 +68,7 @@ const Classroom = () => {
       })
       .catch(err => console.log(err.response))
   }, []);
-
+ 
   useEffect(() => {
     if (seeAll) {
       setReminders([
@@ -126,7 +128,7 @@ const Classroom = () => {
       ]);
     }
   }, [seeAll])
-
+ 
   return (
     <div className="Classroom">
       <div className="d-none d-md-block">
@@ -154,10 +156,17 @@ const Classroom = () => {
             </div>
           </div>
           <div className="d-flex flex-column justify-content-between">
-            <MoreHorizIcon />
-            <a href={meetLink} target="_blank">
+            <Dropdown className="me-2" isOpen={dropdownOpen} toggle={toggle_dropdown}>
+              <DropdownToggle nav>
+                <MoreHorizIcon />
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem>Delete Class</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+            <a href={meetLink} target="_blank">  
               <VideocamIcon
-                style={{ fontSize: 38, marginLeft: "-10px", color: "gray" }}
+              style={{ fontSize: 38, marginLeft: "10px", color: "gray" }}
               />
             </a>
           </div>
@@ -250,5 +259,5 @@ const Classroom = () => {
     </div>
   );
 };
-
+ 
 export default Classroom;
