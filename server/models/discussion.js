@@ -10,10 +10,6 @@ const discussionSchema = new Schema({
             type: String,
             required: true
         },
-        dueDate: {
-            type: Date,
-            required: true
-        },
         classCode: {
             type: Number,
             required: true

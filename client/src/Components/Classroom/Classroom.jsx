@@ -18,7 +18,7 @@ import CreateAssignment from "./CreateAssignment";
 
 const Classroom = () => {
   const history = useHistory();
-  const classId = useParams().id;
+  const classCode = useParams().id;
   const [className, setClassName] = useState();
   const [adminName, setAdminName] = useState();
   const [adminEmail, setAdminEmail] = useState();
@@ -202,9 +202,9 @@ const Classroom = () => {
           <div className="row justify-content-between mt-3">
             <div className="Classroom_Body m-0 p-0">
               {
-                activeTab === "discussion" ? <Discussion classId={classId} /> : 
-                activeTab === "assignments" ? <Assignments classId={classId} /> : 
-                activeTab === "attendees" ? <Attendees adminName={adminName} adminEmail={adminEmail} /> : null 
+                activeTab === "discussion" ? <Discussion classCode={classCode} /> : 
+                activeTab === "assignments" ? <Assignments classCode={classCode} /> : 
+                activeTab === "attendees" ? <Attendees classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null 
               }
               
             </div>
