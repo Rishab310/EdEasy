@@ -41,16 +41,16 @@ exports.createClassroom = async (req, res, next) => {
 
 exports.getClassrooms = (req, res, next) => {
     const type = req.body.type;
-    const adminEmail = req.body.adminEmail;
+    const userEmail = req.body.userEmail;
     if (type === "owned") {
-        Classroom.find({adminEmail: adminEmail})
+        Classroom.find({adminEmail: userEmail})
             .then(results => {
                 res.json(results);
             }).catch(err => {
                 next(err);
             })
     } else if (type === "enrolled") {
-        User.findOne({email: adminEmail})
+        User.findOne({email: userEmail})
             .then(user => {
                 Classroom.find({classCode: user.classesEnrolled})
                     .then(results => {
