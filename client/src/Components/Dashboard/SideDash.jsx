@@ -1,55 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import "./Dashboard.css";
 import {Link} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import AddIcon from '@material-ui/icons/Add';
 import CreateClassroom from '../Classroom/CreateClassroom'; 
 import JoinClassroom from '../Classroom/JoinClassroom';
-import axios from 'axios';
-import { selectUserData} from '../../reduxSlices/authSlice';
-const SideDash = () => {
+const SideDash = (props) => {
   const [show, setShow] = useState(false);
   const [showJoin, setShowJoin] = useState(false);
   const toggle = () => setShow(prevState=>!prevState);
   const toggleJoin = () => setShowJoin(prevState=>!prevState);
-  const storeData = useSelector(selectUserData);
-  const [owned, setOwned] = useState([]);
-  const [enrolled, setEnrolled] = useState([]);
-  useEffect(() => {
-    if (storeData.token){
-      console.log(storeData);
-      axios.post("http://localhost:5000/classes/getClassrooms", {
-        userEmail: storeData.userEmail,
-        type:"owned"
-      },{ headers: { Authorization: 'Bearer ' + storeData.token } }
-      )
-      .then((res)=>{
-        console.log(res);
-        setOwned(res.data);
-      })
-      .catch(err => console.log(err))
-      axios.post("http://localhost:5000/classes/getClassrooms", {
-        userEmail: storeData.userEmail,
-        type:"enrolled"
-      },{ headers: { Authorization: 'Bearer ' + storeData.token } }
-      )
-      .then((res)=>{
-        console.log(res);
-        setEnrolled(res.data);
-      })
-      .catch(err => console.log(err))
-  }
-  }, [storeData.token]);
+  const owned = props.owned;
+  const enrolled = props.enrolled;
   const [seeAllOwned , setSeeAllOwned] = useState(false);
   const [seeAllEnrolled , setSeeAllEnrolled] = useState(false);
-  const renderClassName = (list, seeAllOwned) => {
-    return (
-      <div>
-
-      </div>
-    );
-  }
   return (
     <div className="col-3 d-none d-md-block Dashboard_Sidedrawer px-1 ps-4 width-20">
       <div className="owned">
