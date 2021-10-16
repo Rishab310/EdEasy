@@ -2,6 +2,7 @@ const Classroom = require('../models/classroom');
 const classCode = require('../models/classCode');
 const User = require('../models/user');
 const Discussion = require('../models/discussion');
+const Assignment = require('../models/assignment');
 
 exports.createClassroom = async (req, res, next) => {
     let currClassCode;
@@ -93,6 +94,11 @@ exports.joinClassroom = (req, res, next) => {
             return User.findOne({email: userEmail});
         })
         .then(user => {
+            if (user.classesOwned.indexOf(classCode) >= 0) {
+                const err = new Error("Users cannot enroll in class created by themselves.")
+                err.statusCode = 403;
+                next(err);
+            }
             user.classesEnrolled.push(classCode);
             return user.save();
         })
@@ -106,7 +112,7 @@ exports.joinClassroom = (req, res, next) => {
 
 exports.deleteClassroom = (req, res, next) => {
     const classCode = req.body.classCode;
-    Classroom.deleteOne({classCode: classCode})
+    Classroom.findOneAndDelete({classCode: classCode})
         .then(classroom => {
             if (!classroom) {
                 const err = new Error("Invalid ClassCode.");
@@ -118,11 +124,31 @@ exports.deleteClassroom = (req, res, next) => {
                 User.findOne({email: memberEmail})
                     .then(user => {
                         if (user) {
-                            // user.classesEnrolled.
+                            user.classesEnrolled = user.classesEnrolled.filter(classEnrolledCode => {
+                                return classEnrolledCode.toString() !== classCode;
+                            });
+
+                            user.classesOwned = user.classesOwned.filter(classOwnedCode => {
+                                return classOwnedCode.toString() !== classCode;
+                            });
+
+                            user.save();
                         }
                     })
+                    .catch(err => {
+                        next(err);
+                    })
             })
-            res.json({message: "Classroom deleted successfully"});
+
+            Discussion.deleteMany({classCode: classCode})
+                .then(result => {
+                    console.log(result);
+                    res.json({message: "Classroom deleted successfully"});
+                })
+                .catch(err => {
+                    next(err);
+                })
+
         })
         .catch(err => {
             next(err);
@@ -175,6 +201,54 @@ exports.getDiscussions = (req, res, next) => {
     Discussion.find({classCode: classCode})
         .then(discussions => {
             res.json(discussions);
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+exports.createAssignment = (req, res, next) => {
+    const classCode = req.body.classCode;
+    const name = req.body.name;
+    const desc = req.body.desc;
+    const dueDate = req.body.dueDate;
+    const fileLink = req.body.fileLink;
+    const creatorEmail = req.body.creatorEmail;
+
+    const assignment = new Assignment({
+        classCode: classCode,
+        name: name,
+        desc: desc,
+        dueDate: dueDate,
+        fileLink: fileLink,
+        creatorEmail: creatorEmail
+    })
+
+    assignment.save()
+        .then(result => {
+            res.json({message: "Assignment created successfully"});
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+exports.getAssignments = (req, res, next) => {
+    const classCode = req.body.classCode;
+    Assignment.find({classCode: classCode})
+        .then(results => {
+            res.json(results);
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+exports.getAssignment = (req, res, next) => {
+    const assignmentId = req.body.assignmentId;
+    Assignment.findById(assignmentId)
+        .then(assignment => {
+            res.json(assignment);
         })
         .catch(err => {
             next(err);
