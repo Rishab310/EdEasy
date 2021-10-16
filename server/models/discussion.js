@@ -13,6 +13,18 @@ const discussionSchema = new Schema({
         dueDate: {
             type: Date,
             required: true
+        },
+        classCode: {
+            type: Number,
+            required: true
+        },
+        desc: {
+            type: String,
+            required: true
+        },
+        imgLink: {
+            type: String,
+            required: true
         }
     },
     {
@@ -21,4 +33,4 @@ const discussionSchema = new Schema({
     }
 )
 
-module.exports = mongoose.model('Classroom', discussionSchema);
+module.exports = mongoose.model('Discussion', discussionSchema);
