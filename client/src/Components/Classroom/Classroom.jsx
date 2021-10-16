@@ -4,26 +4,29 @@ import { useParams, useHistory } from "react-router-dom";
 import MobileHeader from "../partials/Header/MobileHeader";
 import Header from "../partials/Header/Header";
 import FooterNav from "../partials/FooterNav/FooterNav";
-import axios from "axios";
 import { getDateFromTimestamp, getTimeFromTimestamp } from "../../utilities";
 import Discussion from "./Discussion"; 
 import Assignments from './Assignments';
 import Attendees from "./Attendees";
-
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import VideocamIcon from "@material-ui/icons/Videocam";
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import CreateAssignment from "./CreateAssignment";
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { selectUserData} from '../../reduxSlices/authSlice';
 
 const Classroom = () => {
-  const history = useHistory();
+  const storeData = useSelector(selectUserData);
+  // const history = useHistory();
   const classCode = useParams().id;
   const [className, setClassName] = useState();
   const [adminName, setAdminName] = useState();
   const [adminEmail, setAdminEmail] = useState();
   const [classYear, setClassYear] = useState();
   const [subject, setSubject] = useState();
+  const [meetLink, setMeetLink] = useState();
   const [discussions, setDiscussions] = useState([]);
   const [reminders, setReminders] = useState([]);
   const [seeAll, setSeeAll] = useState(false);
@@ -48,13 +51,20 @@ const Classroom = () => {
 
   useEffect(() => {
     // axios Request for getting className, adminName, adminEmail, year, subject
-    setClassName("Operating System");
-    setAdminName("Walter White");
-    setAdminEmail("walterwhite@gmail.com");
-    setClassYear("II");
-    setSubject("Information Technology");
-
-    
+    axios.post("http://localhost:5000/classes/getClassroom", {
+        classCode: classCode
+      },{ headers: { Authorization: 'Bearer ' + storeData.token } }
+      )
+      .then((res)=>{
+        console.log(res);
+        setClassName(res.data.className);
+        setAdminName(res.data.adminName);
+        setAdminEmail(res.data.adminEmail);
+        setClassYear(res.data.classLevel);
+        setSubject(res.data.fieldName);
+        setMeetLink(res.data.meetLink);
+      })
+      .catch(err => console.log(err.response))
   }, []);
 
   useEffect(() => {
@@ -135,19 +145,21 @@ const Classroom = () => {
               </div>
               <div className="d-flex Classroom_Desc">
                 <div className="Side_Border">{adminName}</div>
-                <div className="Side_Border">{classYear} Year</div>
+                <div className="Side_Border">{classYear}</div>
                 <div>{subject}</div>
               </div>
               <div className="Class_Code mt-4 mb-2">
-                Class Code - <b>78495</b>
+                Class Code - <b>{classCode}</b>
               </div>
             </div>
           </div>
           <div className="d-flex flex-column justify-content-between">
             <MoreHorizIcon />
-            <VideocamIcon
-              style={{ fontSize: 38, marginLeft: "-10px", color: "gray" }}
-            />
+            <a href={meetLink} target="_blank">
+              <VideocamIcon
+                style={{ fontSize: 38, marginLeft: "-10px", color: "gray" }}
+              />
+            </a>
           </div>
         </div>
         <div className="col-11 col-md-10 col-lg-9 col-xl-8">
