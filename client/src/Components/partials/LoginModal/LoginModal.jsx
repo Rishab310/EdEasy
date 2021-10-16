@@ -111,7 +111,7 @@ const LoginModal = (props) => {
   }, [activeTab]);
 
   useEffect(() => {
-    console.log(selectorData);
+    // console.log(selectorData);
     if (selectorData.token) {
       props.setShow(false);
     }

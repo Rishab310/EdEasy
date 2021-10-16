@@ -60,7 +60,7 @@ export const AUTOLOGIN = () => async dispatch => {
   if(token) {
     const userId = localStorage.getItem('EdEasy__userId');
     const userName = localStorage.getItem('EdEasy__userName');
-    const userEmail = localStorage.getItem('EdEasy__userId');
+    const userEmail = localStorage.getItem('EdEasy__userEmail');
     await axios.post("http://localhost:5000/auth/verifyToken",{ token: token })
     .then((res)=>{
       dispatch(LOGIN({

@@ -1,97 +1,46 @@
-import React, { Component, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import "./Dashboard.css";
 import {Link} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import AddIcon from '@material-ui/icons/Add';
-import CreateClassroom from '../Classroom/CreateClassroom';
-
+import CreateClassroom from '../Classroom/CreateClassroom'; 
+import JoinClassroom from '../Classroom/JoinClassroom';
+import axios from 'axios';
+import { selectUserData} from '../../reduxSlices/authSlice';
 const SideDash = () => {
   const [show, setShow] = useState(false);
+  const [showJoin, setShowJoin] = useState(false);
   const toggle = () => setShow(prevState=>!prevState);
-  const owned = [
-    {
-      "adminName": "Rishab Goyal",
-      "adminEmail": "rishab420@gmail.com",
-      "desc": "Join this class for learning and fun.",
-      "className": "Operating System",
-      "meetLink": "https://meet.google.com/koz-zufe-zxp",
-      "fieldName": "Information Technology",
-      "classLevel": "PHD",
-      "classCode" : "78495"
-    },
-    {
-      "adminName": "Jatin Bajaj",
-      "adminEmail": "jatin420@gmail.com",
-      "desc": "Join this class for learning and fun.",
-      "className": "Database",
-      "meetLink": "https://meet.google.com/koz-zufe-zxp",
-      "fieldName": "Information Technology",
-      "classLevel": "PHD",
-      "classCode" : "78495"
-    },
-    {
-      "adminName": "Manish Dhameja",
-      "adminEmail": "rishab420@gmail.com",
-      "desc": "Join this class for learning and fun.",
-      "className": "Mathamatics",
-      "meetLink": "https://meet.google.com/koz-zufe-zxp",
-      "fieldName": "Information Technology",
-      "classLevel": "PHD",
-      "classCode" : "78495"
-    },
-    {
-      "adminName": "Shobhit Dhameja",
-      "adminEmail": "shobhit420@gmail.com",
-      "desc": "Join this class for learning and fun.",
-      "className": "English",
-      "meetLink": "https://meet.google.com/koz-zufe-zxp",
-      "fieldName": "Information Technology",
-      "classLevel": "PHD",
-      "classCode" : "78495"
-    }
-  ]
-  const enrolled = [
-    {
-      "adminName": "Rishab Goyal",
-      "adminEmail": "rishab69@gmail.com",
-      "desc": "Join this class for learning and fun.",
-      "className": "Computer Networks",
-      "meetLink": "https://meet.google.com/koz-zufe-zxp",
-      "fieldName": "Information Technology",
-      "classLevel": "PHD",
-      "classCode" : "78495"
-    },
-    {
-      "adminName": "Jatin Bajaj",
-      "adminEmail": "jatin69@gmail.com",
-      "desc": "Join this class for learning and fun.",
-      "className": "Theory of Computation",
-      "meetLink": "https://meet.google.com/koz-zufe-zxp",
-      "fieldName": "Information Technology",
-      "classLevel": "PHD",
-      "classCode" : "78495"
-    },
-    {
-      "adminName": "Manish Dhameja",
-      "adminEmail": "rishab69@gmail.com",
-      "desc": "Join this class for learning and fun.",
-      "className": "Mathamatics",
-      "meetLink": "https://meet.google.com/koz-zufe-zxp",
-      "fieldName": "Information Technology",
-      "classLevel": "PHD",
-      "classCode" : "78495"
-    },
-    {
-      "adminName": "Shobhit Dhameja",
-      "adminEmail": "shobhit69@gmail.com",
-      "desc": "Join this class for learning and fun.",
-      "className": "English",
-      "meetLink": "https://meet.google.com/koz-zufe-zxp",
-      "fieldName": "Information Technology",
-      "classLevel": "PHD",
-      "classCode" : "78495"
-    }
-  ]
+  const toggleJoin = () => setShowJoin(prevState=>!prevState);
+  const storeData = useSelector(selectUserData);
+  const [owned, setOwned] = useState([]);
+  const [enrolled, setEnrolled] = useState([]);
+  useEffect(() => {
+    if (storeData.token){
+      console.log(storeData);
+      axios.post("http://localhost:5000/classes/getClassrooms", {
+        userEmail: storeData.userEmail,
+        type:"owned"
+      },{ headers: { Authorization: 'Bearer ' + storeData.token } }
+      )
+      .then((res)=>{
+        console.log(res);
+        setOwned(res.data);
+      })
+      .catch(err => console.log(err))
+      axios.post("http://localhost:5000/classes/getClassrooms", {
+        userEmail: storeData.userEmail,
+        type:"enrolled"
+      },{ headers: { Authorization: 'Bearer ' + storeData.token } }
+      )
+      .then((res)=>{
+        console.log(res);
+        setEnrolled(res.data);
+      })
+      .catch(err => console.log(err))
+  }
+  }, [storeData.token]);
   const [seeAllOwned , setSeeAllOwned] = useState(false);
   const [seeAllEnrolled , setSeeAllEnrolled] = useState(false);
   const renderClassName = (list, seeAllOwned) => {
@@ -176,7 +125,7 @@ const SideDash = () => {
       </div>
       <div className="row join-links pt-3">
         <div className="col-12 d-flex justify-content-center pb-3">
-          <button className="join-create-btn">
+          <button className="join-create-btn" onClick={() => setShowJoin(true)}>
             <AddIcon className="pe-1 mb-1"></AddIcon>
             Join Class
           </button>
@@ -189,8 +138,96 @@ const SideDash = () => {
         </div>
       </div>
       <CreateClassroom isModalOpen={show} toggleModal={toggle} setShow={setShow}/>
+      <JoinClassroom isModalOpen={showJoin} toggleModal={toggleJoin} setShow={setShowJoin}/>
     </div>
   );
 }
 
 export default SideDash;
+
+
+
+// const owned = [
+  //   {
+  //     "adminName": "Rishab Goyal",
+  //     "adminEmail": "rishab420@gmail.com",
+  //     "desc": "Join this class for learning and fun.",
+  //     "className": "Operating System",
+  //     "meetLink": "https://meet.google.com/koz-zufe-zxp",
+  //     "fieldName": "Information Technology",
+  //     "classLevel": "PHD",
+  //     "classCode" : "78495"
+  //   },
+  //   {
+  //     "adminName": "Jatin Bajaj",
+  //     "adminEmail": "jatin420@gmail.com",
+  //     "desc": "Join this class for learning and fun.",
+  //     "className": "Database",
+  //     "meetLink": "https://meet.google.com/koz-zufe-zxp",
+  //     "fieldName": "Information Technology",
+  //     "classLevel": "PHD",
+  //     "classCode" : "78495"
+  //   },
+  //   {
+  //     "adminName": "Manish Dhameja",
+  //     "adminEmail": "rishab420@gmail.com",
+  //     "desc": "Join this class for learning and fun.",
+  //     "className": "Mathamatics",
+  //     "meetLink": "https://meet.google.com/koz-zufe-zxp",
+  //     "fieldName": "Information Technology",
+  //     "classLevel": "PHD",
+  //     "classCode" : "78495"
+  //   },
+  //   {
+  //     "adminName": "Shobhit Dhameja",
+  //     "adminEmail": "shobhit420@gmail.com",
+  //     "desc": "Join this class for learning and fun.",
+  //     "className": "English",
+  //     "meetLink": "https://meet.google.com/koz-zufe-zxp",
+  //     "fieldName": "Information Technology",
+  //     "classLevel": "PHD",
+  //     "classCode" : "78495"
+  //   }
+  // ]
+  // const enrolled = [
+  //   {
+  //     "adminName": "Rishab Goyal",
+  //     "adminEmail": "rishab69@gmail.com",
+  //     "desc": "Join this class for learning and fun.",
+  //     "className": "Computer Networks",
+  //     "meetLink": "https://meet.google.com/koz-zufe-zxp",
+  //     "fieldName": "Information Technology",
+  //     "classLevel": "PHD",
+  //     "classCode" : "78495"
+  //   },
+  //   {
+  //     "adminName": "Jatin Bajaj",
+  //     "adminEmail": "jatin69@gmail.com",
+  //     "desc": "Join this class for learning and fun.",
+  //     "className": "Theory of Computation",
+  //     "meetLink": "https://meet.google.com/koz-zufe-zxp",
+  //     "fieldName": "Information Technology",
+  //     "classLevel": "PHD",
+  //     "classCode" : "78495"
+  //   },
+  //   {
+  //     "adminName": "Manish Dhameja",
+  //     "adminEmail": "rishab69@gmail.com",
+  //     "desc": "Join this class for learning and fun.",
+  //     "className": "Mathamatics",
+  //     "meetLink": "https://meet.google.com/koz-zufe-zxp",
+  //     "fieldName": "Information Technology",
+  //     "classLevel": "PHD",
+  //     "classCode" : "78495"
+  //   },
+  //   {
+  //     "adminName": "Shobhit Dhameja",
+  //     "adminEmail": "shobhit69@gmail.com",
+  //     "desc": "Join this class for learning and fun.",
+  //     "className": "English",
+  //     "meetLink": "https://meet.google.com/koz-zufe-zxp",
+  //     "fieldName": "Information Technology",
+  //     "classLevel": "PHD",
+  //     "classCode" : "78495"
+  //   }
+  // ]

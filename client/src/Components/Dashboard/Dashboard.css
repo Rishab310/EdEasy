@@ -187,6 +187,9 @@ body, #root, .app {
 .card-width {
   max-width:270px;
 }
+.card-width-mobile {
+  min-width: 100% !important;
+}
 .classes-nav-btn {
   background-color: #F4F3F8;
   font-family: Tajawal;
