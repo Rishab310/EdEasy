@@ -1,25 +1,61 @@
 import React, { useState, useRef } from 'react'
+import { useParams } from 'react-router-dom';
 import './StudentSubmission.css'
 import Avatar from '@material-ui/core/Avatar';
 import Header from '../partials/Header/Header'
 import MobileHeader from '../partials/Header/MobileHeader'
 import FooterNav from '../partials/FooterNav/FooterNav'
 
+import db, { storage } from '../../firebase';
+import axios from 'axios';
+
+import { useSelector } from 'react-redux';
+import { selectUserData } from '../../reduxSlices/authSlice';
+
 const StudentSubmission = () => {
+    const fileInput = useRef(null);
+    const [inputFile, setInputFile] = useState(null);
+    const assignmentId = useParams().assignId;
+    const userData = useSelector(selectUserData);
+
     let btn_class = '';
     let btn_class_1 = '';
     let text = '';
     let btnClick = null;
     let btnClick_back = null;
 
-    // const [pdfFile, setPdfFile] = useState([])
-
     const uploadFile = () => {
         fileInput.current.click();
         // setUploadState(1);
     }
     const submitFile = () => {
-        setUploadState(2);
+        console.log(inputFile);
+        console.log(inputFile.name);
+        const fileName = new Date().getTime() + "-" + inputFile.name;
+        const uploadTask = storage.ref(`submissions/${fileName}`).put(fileInput);
+        uploadTask.on('state_changed', console.log, console.error, () => {
+            storage.ref('submissions').child(fileName).getDownloadURL()
+                    .then(firebaseURL => {
+                    axios.post('http://localhost:5000/classes/submitAssignment', {
+                        assignmentId: assignmentId,
+                        studentName: userData.userName,
+                        studentEmail: userData.userEmail,
+                        fileLink: firebaseURL
+                    }, 
+                    {
+                        headers: {
+                            Authorization: "Bearer " + userData.token
+                        }
+                    })
+                })
+                .then(res => {
+                    console.log(res);
+                    setUploadState(2);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            })
     }
     const unSubmitFile = () => {
         setUploadState(0);
@@ -56,8 +92,7 @@ const StudentSubmission = () => {
     }
 
     // const [pdfFile, setPdfFile] = useState(null);
-    const fileInput = useRef(null);
-    const [inputFile, setInputFile] = useState(null);
+    
 
     const onUploadClick = (e) => {
         if (!e.target.files[0]) {

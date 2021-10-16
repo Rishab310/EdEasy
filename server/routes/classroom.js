@@ -17,5 +17,6 @@ router.post('/createAssignment', classroomController.createAssignment);
 router.post('/getAssignments', classroomController.getAssignments);
 router.post('/getAssignment', classroomController.getAssignment);
 router.post('/getReminders', classroomController.getReminders);
+router.post('/createSubmission', classroomController.createSubmission);
 
 module.exports = router; 

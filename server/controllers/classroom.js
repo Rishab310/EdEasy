@@ -3,6 +3,7 @@ const classCode = require('../models/classCode');
 const User = require('../models/user');
 const Discussion = require('../models/discussion');
 const Assignment = require('../models/assignment');
+const Submission = require('../models/submission');
 
 exports.createClassroom = async (req, res, next) => {
     let currClassCode;
@@ -111,9 +112,9 @@ exports.joinClassroom = (req, res, next) => {
 exports.deleteClassroom = (req, res, next) => {
     const classCode = req.body.classCode;
     Classroom.findOneAndDelete({classCode: classCode})
-        .then(classroom => {
+        .then(async classroom => {
             if (!classroom) {
-                const err = new Error("Invalid ClassCode.");
+                const err = new Error("ClassCode not found.");
                 err.statusCode = 422;
                 next(err);
             }
@@ -271,6 +272,28 @@ exports.getReminders = (req, res, next) => {
 
             reminders.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
             res.json(reminders);
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+exports.createSubmission = (req, res, next) => {
+    const studentEmail = req.body.studentEmail;
+    const studentName = req.body.studentName;
+    const assignmentId = req.body.assignmentId;
+    const fileLink = req.body.fileLink;
+
+    const submission = new Submission({
+        studentEmail: studentEmail,
+        studentName: studentName,
+        assignmentId: assignmentId,
+        fileLink: fileLink
+    })
+
+    submission.save()
+        .then(result => {
+            res.json({message: "Submission created successfully"});
         })
         .catch(err => {
             next(err);
