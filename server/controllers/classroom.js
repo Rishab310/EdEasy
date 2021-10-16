@@ -36,7 +36,6 @@ exports.createClassroom = async (req, res, next) => {
             res.status(201).json({message: "Classroom created successfully"});
         })
         .catch(err => {
-            console.log(err);
             next(err);
         })
 }
@@ -56,7 +55,6 @@ exports.getClassrooms = (req, res, next) => {
             .then(user => {
                 Classroom.find({classCode: user.classesEnrolled})
                     .then(results => {
-                        console.log(results);
                         res.json(results);
                     })
                     .catch(err => {
@@ -120,8 +118,8 @@ exports.deleteClassroom = (req, res, next) => {
                 next(err);
             }
 
-            classroom.members.forEach(memberEmail => {
-                User.findOne({email: memberEmail})
+            classroom.members.forEach(async memberEmail => {
+                await User.findOne({email: memberEmail})
                     .then(user => {
                         if (user) {
                             user.classesEnrolled = user.classesEnrolled.filter(classEnrolledCode => {
@@ -142,7 +140,6 @@ exports.deleteClassroom = (req, res, next) => {
 
             Discussion.deleteMany({classCode: classCode})
                 .then(result => {
-                    console.log(result);
                     res.json({message: "Classroom deleted successfully"});
                 })
                 .catch(err => {
@@ -235,7 +232,7 @@ exports.createAssignment = (req, res, next) => {
 
 exports.getAssignments = (req, res, next) => {
     const classCode = req.body.classCode;
-    Assignment.find({classCode: classCode})
+    Assignment.find({classCode: classCode}).sort({dueDate: -1})
         .then(results => {
             res.json(results);
         })
@@ -249,6 +246,31 @@ exports.getAssignment = (req, res, next) => {
     Assignment.findById(assignmentId)
         .then(assignment => {
             res.json(assignment);
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+exports.getReminders = (req, res, next) => {
+    const userEmail = req.body.userEmail;
+    let reminders = [];
+    User.findOne({email: userEmail})
+        .then(async user => {
+            if (!user) {
+                const err = new Error("User does not exists.");
+                err.statusCode = 422;
+                next(err);
+            }
+            for(let enrolledClassCode of user.classesEnrolled) {
+                await Assignment.find({classCode: enrolledClassCode, dueDate: {$gte: Date.now()}})
+                    .then(results => {
+                        reminders = reminders.concat(results);
+                    })
+            }
+
+            reminders.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+            res.json(reminders);
         })
         .catch(err => {
             next(err);
