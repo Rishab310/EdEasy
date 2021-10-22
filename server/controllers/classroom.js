@@ -1,3 +1,5 @@
+const ObjectId = require('mongoose').Types.ObjectId; 
+
 const Classroom = require('../models/classroom');
 const classCode = require('../models/classCode');
 const User = require('../models/user');
@@ -249,7 +251,13 @@ exports.getAssignment = (req, res, next) => {
     const assignmentId = req.body.assignmentId;
     Assignment.findById(assignmentId)
         .then(assignment => {
-            res.json(assignment);
+            User.findOne({email: assignment.creatorEmail})
+                .then(user => {
+                    res.json({...assignment._doc, creatorName: user.name});
+                })
+                .catch(err => {
+                    next(err);
+                })
         })
         .catch(err => {
             next(err);
@@ -281,28 +289,6 @@ exports.getReminders = (req, res, next) => {
         })
 }
 
-exports.createSubmission = (req, res, next) => {
-    const studentEmail = req.body.studentEmail;
-    const studentName = req.body.studentName;
-    const assignmentId = req.body.assignmentId;
-    const fileLink = req.body.fileLink;
-
-    const submission = new Submission({
-        studentEmail: studentEmail,
-        studentName: studentName,
-        assignmentId: assignmentId,
-        fileLink: fileLink
-    })
-
-    submission.save()
-        .then(result => {
-            res.json({message: "Submission created successfully"});
-        })
-        .catch(err => {
-            next(err);
-        })
-}
-
 exports.getAttendees = (req, res, next) => {
     const classCode = req.body.classCode;
     Classroom.findOne({classCode: classCode})
@@ -315,6 +301,64 @@ exports.getAttendees = (req, res, next) => {
                     })
             }
             res.json(users);
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+exports.submitAssignment = (req, res, next) => {
+    const studentName = req.body.studentName;
+    const studentEmail = req.body.studentEmail;
+    const assignmentId = req.body.assignmentId;
+    const fileLink = req.body.fileLink;
+    const classCode = req.body.classCode;
+    const fileName = req.body.fileName;
+
+    const submission = new Submission({
+        studentName,
+        studentEmail,
+        fileLink,
+        assignmentId,
+        classCode,
+        fileName
+    })
+
+    submission.save()
+        .then(result => {
+            res.json({message: "Submission created successfully"});
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+exports.getSubmission = (req, res, next) => {
+    const assignmentId = req.body.assignmentId;
+    const userEmail = req.body.userEmail;
+    
+    Submission.findOne({studentEmail: userEmail, assignmentId: new ObjectId(assignmentId)})
+        .then(submission => {
+            if (!submission) {
+                const err = new Error("Submission not found.");
+                err.statusCode = 422;
+                next(err);
+            } else {
+                res.json(submission);
+            }
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+exports.deleteSubmission = (req, res, next) => {
+    const assignmentId = req.body.assignmentId;
+    const userEmail = req.body.userEmail;
+
+    Submission.deleteOne({assignmentId: new ObjectId(assignmentId), userEmail: userEmail})
+        .then(result => {
+            res.json({message: "Submission deleted successfully."});
         })
         .catch(err => {
             next(err);

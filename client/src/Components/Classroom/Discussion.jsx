@@ -26,6 +26,7 @@ const Discussion = ({classCode, adminEmail}) => {
     useEffect(() => {
         autosize(TextArea);
     }, [])
+    
     const getDiscussion = async () => {
         setLoading(true);
         await axios.post("http://localhost:5000/classes/getDiscussions",{

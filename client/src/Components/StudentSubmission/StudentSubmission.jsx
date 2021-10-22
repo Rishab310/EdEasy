@@ -1,10 +1,13 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import './StudentSubmission.css'
+import './StudentSubmission.css';
 import Avatar from '@material-ui/core/Avatar';
-import Header from '../partials/Header/Header'
-import MobileHeader from '../partials/Header/MobileHeader'
-import FooterNav from '../partials/FooterNav/FooterNav'
+import Header from '../partials/Header/Header';
+import MobileHeader from '../partials/Header/MobileHeader';
+import FooterNav from '../partials/FooterNav/FooterNav';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+import { getDateFromTimestamp, getTimeFromTimestamp } from '../../utilities';
 
 import db, { storage } from '../../firebase';
 import axios from 'axios';
@@ -15,32 +18,82 @@ import { selectUserData } from '../../reduxSlices/authSlice';
 const StudentSubmission = () => {
     const fileInput = useRef(null);
     const [inputFile, setInputFile] = useState(null);
+    const [pdfFileError, setPdfFileError] = useState('');
+    const [uploadState, setUploadState] = useState(0);
     const assignmentId = useParams().assignId;
+    const classCode = useParams().id;
+    const [submissionDetails, setSubmissionDetails] = useState(null);
     const userData = useSelector(selectUserData);
+    const [loading, setLoading] = useState(false);
+    const [assignmentDetails, setAssignmentDetails] = useState({});
+    const [pageLoading, setPageLoading] = useState(false);
 
-    let btn_class = '';
-    let btn_class_1 = '';
-    let text = '';
-    let btnClick = null;
-    let btnClick_back = null;
+    const getSubmission = () => {
+        setLoading(true);
+        axios.post("http://localhost:5000/classes/getSubmission", {
+            assignmentId: assignmentId,
+            userEmail: userData.userEmail
+        },
+        {
+            headers: {
+                Authorization: "Bearer " + userData.token
+            }
+        })
+        .then(res => {
+            setSubmissionDetails(res.data);
+            setUploadState(2);
+            setLoading(false);
+        })
+        .catch(err => {
+            console.log(err);
+            setLoading(false);
+        })
+    }
+
+    const getAssignment = () => {
+        setPageLoading(true);
+        axios.post("http://localhost:5000/classes/getAssignment", {
+            assignmentId: assignmentId
+        }, 
+        {
+            headers: {
+                Authorization: "Bearer " + userData.token
+            }
+        })
+        .then(res => {
+            setAssignmentDetails(res.data);
+            setPageLoading(false);
+        })
+        .catch(err => {
+            console.log(err);
+            setPageLoading(false);
+        })
+    }
+
+    useEffect(() => {
+        getAssignment();
+        getSubmission();
+    }, [])
 
     const uploadFile = () => {
         fileInput.current.click();
-        // setUploadState(1);
     }
+    
     const submitFile = () => {
-        console.log(inputFile);
+        setLoading(true);
         console.log(inputFile.name);
         const fileName = new Date().getTime() + "-" + inputFile.name;
         const uploadTask = storage.ref(`submissions/${fileName}`).put(inputFile);
         uploadTask.on('state_changed', console.log, console.error, () => {
             storage.ref('submissions').child(fileName).getDownloadURL()
                     .then(firebaseURL => {
-                    axios.post('http://localhost:5000/classes/submitAssignment', {
+                    return axios.post('http://localhost:5000/classes/submitAssignment', {
                         assignmentId: assignmentId,
                         studentName: userData.userName,
                         studentEmail: userData.userEmail,
-                        fileLink: firebaseURL
+                        classCode: classCode,
+                        fileLink: firebaseURL,
+                        fileName: inputFile.name
                     }, 
                     {
                         headers: {
@@ -49,51 +102,40 @@ const StudentSubmission = () => {
                     })
                 })
                 .then(res => {
-                    console.log(res);
+                    getSubmission();
                     setUploadState(2);
+                    setLoading(false);
                 })
                 .catch(err => {
                     console.log(err);
+                    setLoading(false);
                 })
             })
     }
+
     const unSubmitFile = () => {
-        setUploadState(0);
-    }
-    const [pdfFileError, setPdfFileError] = useState('');
-
-    const [uploadState, setUploadState] = useState(0);
-    switch (uploadState % 3) {
-        case 0: {
-            btnClick = uploadFile;
-            btn_class = 'button_hover btn btn-outline-primary fs-6';
-            text = 'Upload';
-        }
-            break;
-        case 1: {
-            btnClick = submitFile;
-            btnClick_back = uploadFile;
-            if (pdfFileError) {
-                btn_class = 'btn btn-outline-success fs-6 d-flex mt-3 disabled';
+        setLoading(true);
+        axios.delete("http://localhost:5000/classes/deleteSubmission", {
+            data: {
+                assignmentId: assignmentId,
+                userEmail: userData.userEmail
             }
-            else {
-                btn_class = 'btn btn-outline-success fs-6 d-flex mt-3';
+        },
+        {
+            headers: {
+                Authorization: "Bearer " + userData.token
             }
-            btn_class_1 = 'button_hover btn btn-outline-primary fs-6 d-flex mt-3';
-            text = 'Submit';
-        }
-            break;
-        case 2: {
-            btnClick = unSubmitFile;
-            btn_class = 'btn btn-outline-danger fs-6 d-flex mx-auto mt-3';
-            text = 'Unsubmit';
-        }
-            break;
+        })
+        .then(res => {
+            setUploadState(0);
+            setLoading(false);
+        })
+        .catch(err => {
+            console.log(err);
+            setLoading(false);
+        })
     }
-
-    // const [pdfFile, setPdfFile] = useState(null);
     
-
     const onUploadClick = (e) => {
         if (!e.target.files[0]) {
             return
@@ -115,7 +157,48 @@ const StudentSubmission = () => {
             }
         }
     }
-    console.log(inputFile);
+
+    let btn_class = '';
+    let btn_class_1 = '';
+    let text = '';
+    let btnClick = null;
+    let btnClick_back = null;
+    
+    switch (uploadState % 3) {
+        case 0: {
+            btnClick = uploadFile;
+            btn_class = 'button_hover btn btn-outline-primary fs-6';
+            text = 'Upload';
+        }
+        break;
+        case 1: {
+            btnClick = submitFile;
+            btnClick_back = uploadFile;
+            if (pdfFileError) {
+                btn_class = 'btn btn-outline-success fs-6 d-flex mt-3 disabled';
+            }
+            else {
+                btn_class = 'btn btn-outline-success fs-6 d-flex mt-3';
+            }
+            btn_class_1 = 'button_hover btn btn-outline-primary fs-6 d-flex mt-3';
+            text = 'Submit';
+        }
+        break;
+        case 2: {
+            btnClick = unSubmitFile;
+            btn_class = 'btn btn-outline-danger fs-6 d-flex mx-auto mt-3';
+            text = 'Unsubmit';
+        }
+        break;
+    }
+
+    if (pageLoading) {
+        return (
+            <div className="d-flex justify-content-center mt-5">
+                <CircularProgress size={70} />
+            </div>
+        )
+    }
 
     return (
         <div style={{ marginTop: "90px" }}>
@@ -131,7 +214,7 @@ const StudentSubmission = () => {
             <div className="container mt-3">
                 <div className="row">
                     <div className="col d-flex mt-5 fs-3 justify-content-left border-bot">
-                        Assignment - 01 DS-OS
+                        {assignmentDetails.name}
                     </div>
                 </div>
                 <div className="row justify-content-between mt-3">
@@ -142,22 +225,22 @@ const StudentSubmission = () => {
                                 <div className="d-flex flex-column">
                                     <div className="d-flex justify-content-between">
                                         <div className="Assignment_Date_student">
-                                            11 October 2021
+                                            {getDateFromTimestamp(assignmentDetails.dueDate)}
                                         </div>
                                         <div className="Assignment_Time_student">
-                                            2:00 PM
+                                            {getTimeFromTimestamp(assignmentDetails.dueDate)}
                                         </div>
                                     </div>
                                     <div className="Assignment_Box_student d-flex flex-column justify-content-center px-3 py-2">
                                         <div className="d-flex mb-2">
                                             <div className="Avatar_Container">
                                                 <div className="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault">
-                                                    M
+                                                    {assignmentDetails.creatorName?.slice(0, 1)}
                                                 </div>
                                             </div>
                                             <div className="Post_Author d-flex flex-column justify-content-center mx-3">
                                                 <div className="Post_AuthorName">
-                                                    Manish Dhameja
+                                                    {assignmentDetails.creatorName}
                                                 </div>
                                                 <div className="Post_AdminName">
                                                     Admin
@@ -167,11 +250,11 @@ const StudentSubmission = () => {
                                         <div className="Assignment_Img">
                                             <img src="https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&amp;k=20&amp;m=1224851166&amp;s=170667a&amp;w=0&amp;h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=" alt="" />
                                             <div className="Assignment_Name">
-                                                Lab_Assignment-1
+                                                {assignmentDetails.name}
                                             </div>
                                         </div>
-                                        <div className="Assignment_Desc mb-0">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni"</p>
+                                        <div className="Assignment_Desc mb-0 mt-2">
+                                            <p className="mb-1">{assignmentDetails.desc}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -200,38 +283,61 @@ const StudentSubmission = () => {
                                 {/* <br></br> */}
                                 {uploadState == 0 && (<button onClick={btnClick} type="button" className={btn_class}><strong>{text}</strong></button>)}
 
-                                {uploadState == 1 && (<>
-                                    {!pdfFileError ? <div className="content-box px-0 pt-3 pb-3">
-                                        <div className="Assignment_Img ">
-                                            <img src="https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&amp;k=20&amp;m=1224851166&amp;s=170667a&amp;w=0&amp;h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=" alt="" />
-                                            <div className="Assignment_Name">
-                                                {inputFile ? inputFile.name : null}
-                                            </div>
-                                        </div>
-                                        </div>
-                                        : null
-                                    }
-                                    <div className="d-flex justify-content-between">
-                                        <button onClick={btnClick} type="button" className={btn_class}><strong>{text}</strong></button>
-                                        <button onClick={btnClick_back} type="button" className={btn_class_1}><strong>ReUpload</strong></button>
-                                    </div>
-                                </>)
+                                {
+                                    uploadState == 1 && (
+                                        <>
+                                            {!pdfFileError ? ( 
+                                                <div className="content-box px-2 py-2">
+                                                    <div className="Assignment_Img ">
+                                                        <img src="https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&amp;k=20&amp;m=1224851166&amp;s=170667a&amp;w=0&amp;h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=" alt="" />
+                                                        <div className="Assignment_Name">
+                                                            {inputFile ? inputFile.name : null}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                ) : null
+                                            }
+                                            {
+                                                loading ? (
+                                                    <div className="d-flex justify-content-center mt-3">
+                                                        <CircularProgress />
+                                                    </div>
+                                                ) : (
+                                                    <div className="d-flex justify-content-between">
+                                                        <button onClick={btnClick} type="button" className={btn_class}><strong>{text}</strong></button>
+                                                        <button onClick={btnClick_back} type="button" className={btn_class_1}><strong>ReUpload</strong></button>
+                                                    </div>
+                                                )
+                                            }
+                                            
+                                        </>
+                                    )
                                 }
 
-                                {uploadState == 2 && (<>
-                                    <div className="Assignment_Img">
-                                        <img src="https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&amp;k=20&amp;m=1224851166&amp;s=170667a&amp;w=0&amp;h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=" alt="" />
-                                        <div className="Assignment_Name">
-                                            {inputFile.name}
+                                {uploadState == 2 && (
+                                    <>
+                                        <div className="content-box px-2 py-2">
+                                            <a href={submissionDetails?.fileLink} target="_blank">
+                                                <div className="Assignment_Img">
+                                                    <img src="https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&amp;k=20&amp;m=1224851166&amp;s=170667a&amp;w=0&amp;h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=" alt="" />
+                                                    <div className="Assignment_Name">
+                                                        {submissionDetails?.fileName}
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </div>
-                                    <button onClick={btnClick} type="button" className={btn_class}><strong>{text}</strong></button> </>)
-                                }
+                                        <button 
+                                            onClick={btnClick} 
+                                            type="button" 
+                                            className={btn_class}>
+                                                <strong>{text}</strong>
+                                        </button> 
+                                    </>
+                                )}
                             </form>
                         </div>
                     </div>
                 </div>
-                {/* </div> */}
             </div>
         </div>
     )

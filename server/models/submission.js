@@ -16,7 +16,16 @@ const submissionSchema = new Schema({
         },
         assignmentId: {
             type: Schema.Types.ObjectId,
-            ref: 'Assignment'
+            ref: 'Assignment',
+            required: true
+        },
+        classCode: {
+            type: Number,
+            required: true
+        },
+        fileName: {
+            type: String,
+            required: true
         }
     },
     {

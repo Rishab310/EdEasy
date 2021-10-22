@@ -18,8 +18,6 @@ const Assignments = ({classCode, adminEmail, isAssignmentCreated, setIsAssignmen
     const toggleCreate = () => setShowCreate(prevState=>!prevState);
     const [loading, setLoading] = useState(false);
 
-    console.log("isAssignment Created: ", isAssignmentCreated);
-
     const getAssignments = () => {
         setLoading(true);
         axios.post("http://localhost:5000/classes/getAssignments", {

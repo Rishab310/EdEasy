@@ -8,7 +8,6 @@ import FooterNav from '../partials/FooterNav/FooterNav'
 
 import Pagination from './Pagination';
 import Posts from './Posts';
-// import ReactPaginate from 'react-paginate';
 
 const AssignmentAdmin = () => {
     const [posts, setPosts] = useState([
