@@ -29,26 +29,26 @@ const Classroom = () => {
   const [classYear, setClassYear] = useState();
   const [subject, setSubject] = useState();
   const [meetLink, setMeetLink] = useState();
-  const [discussions, setDiscussions] = useState([]);
   const [reminders, setReminders] = useState([]);
   const [seeAll, setSeeAll] = useState(false);
-  // const [activeTab, setActiveTab] = useState(useParams().tab);
-  const [activeTab, setActiveTab] = useState("discussion");
+  const [activeTab, setActiveTab] = useState(useParams().tab);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [show, setShow] = useState(false);
   const toggle = () => setShow(prevState=>!prevState);
   const [loading, setLoading] = useState(false);
+  const [isAssignmentCreated, setIsAssignmentCreated] = useState(false);
   const [reminderloading, setReminderLoading] = useState(false);
-  // useEffect(() => {
-  //   if (!activeTab) setActiveTab("discussion");
-  //   if (activeTab === "discussion") {
-  //     history.push('/classes/' + classId);
-  //   } else if (activeTab === "assignments") {
-  //     history.push('/classes/' + classId + '/assignments');
-  //   } else if (activeTab === "attendees") {
-  //     history.push('/classes/' + classId + '/attendees');
-  //   }
-  // }, [activeTab])
+  
+  useEffect(() => {
+    if (!activeTab) setActiveTab("discussion");
+    if (activeTab === "discussion") {
+      history.replace('/classes/' + classCode);
+    } else if (activeTab === "assignments") {
+      history.replace('/classes/' + classCode + '/assignments');
+    } else if (activeTab === "attendees") {
+      history.replace('/classes/' + classCode + '/attendees');
+    }
+  }, [activeTab])
   const toggle_dropdown = () => setDropdownOpen(prevState => !prevState);
   useEffect(() => {
     setLoading(true);
@@ -173,8 +173,14 @@ const Classroom = () => {
               <div className="row justify-content-between mt-3">
                 <div className="Classroom_Body m-0 p-0">
                   {
-                    activeTab === "discussion" ? <Discussion classCode={classCode} /> : 
-                    activeTab === "assignments" ? <Assignments classCode={classCode} adminEmail={adminEmail}/> : 
+                    activeTab === "discussion" ? <Discussion adminEmail={adminEmail} classCode={classCode} /> : 
+                    activeTab === "assignments" ? (
+                    <Assignments 
+                      setIsAssignmentCreated={setIsAssignmentCreated} 
+                      isAssignmentCreated={isAssignmentCreated} 
+                      classCode={classCode} 
+                      adminEmail={adminEmail}
+                      /> ) : 
                     activeTab === "attendees" ? <Attendees classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null 
                   }
                   
@@ -204,19 +210,27 @@ const Classroom = () => {
                         );
                       })
                     }
-                    <div className="See_All d-flex justify-content-end">
-                      {
-                        seeAll ? (
-                          <div onClick={() => setSeeAll(false)}>
-                            See Less
-                          </div>
-                        ) : (
-                          <div onClick={() => setSeeAll(true)}>
-                            See All
-                          </div>
-                        )
-                      }
-                    </div>
+                    {
+                      reminders.length > 3 ? (
+                        <div className="See_All d-flex justify-content-end">
+                          {
+                            seeAll ? (
+                              <div onClick={() => setSeeAll(false)}>
+                                See Less
+                              </div>
+                            ) : (
+                              <div onClick={() => setSeeAll(true)}>
+                                See All
+                              </div>
+                            )
+                          }
+                        </div>
+                      ) : reminders.length == 0 ? (
+                            <div className="ms-1 mt-2" style={{fontSize: "13px", color: "gray"}}>
+                              No work due!
+                            </div>
+                      ) : null
+                    }
                   </div>
                   {
                     (adminName===storeData.userName) ? (
@@ -235,7 +249,13 @@ const Classroom = () => {
           <div className="d-block d-md-none">
             <FooterNav />
           </div>
-          <CreateAssignment classCode={classCode} isModalOpen={show} toggleModal={toggle} setShow={setShow}/>
+          <CreateAssignment 
+            setIsAssignmentCreated={setIsAssignmentCreated} 
+            classCode={classCode} 
+            isModalOpen={show} 
+            toggleModal={toggle} 
+            setShow={setShow}
+          />
         </div>
       ): ( 
         <div className="col-12 d-flex justify-content-center align-items-center" style={{height:"100vh"}}>

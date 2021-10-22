@@ -40,19 +40,23 @@ const SideDash = (props) => {
                   );
                   })
               }
-              <div className="See_All d-flex justify-content-end pt-2">
-                {
-                  seeAllOwned ? (
-                    <div onClick={() => setSeeAllOwned(false)}>
-                      See Less
-                    </div>
-                  ) : (
-                    <div onClick={() => {setSeeAllOwned(true); setSeeAllEnrolled(false);}}>
-                      See All
-                    </div>
-                  )
-                }
-              </div>
+              {
+                owned.length > 2 ? (
+                <div className="See_All d-flex justify-content-end pt-2">
+                  {
+                    seeAllOwned ? (
+                      <div onClick={() => setSeeAllOwned(false)}>
+                        See Less
+                      </div>
+                    ) : (
+                      <div onClick={() => {setSeeAllOwned(true); setSeeAllEnrolled(false);}}>
+                        See All
+                      </div>
+                    )
+                  }
+                </div>
+                ) : null
+              }
             </>
           ) : (
             <div className="ms-2 text-muted mb-3">You haven't created any class.</div>
@@ -84,19 +88,23 @@ const SideDash = (props) => {
                   );
                   })
               }
-              <div className="See_All d-flex justify-content-end pt-2">
-                {
-                  seeAllEnrolled ? (
-                    <div onClick={() => setSeeAllEnrolled(false)}>
-                      See Less
-                    </div>
-                  ) : (
-                    <div onClick={() => {setSeeAllOwned(false); setSeeAllEnrolled(true);}}>
-                      See All
-                    </div>
-                  )
-                }
-              </div>
+              {
+                enrolled.length > 2 ? (
+                  <div className="See_All d-flex justify-content-end pt-2">
+                    {
+                      seeAllEnrolled ? (
+                        <div onClick={() => setSeeAllEnrolled(false)}>
+                          See Less
+                        </div>
+                      ) : (
+                        <div onClick={() => {setSeeAllOwned(false); setSeeAllEnrolled(true);}}>
+                          See All
+                        </div>
+                      )
+                    }
+                  </div>
+                ) : null
+              }
             </>
           ) : (
             <div className="ms-2 text-muted mb-3">You haven't enrolled in any class.</div>

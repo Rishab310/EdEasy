@@ -207,6 +207,8 @@ exports.getDiscussions = (req, res, next) => {
 }
 
 exports.createAssignment = (req, res, next) => {
+    // console.log(req.body);
+
     const classCode = req.body.classCode;
     const name = req.body.name;
     const desc = req.body.desc;
@@ -234,7 +236,7 @@ exports.createAssignment = (req, res, next) => {
 
 exports.getAssignments = (req, res, next) => {
     const classCode = req.body.classCode;
-    Assignment.find({classCode: classCode}).sort({dueDate: -1})
+    Assignment.find({classCode: classCode}).sort({dueDate: 1})
         .then(results => {
             res.json(results);
         })

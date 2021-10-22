@@ -49,7 +49,7 @@ const ClassList = (props) => {
         return (
           <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
             <Link to={"/classes/"+sub.classCode} style={{maxWidth:"100%",minWidth:"100%"}}>
-              <div className="d-none d-md-flex card class-card card-width" style={backgroundStyle}>
+              <div className="d-none d-md-flex card class-card card-width mx-auto" style={backgroundStyle}>
                 <img src={card} className="mx-auto mt-3" height="130px"/>
                 <div className="card-body m-3 mx-md-4 rounded-3" style={{backgroundColor:"#fff"}}>
                   <h5 className="card-title heading-3 text-start mb-0">{sub.className}</h5>

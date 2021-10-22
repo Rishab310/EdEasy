@@ -10,18 +10,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT, selectUserData} from '../../../reduxSlices/authSlice';
 import Avatar from '@material-ui/core/Avatar';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-
+ 
 const Sidedrawer = ({ show, closeSidedrawer }) => {
   const [closing, setClosing] = useState(false);
-  const location = useLocation().pathname;
+  // const location = useLocation().pathname;
   const dispatch = useDispatch();
-  console.log(location);
-
+  // console.log(location);
+ 
   const closeSidedrawerUtil = () => {
     setClosing(true);
     setTimeout(() => closeSidedrawer(), 300);
   };
-
+ 
   useEffect(() => {
     return () => {
       setClosing(false);
@@ -85,7 +85,7 @@ const Sidedrawer = ({ show, closeSidedrawer }) => {
           <ul className="d-flex flex-column mt-3 side-drawer-links">
             <li >
               <Link
-                className={location === "/" ? "active" : ""}
+                // className={location === "/" ? "active" : ""}
                 onClick={closeSidedrawerUtil}
                 to="/"
               >
@@ -116,5 +116,5 @@ const Sidedrawer = ({ show, closeSidedrawer }) => {
     </>
   );
 };
-
+ 
 export default Sidedrawer;

@@ -8,7 +8,8 @@ import axios from 'axios';
 import { selectUserData} from '../../reduxSlices/authSlice';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import CreateAssignment from "./CreateAssignment";
-const Assignments = (props) => {
+
+const Assignments = ({classCode, adminEmail, isAssignmentCreated, setIsAssignmentCreated}) => {
     const storeData = useSelector(selectUserData);
     const [assignments, setAssignments] = useState([]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -16,19 +17,34 @@ const Assignments = (props) => {
     const [showCreate, setShowCreate] = useState(false);
     const toggleCreate = () => setShowCreate(prevState=>!prevState);
     const [loading, setLoading] = useState(false);
-    useEffect(async () => {
+
+    console.log("isAssignment Created: ", isAssignmentCreated);
+
+    const getAssignments = () => {
         setLoading(true);
         axios.post("http://localhost:5000/classes/getAssignments", {
-            classCode: props.classCode
+            classCode: classCode
         },{ headers: { Authorization: 'Bearer ' + storeData.token } }
         )
         .then((res)=>{
-            console.log(res.data);
             setAssignments(res.data);
             setLoading(false);
         })
         .catch(err => {console.log(err.response);setLoading(false);})
+    }
+
+    useEffect(async () => {
+        getAssignments();
     }, []);
+
+    useEffect(() => {
+        if (isAssignmentCreated) {
+            getAssignments();
+            window.scrollTo(0, 0);
+        }
+        setIsAssignmentCreated(false);
+    }, [isAssignmentCreated]);
+
     return (
         <div className="Assignments content-box py-3 px-4 pt-4 mb-5">
             {
@@ -41,10 +57,10 @@ const Assignments = (props) => {
                     {
                         assignments.map(assignment => {
                             return (
-                                <>
-                                    <a href={( storeData.userEmail=== props.adminEmail ) ?
-                                        "/classes/"+props.classCode+"/assignment/"+assignment.id+"/admin" :
-                                        "/classes/"+props.classCode+"/assignment/"+assignment.id
+                                <div key={assignment._id}>
+                                    <a href={( storeData.userEmail=== adminEmail ) ?
+                                        "/classes/"+classCode+"/assignment/"+assignment._id+"/admin" :
+                                        "/classes/"+classCode+"/assignment/"+assignment._id
                                     } >
                                         <div className="d-flex justify-content-between">
                                             <div className="Assignment_Date">
@@ -56,7 +72,7 @@ const Assignments = (props) => {
                                         </div>
                                         <div className="Assignment_Box d-flex flex-column justify-content-center p-1">
                                             <div className="Assignment_Img">
-                                                <img src="https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&k=20&m=1224851166&s=170667a&w=0&h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=" alt="" />
+                                                <img src="https://firebasestorage.googleapis.com/v0/b/edeasy-90583.appspot.com/o/assignments%2FWhatsApp%20Image%202021-10-17%20at%204.55.04%20AM.jpeg?alt=media&token=db78b70d-2b09-4cbb-b5ac-d47e2392bd31" alt="" />
                                                 <div className="Assignment_Name">
                                                     {assignment.name}
                                                 </div>
@@ -66,7 +82,7 @@ const Assignments = (props) => {
                                             </div>
                                         </div>
                                     </a>
-                                </>
+                                </div>
                             )
                         })
                     }
@@ -74,12 +90,12 @@ const Assignments = (props) => {
                  )
             } 
             {
-                ( storeData.userEmail=== props.adminEmail ) ? (
+                ( storeData.userEmail=== adminEmail ) ? (
                     <div className="floating-btn d-block d-md-none">
                         <Dropdown direction="up" isOpen={dropdownOpen} toggle={toggle}>
                             <DropdownToggle nav>
-                                <Fab style={{color:'white', backgroundColor:"#1B559C" }}>
-                                    <AddIcon style={{}} />
+                                <Fab style={{color:'white', backgroundColor:"#1B559C"}}>
+                                    <AddIcon style={{fontSize: "28px"}} />
                                 </Fab>
                             </DropdownToggle>
                             <DropdownMenu className="bg-transparent" style={{border:"none"}}>
@@ -91,7 +107,13 @@ const Assignments = (props) => {
                     </div>
                 ) : ("")
             }
-            <CreateAssignment isModalOpen={showCreate} toggleModal={toggleCreate} setShow={setShowCreate}/>
+            <CreateAssignment 
+                setIsAssignmentCreated={setIsAssignmentCreated} 
+                isModalOpen={showCreate} 
+                toggleModal={toggleCreate} 
+                setShow={setShowCreate}
+                classCode={classCode}
+            />
         </div>
     )
 }

@@ -185,7 +185,7 @@ body, #root, .app {
   box-shadow: 0 1px 16px 0 rgb(0, 0, 0, 8%) !important;
 }
 .card-width {
-  max-width:270px;
+  max-width:300px;
 }
 .card-width-mobile {
   min-width: 100% !important;

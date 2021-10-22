@@ -93,3 +93,9 @@
   font-weight: 400;
   font-size: 15px;
 }
+
+.dropdown-item.active, .dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: #fff !important;
+}

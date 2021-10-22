@@ -12,7 +12,7 @@ import axios from 'axios';
 import db, { storage } from '../../firebase';
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-const Discussion = ({classCode}) => {
+const Discussion = ({classCode, adminEmail}) => {
     const [discussionInput, setDiscussionInput] = useState("");
     const [posts, setPosts] = useState([]);
     const [fileInput, setFileInput] = useState();
@@ -32,7 +32,6 @@ const Discussion = ({classCode}) => {
             classCode: classCode
         },{ headers: { Authorization: 'Bearer ' + storeData.token } }
         ).then ((res) => {
-            console.log(res);
             setPosts(res.data.reverse());
         }).catch(err => console.log(err.response))
         setLoading(false);
@@ -174,7 +173,7 @@ const Discussion = ({classCode}) => {
                         {
                             posts.map(post => {
                                 return (
-                                    <div className="content-box px-3 py-2 my-3">
+                                    <div key={post._id} className="content-box px-3 py-2 my-3">
                                         <div className="d-flex">
                                             <div className="Avatar_Container">
                                                 <Avatar>
@@ -184,7 +183,7 @@ const Discussion = ({classCode}) => {
                                             <div className="Post_Author d-flex flex-column justify-content-center mx-3">
                                                 <div className="Post_creatorName">{post.creatorName}</div>
                                                 {
-                                                    post.creatorEmail === "123@gmail.com" ? (
+                                                    post.creatorEmail === adminEmail ? (
                                                         <div className="Post_AdminName">
                                                             Admin
                                                         </div>
