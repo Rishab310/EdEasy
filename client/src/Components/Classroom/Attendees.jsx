@@ -1,32 +1,28 @@
 import { Avatar } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { selectUserData } from '../../reduxSlices/authSlice';
 
-const Attendees = ({adminName, adminEmail, classId}) => {
+const Attendees = ({adminName, adminEmail, classCode}) => {
     const [attendees, setAttendees] = useState([]);
+    const userData = useSelector(selectUserData);
 
     useEffect(() => {
-        setAttendees([
-            {
-                name: "Virat Kohli",
-                email: "12@gmail.com"
-            },
-            {
-                name: "Rohit Sharma",
-                email: "122@gmail.com"
-            },
-            {
-                name: "Mohit Sharma",
-                email: "12312@gmail.com"
-            },
-            {
-                name: "Vishal Singh",
-                email: "1224@gmail.com"
-            },
-            {
-                name: "Chetan Jain",
-                email: "12212@gmail.com"
-            },
-        ])
+        axios.post("http://localhost:5000/classes/getAttendees", {
+            classCode: classCode
+        },
+        {
+            headers: {
+                Authorization: "Bearer " + userData.token
+            }   
+        })
+        .then(res => {
+            setAttendees(res.data);
+        })
+        .catch(err => {
+            console.log(err);
+        })
     }, [])
 
     return (
@@ -48,7 +44,7 @@ const Attendees = ({adminName, adminEmail, classId}) => {
             {
                 attendees.map(member => {
                     return (
-                        <div className="d-flex mt-3">
+                        <div key={member._id} className="d-flex mt-3">
                             <div className="Avatar_Container Avatar_Small">
                                 <Avatar> 
                                     {member.name ? member.name[0] : null}

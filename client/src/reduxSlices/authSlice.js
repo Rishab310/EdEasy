@@ -37,7 +37,6 @@ const authSlice = createSlice({
         },
 
         LOGOUT: (state, action) => {
-            console.log("Loggging");
             state.token = null;
             state.userId = null;
             state.userEmail = null;

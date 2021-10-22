@@ -50,7 +50,7 @@ const Header = () => {
               </DropdownItem>
               <DropdownItem className="my-0 ml-0 pl-3" divider />
               <DropdownItem className="my-0 ml-0 pl-3" onClick={() => {dispatch(LOGOUT())}}>
-                <Link className="py-1 mx-1 logout">Logout</Link>
+                <Link to="/" className="py-1 mx-1 logout">Logout</Link>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>

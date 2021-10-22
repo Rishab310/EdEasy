@@ -69,9 +69,6 @@ const CreateAssignment = (props) => {
     description: "",
     dueDate: "",
   });
-  
-  console.log(props);
-
 
   const [loading, setLoading] = useState(false);
   const [fileInput, setFileInput] = useState(null);

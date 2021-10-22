@@ -37,7 +37,7 @@ const Classroom = () => {
   const toggle = () => setShow(prevState=>!prevState);
   const [loading, setLoading] = useState(false);
   const [isAssignmentCreated, setIsAssignmentCreated] = useState(false);
-  const [reminderloading, setReminderLoading] = useState(false);
+  const [reminderLoading, setReminderLoading] = useState(false);
   
   useEffect(() => {
     if (!activeTab) setActiveTab("discussion");
@@ -58,7 +58,6 @@ const Classroom = () => {
       },{ headers: { Authorization: 'Bearer ' + storeData.token } }
       )
       .then((res)=>{
-        console.log(res);
         setClassName(res.data.className);
         setAdminName(res.data.adminName);
         setAdminEmail(res.data.adminEmail);
@@ -83,9 +82,10 @@ const Classroom = () => {
           setReminders(res.data);
           setReminderLoading(false);
         })
-        .catch(err => {console.log(err.response);setLoading(false);})
+        .catch(err => {console.log(err.response);setReminderLoading(false);})
     }
   }, [storeData.token])
+
   const deleteClass = () => {
     axios.delete("http://localhost:5000/classes/deleteClassroom", {
       data : { classCode: classCode }
@@ -189,13 +189,13 @@ const Classroom = () => {
                   <div className="content-box py-3 px-2 px-md-4 py-md-3 mb-3">
                     <h6 className="ms-1">Reminders</h6>
                     {
-                      reminders.map((reminder, index) => {
+                      reminders.slice(0, (seeAll ? reminders.length : 3)).map((reminder, index) => {
                         let style = {};
-                        if (index !== reminders.length - 1) {
+                        if (index !== reminders.length - 1 && !(!seeAll && index == 2)) {
                           style.borderBottom = "1px solid #ccc";
                         }
                         return (
-                          <a href={reminder.fileLink}>
+                          <a key={reminder._id} href={reminder.fileLink}>
                             <div
                               className="d-flex flex-column Reminder px-2 py-2 py-md-3"
                               style={style}
@@ -210,7 +210,12 @@ const Classroom = () => {
                         );
                       })
                     }
-                    {
+                    { 
+                      reminderLoading ? (
+                        <div className="d-flex justify-content-center mt-3">
+                          <CircularProgress size={30}/>
+                        </div>
+                      ) : 
                       reminders.length > 3 ? (
                         <div className="See_All d-flex justify-content-end">
                           {
