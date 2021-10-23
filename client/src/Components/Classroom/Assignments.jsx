@@ -47,10 +47,10 @@ const Assignments = ({classCode, adminEmail, isAssignmentCreated, setIsAssignmen
         <div className="Assignments content-box py-3 px-4 pt-4 mb-5">
             {
                 (loading) ? (
-                    <div className="col-12 d-flex justify-content-center align-items-center mt-5">
+                    <div className="col-12 d-flex justify-content-center align-items-center mt-4 mb-4">
                         <CircularProgress size={50} className="display-block"/>
                     </div>
-                ) : (
+                ) : assignments.length !== 0 ? (
                     <>
                     {
                         assignments.map(assignment => {
@@ -85,7 +85,7 @@ const Assignments = ({classCode, adminEmail, isAssignmentCreated, setIsAssignmen
                         })
                     }
                     </>
-                 )
+                 ) : <div>No assignments posted yet.</div>
             } 
             {
                 ( storeData.userEmail=== adminEmail ) ? (

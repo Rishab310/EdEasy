@@ -26,7 +26,9 @@ const App = () => {
         <Router>
           {
             userData.loading ? (
-              <CircularProgress />
+              <div className="col-12 d-flex justify-content-center align-items-center" style={{height:"100vh"}}>
+                <CircularProgress size={80} className="display-block"/>
+              </div>
             ) : userData.token ? (
               <Switch>
                 <Route path='/' component={Home} exact/>

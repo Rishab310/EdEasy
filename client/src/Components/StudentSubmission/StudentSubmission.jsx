@@ -194,8 +194,8 @@ const StudentSubmission = () => {
 
     if (pageLoading) {
         return (
-            <div className="d-flex justify-content-center mt-5">
-                <CircularProgress size={70} />
+            <div className="col-12 d-flex justify-content-center align-items-center" style={{height:"100vh"}}>
+                <CircularProgress size={80} className="display-block"/>
             </div>
         )
     }

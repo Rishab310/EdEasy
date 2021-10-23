@@ -21,5 +21,7 @@ router.post('/getAttendees', classroomController.getAttendees);
 router.post('/submitAssignment', classroomController.submitAssignment);
 router.post('/getSubmission', classroomController.getSubmission);
 router.delete('/deleteSubmission', classroomController.deleteSubmission);
+router.post('/getSubmissions', classroomController.getSubmissions);
+router.post('/setGrade', classroomController.setGrade);
 
 module.exports = router; 

@@ -26,6 +26,9 @@ const submissionSchema = new Schema({
         fileName: {
             type: String,
             required: true
+        },
+        grade: {
+            type: Number
         }
     },
     {
