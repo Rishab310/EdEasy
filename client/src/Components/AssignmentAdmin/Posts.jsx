@@ -15,7 +15,7 @@ const Posts = ({fetchPosts, posts, loading, paginate, assignmentName, dueDate}) 
     };
     
     const setGrade = (submissionId, grade)=>{
-        axios.post("http://localhost:5000/classes/setGrade", {
+        axios.post("https://edeasy-server.herokuapp.com/classes/setGrade", {
             submissionId: submissionId,
             grade: grade
         }, 

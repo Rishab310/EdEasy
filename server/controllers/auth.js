@@ -8,7 +8,7 @@ exports.signup = (req, res, next) => {
     const name = req.body.name;
     const contact = req.body.contact;
     let loadedUser;
-    console.log(req.body);
+
     User.findOne({email: email}).then(user => {
         console.log("User: ", user);
         if (user) {
@@ -36,7 +36,13 @@ exports.signup = (req, res, next) => {
                         'secretKey',
                         { expiresIn: '100h' }
                     );
-                    res.status(201).json({message: "User Created", userId: result._id, token: token});
+                    res.status(201).json({
+                        message: "User Created", 
+                        userId: result._id, 
+                        token: token, 
+                        userEmail: email, 
+                        userName: name
+                    });
                 })
                 .catch(err => {
                     next(err);

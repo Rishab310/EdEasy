@@ -67,7 +67,7 @@ const JoinClassroom = (props) => {
             setErrorMessage("Class Code must contain 6 digits")
         }
         else{
-            axios.post("http://localhost:5000/classes/joinClassroom", {
+            axios.post("https://edeasy-server.herokuapp.com/classes/joinClassroom", {
                 userEmail: storeData.userEmail,
                 classCode: classCode
             },{ headers: { Authorization: 'Bearer ' + storeData.token } }

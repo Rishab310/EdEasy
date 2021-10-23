@@ -26,7 +26,7 @@ mongoose.connect('mongodb+srv://edeasy123:edeasygsits%40123@cluster0.1cmwu.mongo
     useNewUrlParser: true 
 })
 .then(result => {
-    app.listen(5000);
+    app.listen(process.env.PORT || 5000);
     console.log("Server started at port 5000");
 })
 .catch(err => {

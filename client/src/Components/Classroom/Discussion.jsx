@@ -29,7 +29,7 @@ const Discussion = ({classCode, adminEmail}) => {
     
     const getDiscussion = async () => {
         setLoading(true);
-        await axios.post("http://localhost:5000/classes/getDiscussions",{
+        await axios.post("https://edeasy-server.herokuapp.com/classes/getDiscussions",{
             classCode: classCode
         },{ headers: { Authorization: 'Bearer ' + storeData.token } }
         ).then ((res) => {
@@ -54,7 +54,7 @@ const Discussion = ({classCode, adminEmail}) => {
             uploadTask.on('state_changed', console.log, console.error, () => {
                 storage.ref('discussion').child(fileName).getDownloadURL()
                   .then(firebaseURL => {
-                    return axios.post('http://localhost:5000/classes/createDiscussion', {
+                    return axios.post('https://edeasy-server.herokuapp.com/classes/createDiscussion', {
                         creatorEmail: userData.userEmail,
                         creatorName: userData.userName,
                         classCode: classCode,
@@ -85,7 +85,7 @@ const Discussion = ({classCode, adminEmail}) => {
                   })
               })
         } else {
-            axios.post('http://localhost:5000/classes/createDiscussion', {
+            axios.post('https://edeasy-server.herokuapp.com/classes/createDiscussion', {
                 creatorEmail: userData.userEmail,
                 creatorName: userData.userName,
                 classCode: classCode,

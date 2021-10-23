@@ -78,7 +78,7 @@ const CreateClassroom = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(values);
-        axios.post("http://localhost:5000/classes/createClassroom", {
+        axios.post("https://edeasy-server.herokuapp.com/classes/createClassroom", {
             adminName: storeData.userName,
             adminEmail: storeData.userEmail,
             desc: values.description,

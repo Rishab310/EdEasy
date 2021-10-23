@@ -12,7 +12,7 @@ const Attendees = ({adminName, adminEmail, classCode}) => {
 
     useEffect(() => {
         setLoading(true);
-        axios.post("http://localhost:5000/classes/getAttendees", {
+        axios.post("https://edeasy-server.herokuapp.com/classes/getAttendees", {
             classCode: classCode
         },
         {

@@ -53,7 +53,7 @@ const Classroom = () => {
   useEffect(() => {
     setLoading(true);
     // axios Request for getting className, adminName, adminEmail, year, subject
-    axios.post("http://localhost:5000/classes/getClassroom", {
+    axios.post("https://edeasy-server.herokuapp.com/classes/getClassroom", {
         classCode: classCode
       },{ headers: { Authorization: 'Bearer ' + storeData.token } }
       )
@@ -73,7 +73,7 @@ const Classroom = () => {
   useEffect(async () => {
     if (storeData.token){
       setReminderLoading(true);
-      axios.post("http://localhost:5000/classes/getReminders", {
+      axios.post("https://edeasy-server.herokuapp.com/classes/getReminders", {
           userEmail : storeData.userEmail
         },{ headers: { Authorization: 'Bearer ' + storeData.token } }
         )
@@ -87,7 +87,7 @@ const Classroom = () => {
   }, [storeData.token])
 
   const deleteClass = () => {
-    axios.delete("http://localhost:5000/classes/deleteClassroom", {
+    axios.delete("https://edeasy-server.herokuapp.com/classes/deleteClassroom", {
       data : { classCode: classCode }
       },{ headers: { Authorization: 'Bearer ' + storeData.token } }
       )

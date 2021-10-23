@@ -38,7 +38,7 @@ const Header = () => {
           <UncontrolledDropdown nav className="p-0">
             <DropdownToggle nav caret className="py-0">
               <div className="class-avatar pe-2">
-                <Avatar style={{height:"35px",width:"35px"}}>{userName.slice(0,1).toUpperCase()}</Avatar>
+                <Avatar style={{height:"35px",width:"35px"}}>{userName?.slice(0,1).toUpperCase()}</Avatar>
               </div>
             </DropdownToggle>
             <DropdownMenu className="my-0 py-0" right>

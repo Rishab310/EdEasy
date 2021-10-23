@@ -31,7 +31,7 @@ const AssignmentAdmin = () => {
 
     const fetchPosts = () =>{
         setPostLoading(true);
-        axios.post("http://localhost:5000/classes/getSubmissions", {
+        axios.post("https://edeasy-server.herokuapp.com/classes/getSubmissions", {
             assignmentId: assignmentId
         }, 
         {
