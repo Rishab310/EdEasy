@@ -20,8 +20,7 @@ const useStyles = makeStyles((theme) => ({
         "& .MuiInputLabel-formControl ": {
             top: "-6px",
             fontSize: "18px",
-            color: "gray",
-            // fontWeight: 'bold'
+            color: "gray"
         },
         "& .MuiInputBase-input::placeholder": {
             fontSize: "14px",
@@ -53,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const JoinClassroom = (props) => {
-    // let regex = "/^[+]?\d+$/";
     const classes = useStyles();
     const [classCode, setClassCode] = useState("");
     const [error,setError] = useState(false);
