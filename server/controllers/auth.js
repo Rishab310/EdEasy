@@ -7,7 +7,6 @@ exports.signup = (req, res, next) => {
     const password = req.body.password;
     const name = req.body.name;
     const contact = req.body.contact;
-    let loadedUser;
 
     User.findOne({email: email}).then(user => {
         console.log("User: ", user);
@@ -24,7 +23,6 @@ exports.signup = (req, res, next) => {
                         password: hashedPassword,
                         contact: contact
                     });
-                    loadedUser = user;
                     return user.save();
                 })
                 .then(result => {

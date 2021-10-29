@@ -28,6 +28,7 @@ exports.createClassroom = async (req, res, next) => {
         fieldName: req.body.fieldName,
         classLevel: req.body.classLevel
     })
+    
     newClassroom.save()
         .then(result => {
             User.findOne({email: req.body.adminEmail}).then(user => {

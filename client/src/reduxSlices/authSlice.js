@@ -104,7 +104,6 @@ export const ASYNC_LOGIN = userData => dispatch => {
     dispatch(SET_LOGGING(false));
   })
   .catch(err => {
-    console.log(err.message);
     console.log(err.response.data.message);
     dispatch(SET_ERROR(err.response.data.message));
     dispatch(SET_LOADING(false));

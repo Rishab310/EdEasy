@@ -6,7 +6,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
-  // console.log(pageNumbers)
+
   return (
     <nav>
       <ul style={{marginBottom:"100px"}}className='pagination justify-content-center mt-4'>

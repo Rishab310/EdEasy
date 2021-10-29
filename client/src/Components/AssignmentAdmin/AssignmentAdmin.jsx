@@ -13,14 +13,7 @@ import { useSelector } from 'react-redux';
 import { selectUserData } from '../../reduxSlices/authSlice';
 
 const AssignmentAdmin = () => {
-    const [posts, setPosts] = useState([
-        {name : "Jatin", fileName : "abc.pdf", fileLink : "url", submissionTime : 1633793320000, duedate: 1633793420000},
-        {name : "Manish", fileName : "abc.pdf", fileLink : "url", submissionTime : 1633879820000, duedate: 1633793420000},
-        {name : "Rishab", fileName : "abc.pdf", fileLink : "url", submissionTime : 1633879820000, duedate: 1633793420000},
-        {name : "Rishab", fileName : "abc.pdf", fileLink : "url", submissionTime : 1633879820000, duedate: 1633793420000 },
-        {name : "Rishab", fileName : "abc.pdf", fileLink : "url", submissionTime : 1633879820000, duedate: 1633793420000 },
-        {name : "Lorem", fileName : "a.pdf", fileLink : "url", submissionTime : 1633879820000, duedate: 1633793420000 },
-    ]);
+    const [posts, setPosts] = useState([]);
 
     const [postLoading, setPostLoading] = useState(false);
     const [assgnLoading, setAssgnLoading] = useState(false);
@@ -51,7 +44,7 @@ const AssignmentAdmin = () => {
 
     const getAssignment = () => {
         setAssgnLoading(true);
-        axios.post("http://localhost:5000/classes/getAssignment", {
+        axios.post("https://edeasy-server.herokuapp.com/classes/getAssignment", {
             assignmentId: assignmentId
         }, 
         {

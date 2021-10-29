@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import autosize from 'autosize';
 import { useSelector } from 'react-redux';
-// import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import DescriptionIcon from '@material-ui/icons/Description';
 import SubjectIcon from '@material-ui/icons/Subject';
 import ClassIcon from '@material-ui/icons/Class';
@@ -13,7 +12,6 @@ import clsx from "clsx";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { makeStyles } from "@material-ui/core/styles";
-// import { TextField } from '@material-ui/core';
 import { Modal, ModalBody} from "reactstrap";
 import axios from 'axios';
 import { selectUserData} from '../../reduxSlices/authSlice';
