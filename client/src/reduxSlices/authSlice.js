@@ -131,8 +131,10 @@ export const ASYNC_SIGNUP = authData => dispatch => {
     dispatch(SET_LOGGING(false));
   })
   .catch(err => {
-    console.log(err.response.data.message);
-    dispatch(SET_ERROR(err.response.data.message));
+    if (err.response && err.response.data) {
+      console.log(err.response.data.message);
+      dispatch(SET_ERROR(err.response.data.message));
+    }
     dispatch(SET_LOADING(false));
     dispatch(SET_LOGGING(false));
   })

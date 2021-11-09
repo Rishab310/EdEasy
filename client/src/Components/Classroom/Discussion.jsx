@@ -69,7 +69,6 @@ const Discussion = ({classCode, adminEmail}) => {
                   })
                   .then(res => {
                     console.log(res);
-                    // window.location.reload(false);
                     setDiscussionInput("");
                     setFileInput(null);
                     getDiscussion();
@@ -97,7 +96,6 @@ const Discussion = ({classCode, adminEmail}) => {
                 }
             })
             .then(() => {
-                // window.location.reload(false);
                 setDiscussionInput("");
                 setFileInput(null);
                 getDiscussion();
