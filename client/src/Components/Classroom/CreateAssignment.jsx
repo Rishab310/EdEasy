@@ -56,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
   textField: {
-    // backgroundColor:"white !important",
     width: "100%",
   },
 }));
@@ -145,7 +144,6 @@ const CreateAssignment = (props) => {
     }
     setValues({ ...values, [prop]: event.target.value });
   };
-  // console.log(values.dueDate)
 
   const handleSubmit = () => {
     setValues({
