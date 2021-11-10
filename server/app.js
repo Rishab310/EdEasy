@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 
@@ -12,6 +13,14 @@ const classroomRoutes = require('./routes/classroom');
 
 app.use('/auth', authRoutes);
 app.use('/classes', classroomRoutes);
+
+if ( process.env.NODE_ENV === "production" || 1) { 
+    app.use(express.static("../client/build")); 
+    const path = require("path"); 
+    app.get("*", (req, res) => { 
+        res.sendFile(path.resolve(__dirname, '../', 'client', 'build', 'index.html')); 
+    })
+}
 
 app.use((req, res, next) => {
     const err = new Error("Not Found");
