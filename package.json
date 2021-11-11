@@ -1,0 +1,21 @@
+{
+  "name": "edeasy",
+  "version": "1.0.0",
+  "description": "Deployed on heroku: https://edeasy.herokuapp.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/app.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rishab310/EdEasy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rishab310/EdEasy/issues"
+  },
+  "homepage": "https://github.com/Rishab310/EdEasy#readme"
+}
