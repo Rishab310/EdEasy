@@ -100,7 +100,7 @@ body, #root, .app {
 
 .Dashboard_Sidedrawer {
   padding: 25px 0;
-  display: block !important;
+  /* display: block !important; */
   position: fixed !important;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;

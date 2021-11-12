@@ -15,7 +15,11 @@ const ClassList = (props) => {
   const owned = props.owned;
   const enrolled = props.enrolled;
   const RenderClasses = () => {
+    
     return (  
+      ((owned.concat(enrolled)).length == 0 ) ? (
+        <div className="text-muted text-center">You haven't created or joined any class.</div>
+      ) : 
       (owned.concat(enrolled)).map((sub,index) => {
         let backgroundStyle ={};
         let card = Card1;
@@ -65,7 +69,10 @@ const ClassList = (props) => {
     );
   }
   const RenderClassesMobile = () => {
-    return (  
+    return (
+      ((activeTab=="1"?owned:enrolled).length == 0 ) ? (
+        <div className="text-muted text-center">You haven't {(activeTab=="1"?"created":"joined")} any class.</div>
+      ) :  
       (activeTab=="1"?owned:enrolled).map((sub,index) => {
         let backgroundStyle ={};
         let card = Card1;
