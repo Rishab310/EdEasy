@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Classroom.css";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 import MobileHeader from "../partials/Header/MobileHeader";
 import Header from "../partials/Header/Header";
 import FooterNav from "../partials/FooterNav/FooterNav";
@@ -22,6 +22,7 @@ import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 const Classroom = () => {
   const storeData = useSelector(selectUserData);
   const history = useHistory();
+  const location = useLocation().pathname;
   const classCode = useParams().id;
   const [className, setClassName] = useState();
   const [adminName, setAdminName] = useState();
@@ -82,7 +83,10 @@ const Classroom = () => {
           setReminders(res.data);
           setReminderLoading(false);
         })
-        .catch(err => {console.log(err.response);setReminderLoading(false);})
+        .catch(err => {
+          console.log(err.response);
+          setReminderLoading(false);
+        })
     }
   }, [storeData.token])
 
@@ -97,6 +101,7 @@ const Classroom = () => {
       })
       .catch(err => {console.log(err.response);})
   }
+
   return (
     <>
     { (!loading) ? ( 
@@ -195,7 +200,7 @@ const Classroom = () => {
                           style.borderBottom = "1px solid #ccc";
                         }
                         return (
-                          <a key={reminder._id} href={reminder.fileLink}>
+                          <a key={reminder._id} href={location + "/assignment/" + reminder._id}>
                             <div
                               className="d-flex flex-column Reminder px-2 py-2 py-md-3"
                               style={style}
