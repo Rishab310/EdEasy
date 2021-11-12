@@ -83,7 +83,7 @@ const LoginModal = (props) => {
   const dispatch = useDispatch();
   const selectorData = useSelector(selectUserData);
   const error = selectorData.error;
-  const loading = selectorData.loading;
+  const logging = selectorData.logging;
   const [contactError, setContactError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -173,8 +173,7 @@ const LoginModal = (props) => {
           email: values.email,
           password: values.password,
           name: values.name,
-          contact:values.contact,
-          logging: true,
+          contact:values.contact
         })); 
     }
   };
@@ -308,9 +307,9 @@ const LoginModal = (props) => {
                     </FormControl>
                     <div className="d-flex flex-column align-items-center">
                       {
-                        loading ? <CircularProgress className="display-block"/> : error ? <p className="text-center text-danger mb-0 mt-3">{error}</p> : null
+                        logging ? <CircularProgress className="display-block"/> : error ? <p className="text-center text-danger mb-0 mt-3">{error}</p> : null
                       }
-                      <button onClick={formSubmitHandler} className="form-btn me-auto">
+                      <button onClick={formSubmitHandler} className="form-btn mx-auto">
                         Sign In
                       </button>
                     </div>
@@ -438,9 +437,9 @@ const LoginModal = (props) => {
                     </FormControl>
                     <div className="d-flex flex-column align-items-center">
                     {
-                      loading ? <CircularProgress /> : error ? <p className="text-center text-danger mb-0 mt-3">{error}</p> : null
+                      logging ? <CircularProgress /> : error ? <p className="text-center text-danger mb-0 mt-3">{error}</p> : null
                     }
-                      <button onClick={formSubmitHandler} className="form-btn me-auto">
+                      <button onClick={formSubmitHandler} className="form-btn mx-auto">
                         Sign Up
                       </button>
                     </div>

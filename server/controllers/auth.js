@@ -11,7 +11,7 @@ exports.signup = (req, res, next) => {
     User.findOne({email: email}).then(user => {
         console.log("User: ", user);
         if (user) {
-            var err = new Error('Email already exists');
+            const err = new Error('Email already exists');
             err.statusCode = 403;
             return next(err);
         } else {
