@@ -60,7 +60,7 @@ export const AUTOLOGIN = () => async dispatch => {
     const userId = localStorage.getItem('EdEasy__userId');
     const userName = localStorage.getItem('EdEasy__userName');
     const userEmail = localStorage.getItem('EdEasy__userEmail');
-    await axios.post("https://edeasy-server.herokuapp.com/auth/verifyToken",{ token: token })
+    await axios.post("https://edeasy.herokuapp.com/auth/verifyToken",{ token: token })
     .then((res)=>{
       dispatch(LOGIN({
         token: token,
@@ -89,7 +89,7 @@ export const ASYNC_LOGIN = userData => dispatch => {
     email: userData.email,
     password: userData.password,
   }
-  let URL = "https://edeasy-server.herokuapp.com/auth/signin";
+  let URL = "https://edeasy.herokuapp.com/auth/signin";
   // console.log(authData);
   axios.post(URL, authData)
   .then(response => {
@@ -119,7 +119,7 @@ export const ASYNC_SIGNUP = authData => dispatch => {
       
   dispatch(SET_LOADING(true));
 
-  let URL = "https://edeasy-server.herokuapp.com/auth/signup";
+  let URL = "https://edeasy.herokuapp.com/auth/signup";
   axios.post(URL, authData)
   .then(response => {
     const token = response.data.token;

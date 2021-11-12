@@ -31,7 +31,7 @@ const Dashboard = () => {
     if (storeData.token){
       setLoading(true);
       console.log(storeData);
-      await axios.post("https://edeasy-server.herokuapp.com/classes/getClassrooms", {
+      await axios.post("https://edeasy.herokuapp.com/classes/getClassrooms", {
         userEmail: storeData.userEmail,
         type:"owned"
       },{ headers: { Authorization: 'Bearer ' + storeData.token } }
@@ -41,7 +41,7 @@ const Dashboard = () => {
         setOwned(res.data);
       })
       .catch(err => console.log(err));
-      await axios.post("https://edeasy-server.herokuapp.com/classes/getClassrooms", {
+      await axios.post("https://edeasy.herokuapp.com/classes/getClassrooms", {
         userEmail: storeData.userEmail,
         type:"enrolled"
       },{ headers: { Authorization: 'Bearer ' + storeData.token } }

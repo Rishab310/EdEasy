@@ -24,7 +24,7 @@ const AssignmentAdmin = () => {
 
     const fetchPosts = () =>{
         setPostLoading(true);
-        axios.post("https://edeasy-server.herokuapp.com/classes/getSubmissions", {
+        axios.post("https://edeasy.herokuapp.com/classes/getSubmissions", {
             assignmentId: assignmentId
         }, 
         {
@@ -44,7 +44,7 @@ const AssignmentAdmin = () => {
 
     const getAssignment = () => {
         setAssgnLoading(true);
-        axios.post("https://edeasy-server.herokuapp.com/classes/getAssignment", {
+        axios.post("https://edeasy.herokuapp.com/classes/getAssignment", {
             assignmentId: assignmentId
         }, 
         {

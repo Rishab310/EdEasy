@@ -15,8 +15,7 @@ app.use('/auth', authRoutes);
 app.use('/classes', classroomRoutes);
 
 if ( process.env.NODE_ENV === "production" || 1) { 
-    app.use(express.static("../client/build")); 
-    const path = require("path"); 
+    app.use(express.static(path.join(__dirname, "../client/build"))); 
     app.get("*", (req, res) => { 
         res.sendFile(path.resolve(__dirname, '../', 'client', 'build', 'index.html')); 
     })
@@ -43,6 +42,7 @@ mongoose.connect('mongodb+srv://edeasy123:edeasygsits%40123@cluster0.1cmwu.mongo
 .then(result => {
     app.listen(process.env.PORT || 5000);
     console.log("Server started at port 5000");
+    console.log("http://localhost:5000");
 })
 .catch(err => {
     console.log(err);

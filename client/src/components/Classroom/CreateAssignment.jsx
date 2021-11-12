@@ -91,7 +91,7 @@ const CreateAssignment = (props) => {
         .getDownloadURL()
         .then((firebaseURL) => {
           return axios.post(
-            "https://edeasy-server.herokuapp.com/classes/createAssignment",
+            "https://edeasy.herokuapp.com/classes/createAssignment",
             {
               classCode: props.classCode,
               name: values.name,
