@@ -11,13 +11,13 @@ import Attendees from "./Attendees";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import VideocamIcon from "@material-ui/icons/Videocam";
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button} from 'reactstrap';
 import CreateAssignment from "./CreateAssignment";
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { selectUserData} from '../../reduxSlices/authSlice';
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
  
 const Classroom = () => {
   const storeData = useSelector(selectUserData);

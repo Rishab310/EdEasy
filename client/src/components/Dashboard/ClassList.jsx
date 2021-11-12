@@ -141,7 +141,7 @@ const ClassList = (props) => {
           </div>
         </div>
       </div>
-      <div className="row my-3 px-0 ms-0 d-block d-md-none">
+      <div className="row my-3 ms-0 d-block d-md-none">
         <div className="heading-2 ps-4">Classes</div>
         <div className="classes-navs ps-4">
           <button
