@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
 import ClassIcon from '@material-ui/icons/Class';
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -10,6 +10,7 @@ import { Modal, ModalBody} from "reactstrap";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { selectUserData} from '../../reduxSlices/authSlice';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,9 +55,17 @@ const useStyles = makeStyles((theme) => ({
 const JoinClassroom = (props) => {
     const classes = useStyles();
     const [classCode, setClassCode] = useState("");
-    const [error,setError] = useState(false);
+    const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const storeData = useSelector(selectUserData);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if (!props.isModalOpen) {
+            setError(false);
+            setClassCode("");
+        }
+    }, [props.isModalOpen])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -65,6 +74,7 @@ const JoinClassroom = (props) => {
             setErrorMessage("Class Code must contain 6 digits")
         }
         else{
+            setLoading(true);
             axios.post("https://edeasy.herokuapp.com/classes/joinClassroom", {
                 userEmail: storeData.userEmail,
                 classCode: classCode
@@ -79,11 +89,13 @@ const JoinClassroom = (props) => {
                 setErrorMessage("");
                 window.location.reload(false);
                 props.setShow(false);
+                setLoading(false);
             })
             .catch(err => {
                 setError(true);
                 console.log(err.response);
                 setErrorMessage(err.response.data.message);
+                setLoading(false);
             });
         }
     }
@@ -122,9 +134,19 @@ const JoinClassroom = (props) => {
                                     }
                                     />
                             </FormControl>
-                            <FormControl className={clsx(classes.margin, classes.textField)}>
-                                {error && <div className='error-msg text-danger'>{errorMessage}</div>}
-                            </FormControl>
+                            
+
+                            {
+                                loading ? (
+                                    <div className="d-flex justify-content-center mt-2 mb-3">
+                                        <CircularProgress />
+                                    </div>
+                                ) : error ? (
+                                    <FormControl className={clsx(classes.margin, classes.textField)}>
+                                        {error && <div className='error-msg text-danger'>{errorMessage}</div>}
+                                    </FormControl>
+                                ) : null
+                            }
                             
                             {error ? 
                                 <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-2 form-btn disabled">Join</button> :

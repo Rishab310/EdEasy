@@ -13,9 +13,7 @@ import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from
  
 const Sidedrawer = ({ show, closeSidedrawer }) => {
   const [closing, setClosing] = useState(false);
-  // const location = useLocation().pathname;
   const dispatch = useDispatch();
-  // console.log(location);
  
   const closeSidedrawerUtil = () => {
     setClosing(true);

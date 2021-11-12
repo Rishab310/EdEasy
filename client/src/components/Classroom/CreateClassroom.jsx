@@ -15,6 +15,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Modal, ModalBody} from "reactstrap";
 import axios from 'axios';
 import { selectUserData} from '../../reduxSlices/authSlice';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -67,6 +68,7 @@ const CreateClassroom = (props) => {
         classLevel: "",
         meetLink: ""
     });
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const storeData = useSelector(selectUserData);
     const handleChange = (prop) => (event) => {
@@ -75,7 +77,7 @@ const CreateClassroom = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(values);
+        setLoading(true);
         axios.post("https://edeasy.herokuapp.com/classes/createClassroom", {
             adminName: storeData.userName,
             adminEmail: storeData.userEmail,
@@ -90,9 +92,13 @@ const CreateClassroom = (props) => {
             console.log(res);
             console.log("Created");
             props.setShow(false);
-            window.location.reload(false);
+            // window.location.reload(false);
+            setLoading(false);
         })
-        .catch(err => setError(err.response.data.message));
+        .catch(err => {
+            setError(err.response.data.message);
+            setLoading(false);
+        });
     }
     useEffect(() => {
         autosize(TextArea);
@@ -203,6 +209,7 @@ const CreateClassroom = (props) => {
                                     id="meetlink"
                                     type="text"
                                     margin="normal"
+                                    required
                                     value={values.meetLink}
                                     onChange={handleChange("meetLink")}
                                     startAdornment={
@@ -215,6 +222,14 @@ const CreateClassroom = (props) => {
                             <FormControl className={clsx(classes.margin, classes.textField)}>
                                 {error && <div className='error-msg text-danger'>{error}</div>}
                             </FormControl>
+
+                            {
+                                loading ? (
+                                    <div className="d-flex justify-content-center mb-4">
+                                        <CircularProgress />
+                                    </div>
+                                ) : null
+                            }
 
                             <button type="submit" style={{display:"flex",justifyContent:"center"}} className="m-auto mt-2 form-btn">Create</button> 
                         </form>
