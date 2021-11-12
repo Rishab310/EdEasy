@@ -67,7 +67,11 @@ const Classroom = () => {
         setMeetLink(res.data.meetLink);
         setLoading(false);
       })
-      .catch(err => {console.log(err.response);setLoading(false);})
+      .catch(err => {
+        console.log(err.response);
+        setLoading(false);
+        history.goBack();
+      })
       
   }, []);
  

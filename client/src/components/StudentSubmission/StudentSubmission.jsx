@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import './StudentSubmission.css';
 import Avatar from '@material-ui/core/Avatar';
 import Header from '../partials/Header/Header';
@@ -27,6 +27,7 @@ const StudentSubmission = () => {
     const [loading, setLoading] = useState(false);
     const [assignmentDetails, setAssignmentDetails] = useState({});
     const [pageLoading, setPageLoading] = useState(false);
+    const history = useHistory();
 
     const getSubmission = () => {
         setLoading(true);
@@ -67,6 +68,7 @@ const StudentSubmission = () => {
         .catch(err => {
             console.log(err);
             setPageLoading(false);
+            history.replace('/classes/' + classCode);
         })
     }
 
