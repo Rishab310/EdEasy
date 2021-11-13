@@ -462,3 +462,21 @@ label {
     right: 15px !important;
     z-index: 5 !important;
 }
+
+.Posts {
+    margin-bottom: 60px;
+}
+
+.Assignments {
+    margin-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+    .Posts {
+        margin-bottom: 120px;
+    }
+
+    .Assignments {
+        margin-bottom: 100px !important;
+    }
+}

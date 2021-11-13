@@ -92,7 +92,7 @@ const CreateClassroom = (props) => {
             console.log(res);
             console.log("Created");
             props.setShow(false);
-            // window.location.reload(false);
+            window.location.reload(false);
             setLoading(false);
         })
         .catch(err => {

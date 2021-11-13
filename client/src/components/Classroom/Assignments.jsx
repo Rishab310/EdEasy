@@ -44,7 +44,7 @@ const Assignments = ({classCode, adminEmail, isAssignmentCreated, setIsAssignmen
     }, [isAssignmentCreated]);
 
     return (
-        <div className="Assignments content-box py-3 px-4 pt-4 mb-5">
+        <div className="Assignments content-box py-3 px-4 pt-4">
             {
                 (loading) ? (
                     <div className="col-12 d-flex justify-content-center align-items-center mt-4 mb-4">
