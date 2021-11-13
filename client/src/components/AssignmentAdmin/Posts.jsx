@@ -1,4 +1,5 @@
-import React,{useState} from 'react'
+import React,{useState} from 'react';
+import { getDateFromTimestamp, getTimeFromTimestamp } from '../../utilities';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -56,14 +57,24 @@ const Posts = ({fetchPosts, posts, loading, paginate, assignmentName, dueDate}) 
     return (
         <div>
             <div className="container">
-                <div className="row justify-content-center">
-                    <div className="head col-6 d-flex mt-5 p-2 justify-content-center">
-                        {assignmentName}
+                <div className="row justify-content-center px-0">
+                    <div className="head2 col-9 d-flex flex-column mt-5 py-2 mx-0 px-0">
+                        <div className="d-flex justify-content-between">
+                            <div className="mb-0 my-1 mb-1 fs-4">{assignmentName}</div>
+                            <div className="pt-3 d-flex">
+                                <div className="text-muted me-2 fw-normal Classroom_DueDate">
+                                    {getDateFromTimestamp(dueDate)}
+                                </div>
+                                <div className="text-muted fw-normal Classroom_DueDate">
+                                    {getTimeFromTimestamp(dueDate)}
+                                </div>
+                            </div>
+                        </div>
+                        <hr className="d-flex mt-0 HorizontalLine"></hr>
                     </div>
                 </div>
             </div> 
             <div className="navtab">
-
                 <div className="bloc-tabs">
                     <button
                         className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
@@ -87,17 +98,14 @@ const Posts = ({fetchPosts, posts, loading, paginate, assignmentName, dueDate}) 
                 <div className="content-tabs">
                     <div className={"content  active-content"}>
                         <h2>{posts.length} submission{posts.length > 1 ? "s" : null}</h2> 
-                        <hr />
+                        <hr className="HorizontalLine" />
                         <div className="container">
                             <div className="row">
-
                                 {posts.map(post=>{
-
                                     return(
                                     <div className="head d-flex mt-3 p-2 ">
                                         <div className="adjust col-4 ps-3">
                                                 <strong>{post.studentName}</strong>
-                                                {/* {console.log(posts)} */}
                                             </div>
                                             <div className="col-4 d-flex align-tems-center justify-content-center">
                                                 <a target="_blank" className="adjust blue-link" href={post.fileLink}>{post.fileName}</a>
@@ -128,8 +136,6 @@ const Posts = ({fetchPosts, posts, loading, paginate, assignmentName, dueDate}) 
                             </div>
                             </div>
                         </div>
-
-                        
                     </div>
             </div>
         </div>

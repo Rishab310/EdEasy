@@ -6,10 +6,15 @@
 }
 .head{ 
     display: flex;
-    align-items: center;
-    background-color: #E6E6E6;    ;
+    background-color: #ffffff;    ;
     border: 1px solid rgb(202, 202, 202);
     border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.head2{ 
+    display: flex;
     font-weight: bold;
     font-size: 18px;
 }
@@ -142,4 +147,9 @@ button {
 
 .dropdown-menu {
     min-width: 3.8rem !important;
+}
+
+.Classroom_DueDate {
+    line-height: 1;
+    font-size: 16px;
 }
