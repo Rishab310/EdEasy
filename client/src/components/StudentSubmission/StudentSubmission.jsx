@@ -263,7 +263,7 @@ const StudentSubmission = () => {
                             </a>
                         </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-5 col-lg-4 Upload_Options">
                         {uploadState == 2 ?
                             <div className="col d-flex mt-4 pt-3 justify-content-between border-bot fs-5">
                                 <div>

@@ -49,6 +49,12 @@
     width: 40% !important;
 }
 
+@media (max-width: 992px) {
+    .Classroom_Body_student {
+        width: 50% !important;
+    }
+}
+
 .submit_area{
     display: flex;
     border-bottom: 1px solid black;
@@ -100,5 +106,11 @@
     }
     .Assignment_Date_student, .Assignment_Time_student {
         font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .Upload_Options {
+        margin-bottom: 100px;
     }
 }

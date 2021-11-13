@@ -70,7 +70,7 @@ const Classroom = () => {
       .catch(err => {
         console.log(err.response);
         setLoading(false);
-        history.goBack();
+        history.replace('/classes');
       })
       
   }, []);
@@ -204,7 +204,7 @@ const Classroom = () => {
                           style.borderBottom = "1px solid #ccc";
                         }
                         return (
-                          <a key={reminder._id} href={location + "/assignment/" + reminder._id}>
+                          <a key={reminder._id} href={"/classes/" + reminder.classCode + "/assignment/" + reminder._id}>
                             <div
                               className="d-flex flex-column Reminder px-2 py-2 py-md-3"
                               style={style}

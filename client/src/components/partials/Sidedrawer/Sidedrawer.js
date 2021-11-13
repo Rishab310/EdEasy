@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import "./Sidedrawer.css";
 import Backdrop from "../Backdrop/Backdrop";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import LoginModal from '../LoginModal/LoginModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT, selectUserData} from '../../../reduxSlices/authSlice';
-import Avatar from '@material-ui/core/Avatar';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
  
 const Sidedrawer = ({ show, closeSidedrawer }) => {
@@ -90,15 +88,6 @@ const Sidedrawer = ({ show, closeSidedrawer }) => {
                 Home
               </Link>
             </li>
-            {/* <li >
-              <Link
-                className={location === "/about" ? "active" : ""}
-                onClick={closeSidedrawerUtil}
-                to="/about"
-              >
-                About
-              </Link>
-            </li> */}
             {
               (token) ? (
                 <li>
