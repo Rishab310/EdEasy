@@ -25,8 +25,7 @@ const Home = () => {
               <div>
                 <h2>Enhance your learning with</h2>
                 <h1><strong>EdEasy</strong></h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.,<br/> 
-                  Fuga provident eaque facere, sunt sint quis nostrum dolorum.</p>
+                <p>Brings the benefits of paperless sharing, assessment,<br/> and digital collaboration to classrooms.</p>
                   {
                     (userData.token) ? 
                       (<Link to="classes" className="btn-get-started scrollto">Get Started</Link>) : 
