@@ -3,177 +3,96 @@ import { getDateFromTimestamp, getTimeFromTimestamp } from "../../../utilities";
 import './MobileReminders.css'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { useHistory } from "react-router-dom";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { selectUserData} from '../../../reduxSlices/authSlice';
 
 const MobileReminder = () => {
     let history = useHistory();
-    // var browserHistory = ReactRouter.browserHistory;
+    const storeData = useSelector(selectUserData);
     const [reminders, setReminders] = useState([]);
     const [seeAll, setSeeAll] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [reminderLoading, setReminderLoading] = useState(false);
 
-    useEffect(() => {
-        if (seeAll) {
-            setReminders([
-                {
-                    title: "OS Test",
-                    dueDate: 1634904000000,
-                    link: "http://localhost:3000/assgn/12434",
-                },
-                {
-                    title: "DBMS Quiz",
-                    dueDate: 1633878709000,
-                    link: "http://localhost:3000/assgn/12435",
-                },
-                {
-                    title: "CN Assignment1",
-                    dueDate: 1633792309000,
-                    link: "http://localhost:3000/assgn/12464",
-                },
-                {
-                    title: "CN Assignment1",
-                    dueDate: 1633792309000,
-                    link: "http://localhost:3000/assgn/12464",
-                },
-                {
-                    title: "CN Assignment1",
-                    dueDate: 1633792309000,
-                    link: "http://localhost:3000/assgn/12464",
-                },
-                {
-                    title: "CN Assignment1",
-                    dueDate: 1633792309000,
-                    link: "http://localhost:3000/assgn/12464",
-                },
-                {
-                    title: "CN Assignment1",
-                    dueDate: 1633792309000,
-                    link: "http://localhost:3000/assgn/12464",
-                },
-                {
-                    title: "OS Test",
-                    dueDate: 1634904000000,
-                    link: "http://localhost:3000/assgn/12434",
-                },
-                {
-                    title: "DBMS Quiz",
-                    dueDate: 1633878709000,
-                    link: "http://localhost:3000/assgn/12435",
-                },
-                {
-                    title: "CN Assignment1",
-                    dueDate: 1633792309000,
-                    link: "http://localhost:3000/assgn/12464",
-                },
-                {
-                    title: "OS Test",
-                    dueDate: 1634904000000,
-                    link: "http://localhost:3000/assgn/12434",
-                },
-                {
-                    title: "DBMS Quiz",
-                    dueDate: 1633878709000,
-                    link: "http://localhost:3000/assgn/12435",
-                },
-                {
-                    title: "CN Assignment1",
-                    dueDate: 1633792309000,
-                    link: "http://localhost:3000/assgn/12464",
-                }
-            ]);
-        } else {
-            setReminders([
-                {
-                    title: "OS Test",
-                    dueDate: 1634904000000,
-                    link: "http://localhost:3000/assgn/12434",
-                },
-                {
-                    title: "DBMS Quiz",
-                    dueDate: 1633878709000,
-                    link: "http://localhost:3000/assgn/12435",
-                },
-                {
-                    title: "CN Assignment1",
-                    dueDate: 1633792309000,
-                    link: "http://localhost:3000/assgn/12464",
-                },
-                {
-                    title: "OS Test",
-                    dueDate: 1634904000000,
-                    link: "http://localhost:3000/assgn/12434",
-                },
-                {
-                    title: "DBMS Quiz",
-                    dueDate: 1633878709000,
-                    link: "http://localhost:3000/assgn/12435",
-                },
-                {
-                    title: "CN Assignment1",
-                    dueDate: 1633792309000,
-                    link: "http://localhost:3000/assgn/12464",
-                },
-                {
-                    title: "OS Test",
-                    dueDate: 1634904000000,
-                    link: "http://localhost:3000/assgn/12434",
-                },
-                {
-                    title: "DBMS Quiz",
-                    dueDate: 1633878709000,
-                    link: "http://localhost:3000/assgn/12435",
-                },
-                {
-                    title: "CN Assignment1",
-                    dueDate: 1633792309000,
-                    link: "http://localhost:3000/assgn/12464",
-                }
-            ]);
+    useEffect(async () => {
+        if (storeData.token){
+          setReminderLoading(true);
+          axios.post("https://edeasy.herokuapp.com/classes/getReminders", {
+              userEmail : storeData.userEmail
+            },{ headers: { Authorization: 'Bearer ' + storeData.token } }
+            )
+            .then((res)=>{
+              // console.log(res);
+              setReminders(res.data);
+              setReminderLoading(false);
+            })
+            .catch(err => {
+              console.log(err.response);
+              setReminderLoading(false);
+            })
         }
-    }, [seeAll])
+      }, [storeData.token])
 
     return ( 
-        <div>
+        <>
             <div className="Reminders_mobile d-flex flex-column justify-content-center align-items-center mx-auto my-3">
                 <div className="content-box py-3 px-3 px-md-4 py-md-3 mb-3" style={{width:"100%"}}>
                     <ArrowBackIosIcon onClick={history.goBack} style={{fontSize:30, position:"absolute", marginLeft:"5px"}}/>
                     <h6 className="d-flex justify-content-center ms-1 mb-4 fs-5">Reminders</h6>
                     {
-                        reminders.map((reminder, index) => {
+                        reminders.slice(0, (seeAll ? reminders.length : 3)).map((reminder, index) => {
                             let style = {};
-                            if (index !== reminders.length - 1) {
-                                style.borderBottom = "1px solid #ccc";
+                            if (index !== reminders.length - 1 && !(!seeAll && index == 2)) {
+                              style.borderBottom = "1px solid #ccc";
                             }
                             return (
-                                <a href={reminder.link}>
+                                <a key={reminder._id} href={"/classes/" + reminder.classCode + "/assignment/" + reminder._id}>
                                     <div
-                                        className="d-flex justify-content-between Reminder px-2 py-3 py-md-3"
-                                        style={style}
+                                        className="d-flex Reminder px-2 py-2"
+                                        style={{justifyContent:'space-between'}}
                                     >
-                                        <div className="Reminder_Title_mobile">{reminder.title}</div>
+                                        <div className="Reminder_Title_mobile">{reminder.name}</div>
                                         <div className="Reminder_Desc_mobile">
                                             {getTimeFromTimestamp(reminder.dueDate)} -{" "}
                                             {getDateFromTimestamp(reminder.dueDate)}
                                         </div>
                                     </div>
+                                    <hr style={{margin:'0.5rem'}}></hr>
                                 </a>
                             );
                         })
                     }
-                    <div className="See_All d-flex justify-content-end">
-                        {
-                            seeAll ? (
-                                <div onClick={() => setSeeAll(false)}>
+                    {
+                        reminderLoading ? (
+                            <div className="d-flex justify-content-center mt-3">
+                            <CircularProgress size={30}/>
+                            </div>
+                        ) : 
+                        reminders.length > 3 ? (
+                            <div className="See_All d-flex justify-content-end">
+                              {
+                                seeAll ? (
+                                  <div onClick={() => setSeeAll(false)}>
                                     See Less
-                                </div>
-                            ) : (
-                                <div onClick={() => setSeeAll(true)}>
+                                  </div>
+                                ) : (
+                                  <div onClick={() => setSeeAll(true)}>
                                     See All
-                                </div>
-                            )
-                        }
-                    </div>
+                                  </div>
+                                )
+                              }
+                            </div>
+                          ) : reminders.length == 0 ? (
+                            <div className="ms-1 mt-2 d-flex justify-content-center" style={{fontSize: "13px", color: "gray"}}>
+                              No work due!
+                            </div>
+                      ) : null
+                    }
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
