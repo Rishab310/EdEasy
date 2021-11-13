@@ -247,8 +247,8 @@ const StudentSubmission = () => {
                     </div>
                 </div>
                 <div className="row justify-content-between mt-3">
-                    <div className="Classroom_Body_student mt-4 m-0 p-0">
-                        <div className="Assignments content-box py-3 px-4 pt-4 justify-content-around">
+                    <div className="Classroom_Body_student mt-4 m-0 px-2">
+                        <div className="Assignments_student content-box py-3 px-sm-4 px-3 pt-sm-4 pt-3 justify-content-around">
                             <a href={assignmentDetails.fileLink} target="_blank">
                                 <div className="d-flex flex-column">
                                     <div className="d-flex justify-content-between">

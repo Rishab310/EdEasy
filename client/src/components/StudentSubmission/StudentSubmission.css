@@ -6,6 +6,9 @@
     border-radius: 6px;
     margin-top: 20px;
 }
+.Assignments_student{
+    margin-bottom: 40px;
+}
 .Avatar_Container .MuiAvatar-root {
     background-color: #1B559C !important;
 }
@@ -92,6 +95,9 @@
     }
     .Assignment_Date_student, .Assignment_Time_student {
         font-size: 13px;
+    }
+    .Assignment_Box_student{
+        margin-top: 10px;
     }
 }
 .button_hover:hover{
