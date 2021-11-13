@@ -17,17 +17,17 @@
 .Reminder_Title_mobile {
     font-size: 17px;
     color: #808080;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .Reminder_Desc_mobile {
+    margin-top: 4px;
     font-size: 12px;
     color: #373333;
 }
 
-@media screen and (min-width: 576px) {
+@media(min-width: 576px) {
     .Reminders_mobile {
-
         display: none;
     }
 }

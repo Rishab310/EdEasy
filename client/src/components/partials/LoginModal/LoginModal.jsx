@@ -210,7 +210,7 @@ const LoginModal = (props) => {
                 <h5 className="font-weight-bold pb-0 pt-2">Sign Up</h5>
               </button>
             </div>
-          </div>
+          </div> 
           <TabContent activeTab={activeTab} className="mt-4">
             <TabPane tabId="1">
               {/* SIGN IN */}
