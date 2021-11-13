@@ -114,3 +114,8 @@
         margin-bottom: 100px;
     }
 }
+
+.ClassHeading {
+    text-decoration: none;
+    color: black !important;
+}

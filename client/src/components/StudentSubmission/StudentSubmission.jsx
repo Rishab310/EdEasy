@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom';
 import './StudentSubmission.css';
-import Avatar from '@material-ui/core/Avatar';
 import Header from '../partials/Header/Header';
 import MobileHeader from '../partials/Header/MobileHeader';
 import FooterNav from '../partials/FooterNav/FooterNav';
@@ -9,7 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { getDateFromTimestamp, getTimeFromTimestamp } from '../../utilities';
 
-import db, { storage } from '../../firebase';
+import { storage } from '../../firebase';
 import axios from 'axios';
 
 import { useSelector } from 'react-redux';
@@ -22,11 +21,13 @@ const StudentSubmission = () => {
     const [uploadState, setUploadState] = useState(0);
     const assignmentId = useParams().assignId;
     const classCode = useParams().id;
-    const [submissionDetails, setSubmissionDetails] = useState(null);
+    const [submissionDetails, setSubmissionDetails] = useState({});
+    const [classDetails, setClassDetails] = useState({});
     const userData = useSelector(selectUserData);
     const [loading, setLoading] = useState(false);
     const [assignmentDetails, setAssignmentDetails] = useState({});
     const [pageLoading, setPageLoading] = useState(false);
+    const [classLoading, setClassLoading] = useState(false);
     const history = useHistory();
 
     const getSubmission = () => {
@@ -72,9 +73,33 @@ const StudentSubmission = () => {
         })
     }
 
+    const getClassDetails = () => {
+        setClassLoading(true);
+        axios.post("https://edeasy.herokuapp.com/classes/getClassroom", 
+        {
+            classCode: classCode
+        },
+        {
+            headers: {
+                Authorization: "Bearer " + userData.token
+            }
+        })
+        .then(res => {
+            console.log(res.data);
+            setClassDetails(res.data);
+            setClassLoading(false);
+        })
+        .catch(err => {
+            console.log(err);
+            history.replace('/classes');
+            setClassLoading(false);
+        })
+    }
+
     useEffect(() => {
         getAssignment();
         getSubmission();
+        getClassDetails();
     }, [])
 
     const uploadFile = () => {
@@ -194,7 +219,7 @@ const StudentSubmission = () => {
         break;
     }
 
-    if (pageLoading) {
+    if (pageLoading || classLoading) {
         return (
             <div className="col-12 d-flex justify-content-center align-items-center" style={{height:"100vh"}}>
                 <CircularProgress size={80} className="display-block"/>
@@ -216,14 +241,15 @@ const StudentSubmission = () => {
             <div className="container mt-3">
                 <div className="row">
                     <div className="col d-flex mt-5 fs-3 justify-content-left border-bot">
-                        {assignmentDetails.name}
+                        <a className="ClassHeading" href={"/classes/" + classCode}>
+                            {classDetails.className}
+                        </a>
                     </div>
                 </div>
                 <div className="row justify-content-between mt-3">
-                    {/* <div className="col-11 col-md-9 col-lg-8"> */}
                     <div className="Classroom_Body_student mt-4 m-0 p-0">
                         <div className="Assignments content-box py-3 px-4 pt-4 justify-content-around">
-                            <a href="https://media.istockphoto.com/photos/health-care-billing-statement-with-stethoscope-picture-id1224851166?b=1&amp;k=20&amp;m=1224851166&amp;s=170667a&amp;w=0&amp;h=xBJfeOFCnBG5Z6zgI2OFicnvgMF-idwwu3TuRvtq1y8=" target="_blank">
+                            <a href={assignmentDetails.fileLink} target="_blank">
                                 <div className="d-flex flex-column">
                                     <div className="d-flex justify-content-between">
                                         <div className="Assignment_Date_student">
