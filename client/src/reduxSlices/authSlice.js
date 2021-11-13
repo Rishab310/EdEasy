@@ -60,7 +60,7 @@ export const AUTOLOGIN = () => async dispatch => {
     const userId = localStorage.getItem('EdEasy__userId');
     const userName = localStorage.getItem('EdEasy__userName');
     const userEmail = localStorage.getItem('EdEasy__userEmail');
-    await axios.post("https://edeasy-server.herokuapp.com/auth/verifyToken",{ token: token })
+    await axios.post("https://edeasy.herokuapp.com/auth/verifyToken",{ token: token })
     .then((res)=>{
       dispatch(LOGIN({
         token: token,
@@ -79,18 +79,13 @@ export const AUTOLOGIN = () => async dispatch => {
 }
 
 export const ASYNC_LOGIN = userData => dispatch => {
-    
-  if(userData.logging)
-    dispatch(SET_LOGGING(true));
-      
-  dispatch(SET_LOADING(true));
+  dispatch(SET_LOGGING(true));    
 
   const authData = {
     email: userData.email,
     password: userData.password,
   }
-  let URL = "https://edeasy-server.herokuapp.com/auth/signin";
-  // console.log(authData);
+  let URL = "https://edeasy.herokuapp.com/auth/signin";
   axios.post(URL, authData)
   .then(response => {
     const token = response.data.token;
@@ -104,21 +99,19 @@ export const ASYNC_LOGIN = userData => dispatch => {
     dispatch(SET_LOGGING(false));
   })
   .catch(err => {
-    console.log(err.message);
-    console.log(err.response.data.message);
-    dispatch(SET_ERROR(err.response.data.message));
+    if (err.response && err.response.data) {
+      console.log(err.response.data.message);
+      dispatch(SET_ERROR(err.response.data.message));
+    }
     dispatch(SET_LOADING(false));
     dispatch(SET_LOGGING(false));
   })
 }
-export const ASYNC_SIGNUP = authData => dispatch => {
-    
-  if(authData.logging)
-      dispatch(SET_LOGGING(true));
-      
-  dispatch(SET_LOADING(true));
 
-  let URL = "https://edeasy-server.herokuapp.com/auth/signup";
+export const ASYNC_SIGNUP = authData => dispatch => {
+  dispatch(SET_LOGGING(true));
+
+  let URL = "https://edeasy.herokuapp.com/auth/signup";
   axios.post(URL, authData)
   .then(response => {
     const token = response.data.token;
@@ -128,12 +121,13 @@ export const ASYNC_SIGNUP = authData => dispatch => {
     localStorage.setItem('EdEasy__userEmail', response.data.userEmail);
     localStorage.setItem('EdEasy__userName', response.data.userName);
     dispatch(AUTOLOGIN());
-    dispatch(SET_LOADING(false));
     dispatch(SET_LOGGING(false));
   })
   .catch(err => {
-    console.log(err.response.data.message);
-    dispatch(SET_ERROR(err.response.data.message));
+    if (err.response && err.response.data) {
+      console.log(err.response.data.message);
+      dispatch(SET_ERROR(err.response.data.message));
+    }
     dispatch(SET_LOADING(false));
     dispatch(SET_LOGGING(false));
   })

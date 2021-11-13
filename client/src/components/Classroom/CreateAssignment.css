@@ -1,0 +1,20 @@
+@media screen and (max-width:768px) {
+    .modal-body {
+      padding: 30px 30px !important;
+    }
+    .modal {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+    .modal-dialog {
+      width: 100% !important;
+    }
+  }
+  
+  .assignment_modal .modal-content{
+    font-family: 'Tajawal';
+    max-width: 450px !important;
+    border-radius: 0px !important;
+    margin: auto !important;
+  }

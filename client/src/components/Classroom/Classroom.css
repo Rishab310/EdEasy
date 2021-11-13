@@ -1,0 +1,482 @@
+.Classroom {
+    margin-top: 70px;
+    background-color: #F4F3F8 !important;
+    min-height: 100vh;
+}
+
+.Side_Border {
+    border-right: 1px solid #000000;
+}
+
+.Classroom_Desc div {
+    margin-top: 3px;
+    margin-right: 5px;
+    padding-right: 5px;
+    display: flex;
+    align-items: center;
+    height: 15px;
+}
+
+.ClassName {
+    margin: 0;
+}
+
+.Horizontal_Line {
+    margin-top: 5px;
+    margin-right: 10px;
+    height: 60px;
+    width: 6px;
+    border-radius: 5px;
+    background-color: #99C6FF;
+}
+
+.Classroom_Desc {
+    font-size: 15px;
+    font-family: 'inter', 'IBM Plex Sans' !important;
+    font-weight: 600;
+    margin-left: 7px;
+    margin-top: 4px;
+}
+
+.Class_Code {
+    border: 1px solid #99C6FF;
+    background-color: #EEF7F8;
+    padding: 4px 10px;
+    border-radius: 5px;
+    width: fit-content;
+    color: black;
+    font-size: 14px;
+}
+
+.Classroom .MuiSvgIcon-root {
+    cursor: pointer;
+}
+
+.Classroom_Info {
+    box-shadow: 0px 1px 6px #d8ddfd;
+}
+
+.Classroom_Navtab {
+    padding: 0 !important;
+    width: 63% !important;
+}
+
+.Classroom_Body {
+    width: 63% !important;
+}
+
+.Reminders {
+    height: fit-content;
+    width: 32% !important;
+}
+
+.Reminders * {
+    font-family: 'Inter' !important;
+}
+
+.Reminders a {
+    color: black !important;
+}
+
+.Reminders a:hover .Reminder_Desc {
+    text-decoration: underline;
+}
+
+.Reminder_Title {
+    font-size: 17px;
+    color: #808080;
+    font-weight: bold;
+}
+
+.Reminder_Desc {
+    font-size: 12px;
+    color: #373333;
+}
+
+.Classroom_Navtab div {
+    font-size: 18px;
+    font-weight: bold;
+    color: #828282;
+    padding: 5px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.Classroom_Navtab div.active{
+    font-weight: bold;
+    color: #0B223F;
+    background-color: white;
+}
+
+.See_All {
+    color: #6042CE;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ========== DISCUSSION SECTION ========== */
+
+.SendButton:hover {
+    color: #1B559C !important;
+    font-size: large;
+}
+
+.Discussion_PreviewImg {
+    width: 97%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.Discussion_PreviewImg img {
+    width: 100%;
+    height: 100%;
+}
+
+.Discussion_FileInput {
+    display: none;
+}
+
+.Discussion_TextArea {
+    width: 100%;
+    /* margin-bottom: 10px; */
+}
+
+.Discussion_TextArea textarea {
+    width: 95%;
+    border: none;
+    padding: 8px 4px !important;
+    line-height: 1.1;
+    outline: none;
+}
+
+.Discussion {
+    width: 100%;
+    padding: 4px 10px;
+}
+
+.Discussion .MuiSvgIcon-root {
+    color: #747474;
+    margin: 0 3px;
+}
+
+.Discussion_Input input {
+    width: 95%;
+    padding: 3px 4px;
+    margin: 0 6px;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    overflow-wrap: break-word;
+}
+
+.Discussion_Input input::placeholder {
+    color: #747474;
+}
+
+.Discussion_Input {
+    flex: 1;
+}
+
+.Post_Author {
+    flex: 1;
+}
+
+.Post_AuthorName {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.Post_AdminName {
+    line-height: 0.7;
+    font-size: 14px;
+    color: #666262;
+    font-weight: 500;
+}
+
+.Post_UploadDate {
+    font-size: 12px;
+    font-family: Roboto, 'Inter';
+}
+
+.Post_UploadTime {
+    font-size: 11px;
+    font-family: Roboto, 'Inter';
+    line-height: 1.1;
+}
+
+.Post_Desc {
+    margin-top: 10px;
+    line-height: 1.3;
+}
+
+.Post_Img img {
+    height: 100%;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.Post_Img {
+    margin-top: 10px;
+}
+
+/* ========== ASSIGNMENTS SECTION ========== */
+
+.Assignment_Desc {
+    color: black;
+    line-height: 1.1;
+    margin-top: 6px;
+    margin-bottom: 4px;
+    padding: 0 3px;
+}
+
+.Assignment_Date, .Assignment_Time {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Roboto, 'Inter';
+    color: #454545;
+}
+
+.Avatar_Container .MuiAvatar-root {
+    background-color: #1B559C !important;
+}
+
+.Avatar_Small .MuiAvatar-root{
+    font-size: 17px !important;
+    height: 35px;
+    width: 35px;
+}
+
+.Assignment_Box {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 6px;
+    margin-bottom: 28px;
+}
+
+.Assignment_Img img {
+    width: 100%;
+}
+
+.Assignment_Img {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 4px;
+    position: relative;
+}
+
+.Assignment_Name {
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    color: white;
+    font-weight: 500;
+    padding: 3px;
+    padding-left: 12px;
+}
+
+.grow-wrap {
+  /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
+  display: grid;
+}
+.grow-wrap::after {
+  /* Note the weird space! Needed to preventy jumpy behavior */
+  content: attr(data-replicated-value) " ";
+
+  /* This is how textarea text behaves */
+  white-space: pre-wrap;
+
+  /* Hidden from view, clicks, and screen readers */
+  visibility: hidden;
+}
+.grow-wrap > textarea {
+  /* You could leave this, but after a user resizes, then it ruins the auto sizing */
+  resize: none;
+
+  /* Firefox shows scrollbar on growth, you can hide like this. */
+  overflow: hidden;
+}
+.grow-wrap > textarea,
+.grow-wrap::after {
+  /* Identical styling required!! */
+  border: 1px solid black;
+  padding: 0.5rem;
+  font: inherit;
+
+  /* Place on top of each other */
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+body {
+  margin: 2rem;
+  font: 1rem/1.4 system-ui, sans-serif;
+}
+
+label {
+  display: block;
+}
+
+.Attendees_Title {
+    font-size: 18px;
+}
+
+.Member_Name {
+    font-size: 18px;
+}
+
+.Button_Hover:hover {
+    color: white !important;
+}
+
+@media (max-width: 772px) {
+    .Reminder_Title {
+        font-size: 14px;
+    }
+
+    .Reminder_Desc {
+        font-size: 10px;
+    }
+ 
+    .Classroom_Navtab div {
+        font-size: 15px;
+    }
+
+    .Discussion_TextArea textarea {
+        font-size: 14px;
+    }
+
+    .Avatar_Container .MuiAvatar-root {
+        font-size: 14px !important;
+        width: 33px;
+        height: 33px;
+    }
+
+    .See_All div {
+        margin-right: 12px;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+
+    .InputImgButton, .SendButton {
+        font-size: 26px !important;
+    }
+
+    .Post_AuthorName {
+        font-size: 16px !important;
+    }
+
+    .Post_AdminName {
+        font-size: 13px !important;
+    }
+
+    .Post_UploadDate {
+        font-size: 10px !important;
+    }
+
+    .Post_UploadTime {
+        font-size: 9px !important;
+    }
+
+    .Post_Desc {
+        font-size: 14px !important;
+    }
+
+    .Classroom_Body {
+        width: 65% !important;
+    }
+
+    .Assignment_Date {
+        font-size: 13px !important;
+    }
+
+    .Assignment_Time {
+        font-size: 13px;
+    }
+
+    .Assignment_Name {
+        font-size: 15px;
+    }
+
+    .Assignment_Img {
+        height: 120px;
+    }
+
+    .Attendees_Title {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .Reminders {
+        display: none;
+    }
+
+    .Classroom_Body {
+        width: 100% !important;
+    }
+
+    .ClassName {
+        font-size: 20px;
+    }
+
+    .Classroom_Desc {
+        font-size: 12px;
+    }
+
+    .Class_Code {
+        font-size: 12px;
+        padding: 3px 8px;
+    }
+
+    .Horizontal_Line {
+        margin-right: 6px;
+        height: 50px;
+    }
+    
+    .Member_Name {
+        font-size: 16px;
+    }
+
+    .Classroom_Navtab div {
+        padding: 3px 10px;
+    }
+
+    .Classroom_Navtab {
+        width: 98% !important;
+    }
+}
+
+.btn-outline-primary:hover {
+    background-color: #1B559C !important;
+}
+
+.floating-btn{
+    position: fixed !important;
+    bottom: 80px !important;
+    right: 15px !important;
+    z-index: 5 !important;
+}
+
+.Posts {
+    margin-bottom: 60px;
+}
+
+.Assignments {
+    margin-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+    .Posts {
+        margin-bottom: 120px;
+    }
+
+    .Assignments {
+        margin-bottom: 100px !important;
+    }
+}

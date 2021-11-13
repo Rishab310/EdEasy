@@ -1,0 +1,121 @@
+.border-bot{
+    border-bottom: 1px solid black;
+}
+.Assignment_Box_student{    
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+.Avatar_Container .MuiAvatar-root {
+    background-color: #1B559C !important;
+}
+.MuiAvatar-colorDefault {
+    color: #fafafa;
+    background-color: #bdbdbd;
+}
+.MuiAvatar-root {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    font-size: 1.25rem;
+    align-items: center;
+    flex-shrink: 0;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 1;
+    user-select: none;
+    border-radius: 50%;
+    justify-content: center;
+}
+.Assignment_Date_student, .Assignment_Time_student {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Roboto, 'Inter';
+    color: #454545;
+}
+.Post_AuthorName {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+.Post_AdminName {
+    line-height: 0.7;
+    font-size: 14px;
+    color: #666262;
+    font-weight: 500;
+}
+.Classroom_Body_student{
+    width: 40% !important;
+}
+
+@media (max-width: 992px) {
+    .Classroom_Body_student {
+        width: 50% !important;
+    }
+}
+
+.submit_area{
+    display: flex;
+    border-bottom: 1px solid black;
+}
+
+.btn-outline-primary {
+    color: #1B559C !important;
+    border-color: #1B559C !important;
+}
+
+/* .btn:hover{
+    color: rgb(247, 244, 244) !important;
+    background-color: #1B559C !important;
+} */
+.display_pdf{
+    display: none;
+}
+
+.resubmit_button{
+    display: flex;
+    justify-content: end;
+    position: relative;
+    bottom:0px;
+}
+
+@media (max-width:768px) {
+    .Classroom_Body_student{
+        width: 100% !important;
+    }
+    .Post_AuthorName{
+        font-size: 14px;
+    }
+    .Post_AdminName{
+        font-size: 13px;
+    }
+    .Assignment_Date_student, .Assignment_Time_student {
+        font-size: 13px;
+    }
+}
+.button_hover:hover{
+    color: #fafafa !important;
+}
+@media (max-width:468px) {
+    .Post_AuthorName{
+        font-size: 13px;
+    }
+    .Post_AdminName{
+        font-size: 12px;
+    }
+    .Assignment_Date_student, .Assignment_Time_student {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .Upload_Options {
+        margin-bottom: 100px;
+    }
+}
+
+.ClassHeading {
+    text-decoration: none;
+    color: black !important;
+}

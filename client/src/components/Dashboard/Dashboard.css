@@ -1,0 +1,244 @@
+body, #root, .app {
+  min-height: 100vh;
+}
+/* * {
+  max-width: 100% !important;
+} */
+.dashboard {
+  background-color: #F4F3F8 !important;
+  /* min-height: 100vh; */
+  height: auto !important;
+}
+
+.banner {
+  background: #D6EAF7;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px 0 rgb(0, 0, 0, 15%);
+  width: 100%;
+}
+
+.hello-name {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.hello-description {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.heading-2 {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 20px;
+  line-height: 26px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: rgb(33 33 33);
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+}
+
+.heading-3 {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 17px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: rgb(33 33 33);
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+}
+
+.content-box {
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px 0 rgb(0, 0, 0, 5%);
+}
+
+.card-link {
+  font-size: 15px;
+}
+
+.stats {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight:500;
+  font-size: 16px;
+  line-height: 15px;
+  /* identical to box height */
+  color: #000000;
+}
+
+.count {
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  color: rgb(33 33 33);
+}
+
+.Dashboard_Sidedrawer {
+  padding: 25px 0;
+  /* display: block !important; */
+  position: fixed !important;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  top: 70px !important;
+  left: 0;
+  overflow: auto;
+  max-height: calc(100% - 60px);
+}
+.Dashboard_Sidedrawer::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.Sidedrawer_Class {
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.Sidedrawer_Class.active {
+  background-color: white;
+  box-shadow: -1px 1px 3px #ccc;
+}
+
+.Sidedrawer_Class:hover {
+  background-color: rgba(32,33,36,0.039);
+  cursor: pointer;
+}
+
+.Class_Title {
+  color: #252525;
+  font-weight: bold;
+}
+
+.Class_Desc {
+  font-size: 13px;
+  color: rgb(105 105 105);
+  line-height: 1.1;
+}
+
+@media screen and (min-width:992px) {
+  .width-80 {
+    width: 80% !important;
+  }
+  .width-20 {
+    width: 20% !important;
+  }
+  .pos {
+    position: absolute;
+    right: 0;
+    top: 60px !important;
+  }
+}
+
+.pos {
+  position: absolute;
+  right: 0;
+  top: 80px !important;
+}
+@media screen and (max-width:768px) {
+  .padding-sx-0 {
+    padding-left: 0px!important ;
+    padding-right: 0px!important ;
+  }
+  .margin-sx-0 {
+    margin-left: 0px!important ;
+    margin-right: 0px!important ;
+  }
+}
+.header-nav {
+  display: none;
+}
+@media screen and (min-width:768px) {
+  .header-nav {
+    display: block;
+  }
+}
+.height-100{
+  height: 100%;
+}
+
+.class-card {
+  box-shadow: 0 1px 16px 0 rgb(0, 0, 0, 8%) !important;
+}
+.card-width {
+  max-width:300px;
+}
+.card-width-mobile {
+  min-width: 100% !important;
+}
+.classes-nav-btn {
+  background-color: #F4F3F8;
+  font-family: Tajawal;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 25px;
+  color: #7D7D7D;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.classes-nav-btn.active {
+  font-family: Tajawal;
+  font-weight: bolder;
+  line-height: 20px;
+  color: #1B559C;
+}
+.mobile-classlist {
+  border-top-left-radius: 10px ;
+  border-top-right-radius: 10px ;
+  min-height: 50vh;
+}
+
+.mobile-card-desc {
+  display: block;
+}
+
+@media screen and (max-width:500px) {
+  .mobile-card-desc {
+    display: none;
+  }
+}
+
+.class-avatar .MuiAvatar-root {
+  background-color: #1B559C !important;
+}
+
+.join-create-btn {
+  display: block;
+  /* background: #E8E4E4; */
+  background: #868686;
+  border-radius: 7px;
+  font-style: normal;
+  font-weight:500;
+  font-size: 16px;
+  line-height: 28px;
+  width: 150px;
+  color: #fff;
+}
+.join-create-btn:hover {
+  background: #707070;
+}

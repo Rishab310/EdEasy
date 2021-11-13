@@ -1,0 +1,101 @@
+/* Login and sign up */
+
+@media screen and (max-width:768px) {
+  .modal-body {
+    padding: 30px 30px !important;
+  }
+  .modal {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .modal-dialog {
+    width: 100% !important;
+  }
+}
+@media screen and (min-width:768px) {
+  .modal-dialog  {
+    max-width : 60% !important;
+  }
+}
+.modal-content {
+  border-radius: 20px !important;
+}
+.auth-inner {
+  width: 100%;
+  margin: auto;
+  background: #ffffff;
+}
+
+.auth-inner .form-control:focus {
+  border-color: #167bff;
+  box-shadow: none;
+}
+
+.custom-control-label {
+  font-weight: 400;
+}
+
+.forgot-password, .forgot-password a {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+.invalid-feedback {
+  display: contents !important;
+}
+
+.or-signin {
+  color: #1B559C !important;
+  font-weight: 600;
+}
+.or-signin:hover {
+  cursor: pointer !important;
+}
+
+.forgot-password a {
+  color: #1B559C;
+}
+
+
+/* Removing reactstrap nav effects */
+.navigation-btn {
+  border: none;
+  outline: none;
+  background: #fff;
+  color: #898989;
+}
+.navigation-btn h5 {
+  font-family: "Tajawal";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 32px;
+}
+.active.navigation-btn {
+  color: rgb(46, 46, 46);
+  border-bottom: 2px solid rgb(46, 46, 46) !important;
+}
+
+
+/* Login material css */
+.form-btn {
+  margin-top: 20px;
+  padding: 10px 25px;
+  background: #1B559C;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  color: white;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: #fff !important;
+}

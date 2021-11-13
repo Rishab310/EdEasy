@@ -1,0 +1,91 @@
+.Sidedrawer {
+    top: 0;
+    width: 350px;
+    max-width: 100%;
+    height: 100vh;
+    background-color: #ffffff !important;
+    position: fixed;
+    z-index: 12;
+}
+
+.Sidedrawer_Open {
+    animation: sidedrawer_show 0.3s ease-out;
+}
+.side-drawer{
+    background: rgba(196, 196, 196, 0.09) !important;
+}
+
+@keyframes sidedrawer_show {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.Sidedrawer_Close {
+    animation: sidedrawer_close 0.33s ease-in;
+}
+
+@keyframes sidedrawer_close {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+.Sidedrawer_Logo {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    width: 240px;
+    margin: 0 auto;
+}
+
+.Sidedrawer_Logo img {
+    height: 100%;
+    width: 100%;
+}
+
+.side-drawer-links {
+    list-style: none;
+    margin-left: 20px;
+    font-family: Tajawal !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    line-height: 24px !important;
+    color: #9698A6 !important;
+}
+
+.side-drawer-links li {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.side-drawer-links a {
+    text-decoration: none;
+    color: #9698A6 !important
+}
+
+.side-drawer-links li a:hover, .side-drawer-links li a:active, .side-drawer-links li a:focus, .side-drawer-links .active {
+    color: rgb(46, 44, 44) !important;
+}
+
+.side-drawer-links {
+    list-style: none;
+    margin-left: 20px;
+    font-family: Tajawal !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    line-height: 24px !important;
+    color: #9698A6 !important;
+}

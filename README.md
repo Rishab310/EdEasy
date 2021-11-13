@@ -1,2 +1,3 @@
-# EdEasy
-Deployed on heroku: https://edeasy.herokuapp.com
+### EdEasy
+
+Hosted at https://edeasy.herokuapp.com/

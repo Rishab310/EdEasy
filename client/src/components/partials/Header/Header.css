@@ -1,0 +1,79 @@
+a {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.navbar-brand {
+    font-family: Merriweather !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 24px !important;
+    line-height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+
+    color: #433939 !important;
+}
+
+.navbar {
+    /* background: rgba(196, 196, 196, 0.09) !important; */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12) !important;
+    border-radius: 10px !important;
+    position: fixed !important;
+    top: 0;
+    width: 100% !important;
+    z-index: 5;
+}
+
+.login-btn {
+    width: 78px;
+    height: 42px;
+    font-family: Tajawal;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center !important;
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background: #1B559C;
+    border-radius: 22px;
+    border: none !important;
+}
+
+.nav-link {
+    font-family: Tajawal !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    line-height: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+
+    color: #9698A6 !important;
+}
+
+.navbar-toggler  {
+    border : none !important;
+}
+.navbar-toggler .MuiSvgIcon-root {
+    border : none !important;
+    font-size: 24px !important;
+}
+
+.selected {
+    font-style: normal;
+    font-weight: bold !important;
+    color: #1B559C !important;
+  }
+
+.comp-nav {
+    font-size: 16px;
+    font-weight: 500 !important;
+}
+
+.logout {
+    font-size: 18px !important;
+    font-weight: 700;
+    color: rgb(90, 90, 90) !important;
+}
