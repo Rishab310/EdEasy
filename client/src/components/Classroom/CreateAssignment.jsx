@@ -66,7 +66,7 @@ const CreateAssignment = (props) => {
   const [values, setValues] = useState({
     name: "",
     description: "",
-    dueDate: "",
+    dueDate: ""
   });
 
   const [loading, setLoading] = useState(false);
@@ -78,8 +78,10 @@ const CreateAssignment = (props) => {
 
   const submitFile = (e) => {
     e.preventDefault();
-    setLoading(true);
 
+    if (!fileInput) return;
+
+    setLoading(true);
     const fileName = new Date().getTime() + "-" + fileInput.fileInput.name;
     const uploadTask = storage
       .ref(`assignments/${fileName}`)
@@ -175,7 +177,7 @@ const CreateAssignment = (props) => {
                   >
                     Create Assignment
                   </h1>
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={submitFile}>
                     <FormControl
                       className={clsx(classes.margin, classes.textField)}
                     >
@@ -215,6 +217,7 @@ const CreateAssignment = (props) => {
                         // margin="normal"
                         value={values.description}
                         onChange={handleChange("description")}
+                        required
                         startAdornment={
                           <InputAdornment position="start">
                             <AssignmentIcon />
@@ -234,6 +237,7 @@ const CreateAssignment = (props) => {
                         id="dueDate"
                         marginTop="10px"
                         value={values.dueDate}
+                        required
                         onChange={handleChange("dueDate")}
                       />
                     </FormControl>
@@ -250,6 +254,7 @@ const CreateAssignment = (props) => {
                         id="pdf"
                         type="file"
                         marginTop="30px"
+                        required
                         onChange={handleChange("fileInput")}
                         startAdornment={
                           <InputAdornment position="start">
@@ -274,7 +279,6 @@ const CreateAssignment = (props) => {
                       <button
                         type="submit"
                         style={{ display: "flex", justifyContent: "center" }}
-                        onClick={submitFile}
                         className="m-auto mt-4 form-btn"
                       >
                         Create
