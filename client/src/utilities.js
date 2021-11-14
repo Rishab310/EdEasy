@@ -34,7 +34,7 @@ export const getTimeFromTimestamp = (timestamp) => {
     let hours = newDate.getHours();
     let minutes = newDate.getMinutes().toString();
 
-    let notation = "am";
+    let notation = "AM";
     if (hours === 0) {
         hours = 12;
     } else if (hours > 12) {

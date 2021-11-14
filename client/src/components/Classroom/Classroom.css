@@ -480,3 +480,13 @@ label {
         margin-bottom: 100px !important;
     }
 }
+
+.Reminder_className {
+    font-size: 16px;
+    margin-bottom: -2px;
+    font-weight: 500;
+}
+
+.Reminder_name {
+    font-size: 13px;
+}

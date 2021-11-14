@@ -82,13 +82,24 @@ const Classroom = () => {
           userEmail : storeData.userEmail
         },{ headers: { Authorization: 'Bearer ' + storeData.token } }
         )
-        .then((res)=>{
-          // console.log(res);
-          setReminders(res.data);
+        .then(async (res)=>{
+          let reminders = [];
+          for (let reminder of res.data) {
+            await axios.post("https://edeasy.herokuapp.com/classes/getClassroom", {
+              classCode: reminder.classCode
+            })
+            .then(classDetails => {
+              reminders.push({...reminder, className: classDetails.data.className});
+            })
+            .catch(err => {
+              console.log(err);
+            })
+          }
+          setReminders(reminders);
           setReminderLoading(false);
         })
         .catch(err => {
-          console.log(err.response);
+          console.log(err);
           setReminderLoading(false);
         })
     }
@@ -209,6 +220,7 @@ const Classroom = () => {
                               className="d-flex flex-column Reminder px-2 py-2 py-md-3"
                               style={style}
                             >
+                              <div className="Reminder_className">{reminder.className}</div>
                               <div className="Reminder_name">{reminder.name}</div>
                               <div className="Reminder_Desc">
                                 {getTimeFromTimestamp(reminder.dueDate)} -{" "}
