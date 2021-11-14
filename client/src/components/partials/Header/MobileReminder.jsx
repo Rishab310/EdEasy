@@ -23,9 +23,20 @@ const MobileReminder = () => {
               userEmail : storeData.userEmail
             },{ headers: { Authorization: 'Bearer ' + storeData.token } }
             )
-            .then((res)=>{
-              // console.log(res);
-              setReminders(res.data);
+            .then(async (res)=>{
+              let reminders = [];
+              for (let reminder of res.data) {
+                await axios.post("https://edeasy.herokuapp.com/classes/getClassroom", {
+                  classCode: reminder.classCode
+                })
+                .then(classDetails => {
+                  reminders.push({...reminder, className: classDetails.data.className});
+                })
+                .catch(err => {
+                  console.log(err);
+                })
+              }
+              setReminders(reminders);
               setReminderLoading(false);
             })
             .catch(err => {
@@ -50,13 +61,15 @@ const MobileReminder = () => {
                             return (
                                 <a key={reminder._id} href={"/classes/" + reminder.classCode + "/assignment/" + reminder._id}>
                                     <div
-                                        className="d-flex Reminder px-2 py-2"
-                                        style={{justifyContent:'space-between'}}
+                                        className="d-flex flex-column Reminder px-2 py-2"
                                     >
-                                        <div className="Reminder_Title_mobile">{reminder.name}</div>
-                                        <div className="Reminder_Desc_mobile">
-                                            {getTimeFromTimestamp(reminder.dueDate)} -{" "}
-                                            {getDateFromTimestamp(reminder.dueDate)}
+                                        <div className="Reminder_mobile_className">{reminder.className}</div>
+                                        <div className="d-flex justify-content-between">
+                                          <div className="Reminder_Title_mobile">{reminder.name}</div>
+                                          <div className="Reminder_Desc_mobile">
+                                              {getTimeFromTimestamp(reminder.dueDate)} -{" "}
+                                              {getDateFromTimestamp(reminder.dueDate)}
+                                          </div>
                                         </div>
                                     </div>
                                     <hr style={{margin:'0.5rem'}}></hr>
