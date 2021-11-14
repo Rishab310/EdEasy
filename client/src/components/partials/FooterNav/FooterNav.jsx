@@ -16,8 +16,8 @@ function FooterNav() {
             </div>
             <div className="col-4 d-flex justify-content-center">
               <h3>
-                <NavLink to="/about" className="nav-link footer-nav-link" activeClassName="selected" exact>
-                  About
+                <NavLink to="/classes/reminders" className="nav-link footer-nav-link" activeClassName="selected" exact>
+                  Reminders
                 </NavLink>
               </h3>
             </div>
