@@ -19,14 +19,14 @@ const MobileReminder = () => {
     useEffect(async () => {
         if (storeData.token){
           setReminderLoading(true);
-          axios.post("https://edeasy.herokuapp.com/classes/getReminders", {
+          axios.post("https://edeasy.onrender.com/classes/getReminders", {
               userEmail : storeData.userEmail
             },{ headers: { Authorization: 'Bearer ' + storeData.token } }
             )
             .then(async (res)=>{
               let reminders = [];
               for (let reminder of res.data) {
-                await axios.post("https://edeasy.herokuapp.com/classes/getClassroom", {
+                await axios.post("https://edeasy.onrender.com/classes/getClassroom", {
                   classCode: reminder.classCode
                 })
                 .then(classDetails => {

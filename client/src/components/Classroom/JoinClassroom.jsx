@@ -75,7 +75,7 @@ const JoinClassroom = (props) => {
         }
         else{
             setLoading(true);
-            axios.post("https://edeasy.herokuapp.com/classes/joinClassroom", {
+            axios.post("https://edeasy.onrender.com/classes/joinClassroom", {
                 userEmail: storeData.userEmail,
                 classCode: classCode
             },{ headers: { Authorization: 'Bearer ' + storeData.token } }

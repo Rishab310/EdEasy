@@ -32,7 +32,7 @@ const StudentSubmission = () => {
 
     const getSubmission = () => {
         setLoading(true);
-        axios.post("https://edeasy.herokuapp.com/classes/getSubmission", {
+        axios.post("https://edeasy.onrender.com/classes/getSubmission", {
             assignmentId: assignmentId,
             userEmail: userData.userEmail
         },
@@ -54,7 +54,7 @@ const StudentSubmission = () => {
 
     const getAssignment = () => {
         setPageLoading(true);
-        axios.post("https://edeasy.herokuapp.com/classes/getAssignment", {
+        axios.post("https://edeasy.onrender.com/classes/getAssignment", {
             assignmentId: assignmentId
         }, 
         {
@@ -75,7 +75,7 @@ const StudentSubmission = () => {
 
     const getClassDetails = () => {
         setClassLoading(true);
-        axios.post("https://edeasy.herokuapp.com/classes/getClassroom", 
+        axios.post("https://edeasy.onrender.com/classes/getClassroom", 
         {
             classCode: classCode
         },
@@ -114,7 +114,7 @@ const StudentSubmission = () => {
         uploadTask.on('state_changed', console.log, console.error, () => {
             storage.ref('submissions').child(fileName).getDownloadURL()
                     .then(firebaseURL => {
-                    return axios.post('https://edeasy.herokuapp.com/classes/submitAssignment', {
+                    return axios.post('https://edeasy.onrender.com/classes/submitAssignment', {
                         assignmentId: assignmentId,
                         studentName: userData.userName,
                         studentEmail: userData.userEmail,
@@ -142,7 +142,7 @@ const StudentSubmission = () => {
 
     const unSubmitFile = () => {
         setLoading(true);
-        axios.delete("https://edeasy.herokuapp.com/classes/deleteSubmission", {
+        axios.delete("https://edeasy.onrender.com/classes/deleteSubmission", {
             data: {
                 assignmentId: assignmentId,
                 userEmail: userData.userEmail

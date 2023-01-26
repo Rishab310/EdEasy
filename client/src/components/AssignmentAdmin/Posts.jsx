@@ -16,7 +16,7 @@ const Posts = ({fetchPosts, posts, loading, paginate, assignmentName, dueDate}) 
     };
     
     const setGrade = (submissionId, grade)=>{
-        axios.post("https://edeasy.herokuapp.com/classes/setGrade", {
+        axios.post("https://edeasy.onrender.com/classes/setGrade", {
             submissionId: submissionId,
             grade: grade
         }, 

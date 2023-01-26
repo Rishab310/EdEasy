@@ -20,7 +20,7 @@ const Assignments = ({classCode, adminEmail, isAssignmentCreated, setIsAssignmen
 
     const getAssignments = () => {
         setLoading(true);
-        axios.post("https://edeasy.herokuapp.com/classes/getAssignments", {
+        axios.post("https://edeasy.onrender.com/classes/getAssignments", {
             classCode: classCode
         },{ headers: { Authorization: 'Bearer ' + storeData.token } }
         )

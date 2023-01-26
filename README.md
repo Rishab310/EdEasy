@@ -3,7 +3,7 @@ An eLearning tool and online class management system that can help teachers and 
 
 Technologies Used : ReactJS, Redux, Nodejs, Express, Firebase, Material UI, Bootstrap 5, Reactstrap, JWT(JSON Web Token), MongoDB, Mongoose, Figma(UI design).
 
-Hosted at https://edeasy.herokuapp.com/
+Hosted at https://edeasy.onrender.com/
 
 #### Screenshots
 
